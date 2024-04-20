@@ -1,4 +1,4 @@
-# Pawsitive Haven
+# Pawsitivity Haven
 
 ## Introduction
 
@@ -9,29 +9,45 @@ Welcome to [Pawsitive Haven](https://pawsitive-haven-13024f62a5bc.herokuapp.com/
 
 It can be accessed through [Pawsitive Haven](https://pawsitive-haven-13024f62a5bc.herokuapp.com/).
 
-The Pawsitive Haven site is designed to fill a gap in dog rescue/adoption area. It is essential that once the dogs have gone into a rescue they are visible to the public to encourage adoption.
+The Pawsitive Haven site is designed to fill a gap in dog rescue/adoption area. It is essential that once the dogs have gone into a rescue they are visible to the public to encourage adoption. Also there are many day to day administration activities that need to be kept in order to keep the dogs healthy etc. The aim of this site is to fill these roles.
 
 As these are often run by charities and volunteers using IT solutions to advertise and retain information on the dogs is often underutilised.
 
 To step up the advertising campaign to get dogs adopted rather than just one picture and a list of characteristics with a paragraph about them, this site endeavours to show their personalities by getting the public involved in their timelines/posts/comments from walkers and the public. Hopefully, they will then get attached to a dog and adopt them.
 
-The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile, of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing.
+The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile and associated apps, of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing.
 
 Once they are adopted the new owners can continue to post information about the dog and that way stay in contact with people who have looked after them in the rescue. Also this will give a feel good area for people thinking about adopting to see how it changes the lives of dogs.
 
 
 ## UX design
 
-To achieve this there needs to be first, a backend API dealing with all the profiles, data and posts. Secondly, a Front-End site that deals with all the interactions required by 1) The Rescue staff, 2)Volunteers and Walkers, 3)Potential adopters and 4)Final owners experience of the data.
+To achieve this there needs to be first, a backend API dealing with all the profiles, data and posts. Secondly, a Front-End site that deals with all the interactions required by 
+1. The Rescue staff, 
+
+2. Volunteers and Walkers, 
+
+3. Potential adopters and 
+
+4. Final owners experience of the data.
+
+Therefore the site needs to provide the different information that is appropriate to each of these roles. Keeping some information confidential to the charity and some visible to the public to advertise the dogs that can be adopted in a fun interactive way.
 
 
 ### Wireframes – FrontEnd
 
+The wireframes were generated during the idea stage of the process and are considered to be flexible to exact layout when the design of the individual components has been completed so that the end product can be asthetically pleasing as possible.
 
+Two sets of wireframe were put together. One for the 
+
+1. [desktop]()
+
+2. [mobile]()
 
 
 ## Epics / User Stories / Tasks
 
+The project board that has been used for this project is combined with the backend as they are interelated. The project board can be accessed [here]()
 
 ### Epics
 
@@ -44,6 +60,7 @@ To achieve this there needs to be first, a backend API dealing with all the prof
 
 ### Existing Features
 
+The pages are designed by building up from components. Some components will be used on every page as they are relevant across the whole site and others are written as reusable components as they will be needed in different ways on different pages.
 
 #### Forms on pages
 
@@ -94,7 +111,7 @@ search = request.POST['search']
 ### Frameworks and libraries
 - [Django](https://www.djangoproject.com/) Framework based on python.
 - [Boostrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) for styling the site.
-- [React]
+- [React-bootstrap](https://react-bootstrap.github.io/)
 
 
 ### Databases
@@ -186,16 +203,9 @@ The repository was chosen by searching my github and then clicking connect
 
 You will need to pip install the following apps:
 
-Cloudinary
+react-bootstrap
 
-```pip install Django-cloudinary-storage```
-
-Pillow
-```pip install Pillow```
-
-Django 
-
-```pip3 install 'django<4'```
+```npm install react-bootstrap@1.6.3 bootstrap@4.6.0```
 
 
 
