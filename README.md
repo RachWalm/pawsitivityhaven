@@ -47,6 +47,10 @@ Two sets of wireframe were put together. One for each of the
 2. [mobile](/document/wireframes-mobile.pdf)
 
 
+## Fonts and icons
+
+googlefonts and font awesome
+
 ## Epics / User Stories / Tasks
 
 The project board that has been used for this project is combined with the backend as they are interelated. The project board can be accessed [here](https://github.com/users/RachWalm/projects/4)
@@ -171,6 +175,8 @@ search = request.POST['search']
 - [Responsive viewer extension](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb) to produce the responsive view for my testing.
 - [image compressor](https://compressnow.com/) to reduce the size of the images.
 - [Canava](https://www.canva.com/en_gb/) used to generate logo
+- [fontawesome]
+- [google-fonts]
 
 
 ## Deployment
