@@ -1,4 +1,4 @@
-# Pawsitivity Haven
+# Pawsitive Haven
 
 ## Introduction
 
@@ -148,6 +148,7 @@ search = request.POST['search']
 ### Tools
 
 - [VSCode](https://code.visualstudio.com/) was used to create and edit the website.
+- [GitPod](https://www.gitpod.io/docs/introduction)
 - [Git](https://git-scm.com/) was used for the version control and project board to plan the project.
 - [Heroku](https://www.heroku.com/) was used to deploy and host site.
 - [Pip3](https://pypi.org/project/pip/) was used for installing.
@@ -271,6 +272,10 @@ See [Testing](TESTING.md)
 ## Credits
 
 ### Images
+
+logo
+
+<a href="https://www.vecteezy.com/free-vector/animal-rescue-logo">Animal Rescue Logo Vectors by Vecteezy</a>
 
 leonardoAI for default dog image na then paint to put words on
 
