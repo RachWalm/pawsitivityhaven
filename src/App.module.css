@@ -4,12 +4,14 @@
     min-height: 100vh;
   }
   
+.main {
+  padding-top: 90px;
+}
+
   * {
     box-sizing: border-box;
   }
 
-
-  
   a {
     color: #A27B76;
     transition: color ease-in-out 0.2s;
