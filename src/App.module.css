@@ -1,5 +1,6 @@
 .App {
     font-family: "Quicksand", "Salsa", sans-serif;
+    background: url("./assets/bkgrdpaws.png") scroll right top;
     min-height: 100vh;
   }
   
@@ -10,28 +11,29 @@
 
   
   a {
-    color: #555555;
-    transition: color ease-in-out 0.3s;
+    color: #A27B76;
+    transition: color ease-in-out 0.2s;
   }
   
   a:hover {
     text-decoration: none;
+    color: #018EDE;
   }
   
   a:hover i {
-    color: #2142b2;
-    transition: color ease-in-out 0.3s;
+    color: #FF4802;
+    transition: color ease-in-out 0.2s;
   }
   
   i {
-    color: #cfced3;
+    color: #A27B76;
     font-size: 1.6rem;
-    padding: 7px;
+    padding: 10px;
     vertical-align: middle;
   }
   
   i:hover {
-    cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #2142b2;
+    cursor: grab;
+    transition: color ease-in-out 0.2s;
+    color: #018EDE;
   }
