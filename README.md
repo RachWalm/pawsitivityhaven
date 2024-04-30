@@ -93,6 +93,8 @@ the components on the pages will be :
 
 #### Forms on pages
 
+boilerplate takend from CI for the sign up form [boilerplate](https://github.com/Code-Institute-Solutions/moments-starter-code/blob/master/06-starter-code/SignUpForm.js)
+
 All forms undergo csrf tokens to avoid any fraudulent behaviour. 
 
 
@@ -243,6 +245,10 @@ react router
 
 ```npm install react-router-dom@5.3.0```
 
+axios
+
+```npm install axios```
+
 
 
 
@@ -286,6 +292,10 @@ See [Testing](TESTING.md)
 logo
 
 <a href="https://www.vecteezy.com/free-vector/animal-rescue-logo">Animal Rescue Logo Vectors by Vecteezy</a>
+
+signup image
+
+<a href="https://www.vecteezy.com/free-photos/dogs">Dogs Stock photos by Vecteezy</a>
 
 leonardoAI for default dog image na then paint to put words on
 
