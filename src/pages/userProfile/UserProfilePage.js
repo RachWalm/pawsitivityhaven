@@ -1,47 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefault";
-import {
-  useProfileData,
-  useSetProfileData,
-} from "../../contexts/ProfileDataContext";
+// import { useParams } from "react-router";
+// import { axiosReq } from "../../api/axiosDefault";
+// import {
+//   useProfileData,
+//   useSetProfileData,
+// } from "../../contexts/ProfileDataContext";
 
 import appStyles from "../../App.module.css"
 
 function UserProfilePage() {
-  const [hasLoaded, setHasLoaded] = useState(false);
+//   const [hasLoaded, setHasLoaded] = useState(false);
 
   const currentUser = useCurrentUser();
 
-  const { id } = useParams();
-  const setProfileData = useSetProfileData();
+//   const { id } = useParams();
+//   const setProfileData = useSetProfileData();
 //   const { pageProfile } = useProfileData();
 //   const [profile] = pageProfile.results;
 //   const is_owner = currentUser?.username === profile?.owner;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [{ data: pageProfile }] = await Promise.all([
-          axiosReq.get(`/user_profile/${id}/`),
-        ]);
-        setProfileData((prevState) => ({
-          ...prevState,
-          pageProfile: { results: [pageProfile] },
-        }));
-        setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, [id, setProfileData]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const [{ data: pageProfile }] = await Promise.all([
+//           axiosReq.get(`/user_profile/${id}/`),
+//         ]);
+//         setProfileData((prevState) => ({
+//           ...prevState,
+//           pageProfile: { results: [pageProfile] },
+//         }));
+//         setHasLoaded(true);
+//         console.log(pageProfile)
+//       } catch (err) {
+//         console.log(err);
+//       }
+//     };
+//     fetchData();
+//   }, [id, setProfileData]);
 
   const mainProfile = (
     <>
