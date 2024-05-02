@@ -1,0 +1,10 @@
+.NavSideBar {
+    display: flex;
+    margin-top: 90px;
+    margin-left: 20px;
+    border: 1px solid #dadada;
+    background-color: white;
+    width: 200px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

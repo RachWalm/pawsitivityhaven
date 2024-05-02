@@ -1,4 +1,5 @@
 import NavBar from "./components/NavBar";
+import NavSideBar from "./components/NavSideBar";
 import styles from "./App.module.css";
 import Container from "react-bootstrap/Container";
 import {Route, Switch} from "react-router-dom";
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
+      <NavSideBar />
       <Container className={styles.main}>
         <Switch>
           <Route exact path="/" render={() => <h1>Home page</h1>} />
