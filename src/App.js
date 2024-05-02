@@ -5,6 +5,7 @@ import {Route, Switch} from "react-router-dom";
 import "./api/axiosDefault";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
+import DogProfileCreateForm from "./pages/dogProfile/DogProfileCreateForm";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" render={() => <h1>Home page</h1>} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
+          <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
