@@ -65,7 +65,7 @@ const NavSideBar = () => {
                     <i className="fa-solid fa-house-chimney"></i>
                     Home
                 </NavLink>
-                <NavLink exact to="/">
+                <NavLink exact to="/dog-profile/create">
                     <i className="fa-solid fa-dog"></i>
                     Dog Profile create
                 </NavLink>

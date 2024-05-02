@@ -6,16 +6,129 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-import appStyles from "../../App.module.css";
+import Alert from "react-bootstrap/Alert";
+// import Image from "react-bootstrap/Image";
+
+// import Asset from "../../components/Asset";
+
+// import Upload from "../../assets/upload.png";
+
+// import styles from "../../styles/PostCreateEditForm.module.css";
+// import appStyles from "../../App.module.css";
+// import btnStyles from "../../styles/Button.module.css";
+import { useHistory } from "react-router";
+import { axiosReq } from "../../api/axiosDefault"
+// import { useRedirect } from "../../hooks/useRedirect";
 
 function DogProfileCreateForm() {
 
   const [errors, setErrors] = useState({});
+  const [dogData, setDogData] = useState({
+    dog_name: "",
+    received_date: "",
+    rehomed_date: "",
+    returned_date: "",
+    dog_age: "",
+    dog_breed: "",
+    dog_gender: "",
+    dog_size: "",
+    at_rescue: "",
+    status: "",
+    general: "",
+    home_cats: "",
+    home_dogs: "",
+    home_animals: "",
+    home_children: "",
+  });
+  const { dog_name,
+  received_date,
+  rehomed_date,
+  returned_date,
+  dog_age,
+  dog_breed,
+  dog_gender,
+  dog_size,
+  // dog_image,
+  at_rescue,
+  status,
+  general,
+  home_cats,
+  home_dogs,
+  home_animals,
+  home_children, } = dogData;
 
+  const history = useHistory();
+
+  const handleChange = (event) => {
+    setDogData({
+      ...dogData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append('dog_name', dog_name);
+    formData.append('received_date', received_date);
+    formData.append('rehomed_date', rehomed_date);
+    formData.append('returned_date', returned_date);
+    formData.append('dog_age', dog_age);
+    formData.append('dog_breed', dog_breed);
+    formData.append('dog_gender', dog_gender);
+    formData.append('dog_size', dog_size);
+    formData.append('at_rescue', at_rescue);
+    formData.append('status', status);
+    formData.append('general', general);
+    formData.append('home_cats', home_cats);
+    formData.append('home_dogs', home_dogs);
+    formData.append('home_animals,', home_animals,);
+    formData.append('home_children', home_children);
+    
+    // formData.append('image', imageInput.current.files[0]);
+
+    try {
+        const { data } = await axiosReq.post('/dog_profile_create/', formData);
+        history.push(`/posts/${data.id}`);
+    } catch (err) {
+        // console.log(err);
+        if (err.response?.status !== 401) {
+            setErrors(err.response?.data);
+        }
+    }
+  };
 
   const textFields = (
     <div className="text-center">
-      {/* Add your form fields here */}
+      <Form.Group>
+            <Form.Label >Dog Name</Form.Label>
+            <Form.Control 
+                type="text" 
+                name="dog_name"
+                value={dog_name}
+                onChange={handleChange}
+            />
+        </Form.Group>
+        {errors.title?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        <Form.Group>
+            <Form.Label>Dog Breed</Form.Label>
+            <Form.Control 
+                type="text"
+                name="dog_breed"
+                value={dog_breed}
+                onChange={handleChange}
+            />
+        </Form.Group>
+        {errors.content?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
     
     
@@ -31,7 +144,7 @@ function DogProfileCreateForm() {
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
