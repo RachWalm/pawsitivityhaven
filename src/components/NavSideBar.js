@@ -69,6 +69,11 @@ const NavSideBar = () => {
                     <i className="fa-solid fa-dog"></i>
                     Dog Profile create
                 </NavLink>
+                {currentUser?.username}
+                <NavLink to={`/user-profile/${currentUser?.pk}`}>
+                    <i className="fa-solid fa-dog"></i>
+                    User Profile create
+                </NavLink>
                 {/* {currentUser ? loggedInIcons : loggedOutIcons} */}
             </Nav>
             </Navbar.Collapse>
