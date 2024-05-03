@@ -8,6 +8,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import DogProfileCreateForm from "./pages/dogProfile/DogProfileCreateForm";
 import UserProfilePage from "./pages/userProfile/UserProfilePage";
+import DogProfile from "./pages/dogProfile/DogProfile";
 
 
 
@@ -22,7 +23,8 @@ function App() {
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
-          <Route exact path="/user-profile/:id" render={() => <UserProfilePage />} />
+          <Route exact path="/dog-profile/:id" render={() => <DogProfile />} />
+          <Route exact path="/user-profile" render={() => <UserProfilePage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

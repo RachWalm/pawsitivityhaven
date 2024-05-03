@@ -70,9 +70,9 @@ const NavSideBar = () => {
                     Dog Profile create
                 </NavLink>
                 {currentUser?.username}
-                <NavLink to={`/user-profile/${currentUser?.pk}`}>
+                <NavLink to={`/user-profile`}>
                     <i className="fa-solid fa-dog"></i>
-                    User Profile create
+                    User Profile
                 </NavLink>
                 {/* {currentUser ? loggedInIcons : loggedOutIcons} */}
             </Nav>
