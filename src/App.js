@@ -6,9 +6,12 @@ import {Route, Switch} from "react-router-dom";
 import "./api/axiosDefault";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import DogProfileCreateForm from "./pages/dogProfile/DogProfileCreateForm";
 import UserProfilePage from "./pages/userProfile/UserProfilePage";
+import UsernameForm from "./pages/userProfile/UsernameForm";
+import UserPasswordForm from "./pages/userProfile/UserPasswordForm";
+import ProfileEditForm from "./pages/userProfile/ProfileEditForm";
 import DogProfile from "./pages/dogProfile/DogProfile";
+import DogProfileCreateForm from "./pages/dogProfile/DogProfileCreateForm";
 
 
 
@@ -25,6 +28,9 @@ function App() {
           <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
           <Route exact path="/dog-profile/:id" render={() => <DogProfile />} />
           <Route exact path="/user-profile" render={() => <UserProfilePage />} />
+          <Route exact path="/user-profile/edit/username/:id" render={() => <UsernameForm/>} />
+          <Route exact path="/user-profile/edit/password/:id" render={() => <UserPasswordForm />}/>
+          <Route exact path="/user-profile/edit/:id" render={() => <ProfileEditForm />}/>
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

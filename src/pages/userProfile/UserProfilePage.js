@@ -12,7 +12,10 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 //   useSetProfileData,
 // } from "../../contexts/ProfileDataContext";
 
+import { ProfileEditDropdown } from "../../components/MoreDropDown";
+
 import appStyles from "../../App.module.css"
+import NavEditUser from "../../components/NavEditUser";
 
 function UserProfilePage() {
 //   const [hasLoaded, setHasLoaded] = useState(false);
@@ -47,6 +50,9 @@ function UserProfilePage() {
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
+        <col lg={1}>
+
+        </col>
         <Col lg={6}>
           <h3 className="m-2"> user name - {currentUser?.username}</h3>
           <h4>pk - {currentUser?.pk}</h4>
@@ -54,7 +60,11 @@ function UserProfilePage() {
           <h4>first_name - {currentUser?.first_name}</h4>
           <h4>last_name - {currentUser?.last_name}</h4>
         </Col>
+        <Col lg={4}>
+          <NavEditUser />
+        </Col>
       </Row>
+      <NavEditUser />
     </>
   );
 

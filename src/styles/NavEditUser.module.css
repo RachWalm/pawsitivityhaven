@@ -1,0 +1,10 @@
+.NavEditUser {
+    display: flex;
+    margin-top: 90px;
+    margin-left: 900px;
+    border: 1px solid #dadada;
+    background-color: white;
+    width: 200px;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
