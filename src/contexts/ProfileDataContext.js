@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { axiosReq } from "../api/axiosDefault"
+import { axiosReq } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const ProfileDataContext = createContext();
@@ -21,7 +21,7 @@ export const ProfileDataProvider = ({ children }) => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
-          "/profiles/?ordering=-created_at"
+          "/user_profile/?ordering=-followers_count"
         );
         setProfileData((prevState) => ({
           ...prevState,

@@ -12,6 +12,8 @@ import UserPasswordForm from "./pages/userProfile/UserPasswordForm";
 import ProfileEditForm from "./pages/userProfile/ProfileEditForm";
 import DogProfile from "./pages/dogProfile/DogProfile";
 import DogProfileCreateForm from "./pages/dogProfile/DogProfileCreateForm";
+import PostCreateForm from "./pages/posts/PostCreateForm";
+
 
 
 
@@ -31,6 +33,7 @@ function App() {
           <Route exact path="/user-profile/edit/username/:id" render={() => <UsernameForm/>} />
           <Route exact path="/user-profile/edit/password/:id" render={() => <UserPasswordForm />}/>
           <Route exact path="/user-profile/edit/:id" render={() => <ProfileEditForm />}/>
+          <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

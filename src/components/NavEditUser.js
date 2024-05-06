@@ -11,7 +11,7 @@ const NavEditUser = () => {
     const currentUser = useCurrentUser();
     const setCurrentUser = useSetCurrentUser();
 
-    const id = 1
+    const id = currentUser?.pk
     const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
     const handleSignOut = async () => {
@@ -70,7 +70,7 @@ const NavEditUser = () => {
                     <i className="fa-solid fa-dog"></i>
                     Edit password
                 </NavLink>
-                {currentUser?.username}
+                {currentUser?.pk}
                 <NavLink to={`/user-profile/edit/${id}`}>
                     <i className="fa-solid fa-dog"></i>
                     Edit User Profile
