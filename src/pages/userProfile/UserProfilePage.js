@@ -4,90 +4,124 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+// import Asset from "../../components/Asset";
+
+// import styles from "../../styles/ProfilePage.module.css";
+import appStyles from "../../App.module.css";
+// import btnStyles from "../../styles/Button.module.css";
+
+// import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
-// import {
-//   useProfileData,
-//   useSetProfileData,
-// } from "../../contexts/ProfileDataContext";
+import {
+  useProfileData,
+  useSetProfileData,
+} from "../../contexts/ProfileDataContext";
+import { Button, Image } from "react-bootstrap";
 
-import { ProfileEditDropdown } from "../../components/MoreDropDown";
-
-import appStyles from "../../App.module.css"
-import NavEditUser from "../../components/NavEditUser";
-
-function UserProfilePage() {
+function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
-
   const currentUser = useCurrentUser();
-
-  const { id } = 1;
-  // const { setProfileData } = useSetProfileData();
-  // const { pageProfile } = useProfileData();
-  // const [profile] = pageProfile.results;
-  // const is_owner = currentUser?.username === profile?.owner;
-
-  const [profileData, setProfileData] = useState({
-    pageProfile: { results: [] },
-  });
+  const { id } = useParams();
+  const setProfileData = useSetProfileData();
+  const { pageProfile } = useProfileData();
+  const [profile] = pageProfile.results;
+  const is_owner = currentUser?.username === profile?.owner;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [{ data: pageProfile }] = await Promise.all([
-          axiosReq.get(`/user_profile/1/`),
+          axiosReq.get(`/profiles/${id}/`),
         ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
-        console.log(pageProfile)
         setHasLoaded(true);
-        console.log(profileData)
       } catch (err) {
         console.log(err);
       }
     };
-    console.log(profileData)
     fetchData();
-    console.log(profileData)
   }, [id, setProfileData]);
 
   const mainProfile = (
     <>
-      {profileData?.is_owner && <ProfileEditDropdown id={profileData?.id} />}
       <Row noGutters className="px-3 text-center">
-        <col lg={1}>
-
-        </col>
+        <Col lg={3} className="text-lg-left">
+          <Image
+            roundedCircle
+            src={profile?.image}
+          />
+        </Col>
         <Col lg={6}>
-          <h3 className="m-2"> user name - {currentUser?.username}</h3>
-          <h4>pk - {currentUser?.pk}</h4>
-          <h4>email - {currentUser?.email}</h4>
-          <h4>first_name - {currentUser?.first_name}</h4>
-          <h4>last_name - {currentUser?.last_name}</h4>
+          <h3 className="m-2">{profile?.owner}</h3>
+          <Row className="justify-content-center no-gutters">
+            <Col xs={3} className="my-2">
+              <div>{profile?.posts_count}</div>
+              <div>posts</div>
+            </Col>
+            <Col xs={3} className="my-2">
+              <div>{profile?.followers_count}</div>
+              <div>followers</div>
+            </Col>
+            <Col xs={3} className="my-2">
+              <div>{profile?.following_count}</div>
+              <div>following</div>
+            </Col>
+          </Row>
         </Col>
-        <Col lg={4}>
-          <NavEditUser />
+        <Col lg={3} className="text-lg-right">
+          {currentUser &&
+            !is_owner &&
+            (profile?.following_id ? (
+              <Button
+                onClick={() => {}}
+              >
+                unfollow
+              </Button>
+            ) : (
+              <Button
+                onClick={() => {}}
+              >
+                follow
+              </Button>
+            ))}
         </Col>
+        {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
-      <NavEditUser />
     </>
   );
 
+  const mainProfilePosts = (
+    <>
+      <hr />
+      <p className="text-center">Profile owner's posts</p>
+      <hr />
+    </>
+  );
 
   return (
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <Container className={appStyles.container}>
+        <Container className={appStyles.Content}>
+          {/* {hasLoaded ? ( */}
+            <>
               {mainProfile}
+              {mainProfilePosts}
+            </>
+          {/* ) : (
+            <Asset spinner />
+          )} */}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+        {/* <PopularProfiles /> */}
       </Col>
     </Row>
   );
 }
 
-export default UserProfilePage;
+export default ProfilePage;

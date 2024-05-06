@@ -1,90 +1,85 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
-// import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
-// import {
-//   useProfileData,
-//   useSetProfileData,
-// } from "../../contexts/ProfileDataContext";
 
-import appStyles from "../../App.module.css"
+import appStyles from "../../App.module.css";
+
+import { useHistory } from "react-router";
 
 function DogProfile() {
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [dogData, setDogData] = useState(
-    {
-        id: 1,
-        dog_name: null,
-        created_at: "Thursday 02 May 2024 14:11:31",
-        updated_at: "Thursday 02 May 2024 14:11:31",
-        received_date: null,
-        rehomed_date: null,
-        returned_date: null,
-        dog_age: 1,
-        dog_breed: "greyhound",
-        dog_gender: 0,
-        dog_size: 0,
+  const [errors, setErrors] = useState({});
+
+  const [dogData, setDogData] = useState({
+        id: "",
+        dog_name: "",
+        received_date: "",
+        rehomed_date: "",
+        returned_date: "",
+        dog_age: "",
+        dog_breed: "",
+        dog_gender: "",
+        dog_size: "",
         dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
-        at_rescue: true,
-        status: 0,
-        general: "af",
-        home_cats: false,
-        home_dogs: false,
-        home_animals: false,
-        home_children: false,
-        favourite_id: null,
-        fav_count: 0
-        }
-  );
-//   const currentUser = useCurrentUser();
+        at_rescue: "",
+        status: "",
+        general: "",
+        home_cats: "",
+        home_dogs: "",
+        home_animals: "",
+        home_children: "",
+  });
+  const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
+    home_cats, home_dogs, home_animals, home_children, } = dogData;
 
+  // const imageInput = useRef(null);
+  const history = useHistory();
   const { id } = useParams();
-//   const setProfileData = useSetProfileData();
-//   const { pageProfile } = useProfileData();
-//   const [dog] = dogData.results;
-//   const is_owner = currentUser?.username === profile?.owner;
-
 
   useEffect(() => {
-    const fetchData = async () => {
-      console.log('start request')
+    const handleMount = async () => {
       try {
-        const [{ data: dogData }] = await Promise.all([
-          axiosReq.get(`/dog_profile/${id}/`),
-        ]);
-        console.log('got request')
-        setDogData((prevState) => ({
-          ...prevState,
-          dogData: { results: [dogData] }
-        }));
-        console.log('data in dogData')
-        console.log(dogData)
-        console.log(dogData.dog_name)
-        setHasLoaded(true);
+        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
+          home_cats, home_dogs, home_animals, home_children, } = data;
+
+        setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
+          dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
+          home_children,  });
       } catch (err) {
         console.log(err);
       }
     };
-    fetchData();
-    console.log('reach')
-    console.log(dogData)
-    console.log(dogData?.dog_name)
-  }, [id, setDogData]);
+
+    handleMount();
+  }, [history, id]);
 
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
-        <Col lg={6}>
-          <h3 className="m-2"> Dog name - {dogData?.dog_name} </h3>
-          {/* <h4>pk - {currentUser?.pk}</h4>
-          <h4>email - {currentUser?.email}</h4>
-          <h4>first_name - {currentUser?.first_name}</h4>
-          <h4>last_name - {currentUser?.last_name}</h4> */}
+        <Col lg={11}>
+          <h3 className="m-2"> Dog name - {dog_name} </h3>
+          <h3 className="m-2"> received_date - {received_date} </h3>
+          <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
+          <h3 className="m-2"> returned_date - {returned_date} </h3>
+          <h3 className="m-2"> dog_age - {dog_age} </h3>
+          <h3 className="m-2"> dog_breed - {dog_breed} </h3>
+          <h3 className="m-2"> dog_gender - {dog_gender} </h3>
+          <h3 className="m-2"> dog_size - {dogData?.dog_size} </h3>
+          <h3 className="m-2"> status - {dogData?.status} </h3>
+          <h3 className="m-2"> general - {general} </h3>
+          <h3 className="m-2"> home_cats - {dogData?.home_cats} </h3>
+          <h3 className="m-2"> home_dogs - {dogData?.home_dogs} </h3>
+          <h3 className="m-2"> home_animals - {dogData?.home_animals} </h3>
+          <h3 className="m-2"> home_children - {dogData?.home_children} </h3>
+          
+        
+        {/* dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
+        */}
         </Col>
       </Row>
     </>
