@@ -28,6 +28,7 @@ const NavBar = () => {
         <i className="far fa-plus-square"></i>
         Add post
     </NavLink>)
+
     const loggedInIcons = <>
         <NavLink
             exact to="/"
@@ -37,6 +38,7 @@ const NavBar = () => {
         </NavLink>
         {currentUser?.username}
         </>
+
     const loggedOutIcons = <><NavLink
             exact to="/signin">
             <i className="fa-solid fa-right-to-bracket"></i>
@@ -47,6 +49,7 @@ const NavBar = () => {
             Sign up
         </NavLink>
         </>
+        
   return (
     <Navbar
         expanded={expanded}
