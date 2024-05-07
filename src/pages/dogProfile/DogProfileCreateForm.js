@@ -76,15 +76,15 @@ function DogProfileCreateForm() {
     formData.append('returned_date', returned_date);
     formData.append('dog_age', dog_age);
     formData.append('dog_breed', dog_breed);
-    formData.append('dog_gender', dog_gender);
-    formData.append('dog_size', dog_size);
-    formData.append('at_rescue', at_rescue);
-    formData.append('status', status);
+    // formData.append('dog_gender', dog_gender);
+    // formData.append('dog_size', dog_size);
+    // formData.append('at_rescue', at_rescue);
+    // formData.append('status', status);
     formData.append('general', general);
-    formData.append('home_cats', home_cats);
-    formData.append('home_dogs', home_dogs);
-    formData.append('home_animals,', home_animals,);
-    formData.append('home_children', home_children);
+    // formData.append('home_cats', home_cats);
+    // formData.append('home_dogs', home_dogs);
+    // formData.append('home_animals,', home_animals,);
+    // formData.append('home_children', home_children);
     
     // formData.append('image', imageInput.current.files[0]);
 
@@ -116,6 +116,78 @@ function DogProfileCreateForm() {
               </Alert>
             ))}
         <Form.Group>
+            <Form.Label >Received date</Form.Label>
+            <Form.Control 
+                type="date" 
+                name="received_date"
+                value={received_date}
+                onChange={handleChange}
+            />
+        </Form.Group>
+        {errors.title?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        <Form.Group>
+        <Form.Group>
+            <Form.Label >Rehomed date</Form.Label>
+            <Form.Control 
+                type="date" 
+                name="rehomed_date"
+                value={rehomed_date}
+                onChange={handleChange}
+            />
+        </Form.Group>
+        {errors.title?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+          <Form.Group>
+            <Form.Label >Returned date</Form.Label>
+            <Form.Control 
+                type="date" 
+                name="returned_date"
+                value={returned_date}
+                onChange={handleChange}
+            />
+        </Form.Group>
+        {errors.title?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        <Form.Group>
+            <Form.Label >Dog age</Form.Label>
+            <Form.Control 
+                type="Integer" 
+                name="dog_age"
+                value={dog_age}
+                onChange={handleChange}
+            />
+        </Form.Group>
+        {errors.title?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        <Form.Group>
+            <Form.Label >General information</Form.Label>
+            <Form.Control 
+                type="text-area" 
+                name="general"
+                value={general}
+                onChange={handleChange}
+                rows={9}
+            />
+        </Form.Group>
+        {errors.title?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        
             <Form.Label>Dog Breed</Form.Label>
             <Form.Control 
                 type="text"
@@ -129,7 +201,7 @@ function DogProfileCreateForm() {
                 {message}
               </Alert>
             ))}
-
+        
     
     
       <Button
