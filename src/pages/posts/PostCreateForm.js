@@ -8,6 +8,8 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 import appStyles from "../../App.module.css";
 
 import { useHistory } from "react-router";
@@ -17,7 +19,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 function PostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-
+  const currentUser = useCurrentUser();
   const [postData, setPostData] = useState({
     user_id: "",
     dog_id: "",
@@ -37,15 +39,15 @@ function PostCreateForm() {
     });
   };
 
-  const handleChangeImage = (event) => {
-    if (event.target.files.length) {
-      URL.revokeObjectURL(image);
-      setPostData({
-        ...postData,
-        image: URL.createObjectURL(event.target.files[0]),
-      });
-    }
-  };
+  // const handleChangeImage = (event) => {
+  //   if (event.target.files.length) {
+  //     URL.revokeObjectURL(image);
+  //     setPostData({
+  //       ...postData,
+  //       image: URL.createObjectURL(event.target.files[0]),
+  //     });
+  //   }
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,12 +55,12 @@ function PostCreateForm() {
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
-    formData.append("user_id", "superuser1");
+    // formData.append("image", imageInput.current.files[0]);
+    formData.append("user_id", currentUser);
     formData.append("dog_id", 1);
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
+      const { data } = await axiosReq.post("/posts_create/", formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
       // console.log(err);
@@ -115,7 +117,7 @@ function PostCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        {/* <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
             className={`${appStyles.Content} d-flex flex-column justify-content-center`}
           >
@@ -157,7 +159,7 @@ function PostCreateForm() {
 
             <div className="d-md-none">{textFields}</div>
           </Container>
-        </Col>
+        </Col> */}
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
