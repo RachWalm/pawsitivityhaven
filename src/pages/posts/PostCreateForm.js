@@ -8,6 +8,9 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
+import Asset from "../../components/Asset";
+import Upload from "../../assets/upload.png";
+
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
@@ -39,15 +42,15 @@ function PostCreateForm() {
     });
   };
 
-  // const handleChangeImage = (event) => {
-  //   if (event.target.files.length) {
-  //     URL.revokeObjectURL(image);
-  //     setPostData({
-  //       ...postData,
-  //       image: URL.createObjectURL(event.target.files[0]),
-  //     });
-  //   }
-  // };
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(image);
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +58,7 @@ function PostCreateForm() {
 
     formData.append("title", title);
     formData.append("content", content);
-    // formData.append("image", imageInput.current.files[0]);
+    formData.append("image", imageInput.current.files[0]);
     formData.append("user_id", currentUser);
     formData.append("dog_id", 1);
 
@@ -63,7 +66,7 @@ function PostCreateForm() {
       const { data } = await axiosReq.post("/posts_create/", formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -117,15 +120,15 @@ function PostCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        {/* <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
-            className={`${appStyles.Content} d-flex flex-column justify-content-center`}
+            className="d-flex flex-column justify-content-center"
           >
             <Form.Group className="text-center">
               {image ? (
                 <>
                   <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
+                    <Image src={image} rounded />
                   </figure>
                   <div>
                     <Form.Label
@@ -141,6 +144,10 @@ function PostCreateForm() {
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
                 >
+                  <Asset
+                    src={Upload}
+                    message="Click or tap to upload an image"
+                  />
                 </Form.Label>
               )}
 
@@ -159,7 +166,7 @@ function PostCreateForm() {
 
             <div className="d-md-none">{textFields}</div>
           </Container>
-        </Col> */}
+        </Col>
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
