@@ -11,45 +11,92 @@ import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
 
 // import PopularProfiles from "./PopularProfiles";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
+// import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useParams, useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
-import {
-  useProfileData,
-  useSetProfileData,
-} from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import NavEditUser from "../../components/NavEditUser";
+// import {
+//   useProfileData,
+//   useSetProfileData,
+// } from "../../contexts/ProfileDataContext";
+// import { Button, Image } from "react-bootstrap";
 
 function ProfilePage() {
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const currentUser = useCurrentUser();
+  // const [hasLoaded, setHasLoaded] = useState(false);
+  // const currentUser = useCurrentUser();
+  const history = useHistory();
   const { id } = useParams();
-  const setProfileData = useSetProfileData();
-  const { pageProfile } = useProfileData();
-  const [profile] = pageProfile.results;
-  const is_owner = currentUser?.username === profile?.owner;
+  
+  // const setProfileData = useSetProfileData();
+  // const { pageProfile } = useProfileData();
+  // const [profile] = pageProfile.results;
+  
 
+  // const [errors, setErrors] = useState({});
+
+  const [userProfileData, setUserProfileData] = useState({
+    user_id: "",
+    created_at: "",
+    updated_at: "",
+    first_name: "",
+    last_name: "",
+    email: "",    
+    
+  });
+  const { user_id, created_at, updated_at, first_name, last_name, email, } = userProfileData;
+  // const is_owner = currentUser?.username === userProfileData?.user_id;
   useEffect(() => {
-    const fetchData = async () => {
+    const handleMount = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-        ]);
-        setProfileData((prevState) => ({
-          ...prevState,
-          pageProfile: { results: [pageProfile] },
-        }));
-        setHasLoaded(true);
+        const { data } = await axiosReq.get(`/user_profile/${id}/`);
+        const { user_id, created_at, updated_at, first_name, last_name, email, } = data;
+
+        setUserProfileData({ user_id, created_at, updated_at, first_name, last_name, email, });
+          console.log('anmi')
+          console.log(data.first_name)
       } catch (err) {
         console.log(err);
       }
     };
-    fetchData();
-  }, [id, setProfileData]);
+
+    handleMount();
+  }, [history, id]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const [{ data: pageProfile }] = await Promise.all([
+  //         axiosReq.get(`/profiles/${id}/`),
+  //       ]);
+  //       setProfileData((prevState) => ({
+  //         ...prevState,
+  //         pageProfile: { results: [pageProfile] },
+  //       }));
+  //       setHasLoaded(true);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [id, setProfileData]);
 
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
+        <Col lg={11}>
+          <h3 className="m-2"> User Id - {user_id} </h3>
+          <h3 className="m-2"> created_at - {created_at} </h3>
+          <h3 className="m-2"> updated_at - {updated_at} </h3>
+          <h3 className="m-2"> First name - {first_name} </h3>
+          <h3 className="m-2"> last_name - {last_name} </h3>
+          <h3 className="m-2"> email - {email} </h3>
+                   
+        
+        {/* dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
+        */}
+        </Col>
+      </Row>
+      {/* <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
             roundedCircle
@@ -91,7 +138,7 @@ function ProfilePage() {
             ))}
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
-      </Row>
+      </Row> */}
     </>
   );
 
@@ -111,6 +158,7 @@ function ProfilePage() {
             <>
               {mainProfile}
               {mainProfilePosts}
+              <NavEditUser />
             </>
           {/* ) : (
             <Asset spinner />

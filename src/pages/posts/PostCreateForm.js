@@ -63,8 +63,11 @@ function PostCreateForm() {
     formData.append("dog_id", 1);
 
     try {
-      const { data } = await axiosReq.post("/posts_create/", formData);
+      console.log(formData);
+      const { data } = await axiosReq.post("/posts/", formData);
+      console.log(data)
       history.push(`/posts/${data.id}`);
+      console.log(data);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

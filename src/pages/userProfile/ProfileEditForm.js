@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
+// import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -16,13 +16,14 @@ import {
 } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
+import NavEditUser from "../../components/NavEditUser";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
   const history = useHistory();
-  const imageFile = useRef();
+  // const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
     first_name: "",
@@ -35,12 +36,11 @@ const ProfileEditForm = () => {
 
   useEffect(() => {
     const handleMount = async () => {
-      // if (currentUser?.profile_id?.toString() === id) {
+      // if (currentUser?.user_profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/user_profile/1/`);
           const { first_name, last_name, email } = data;
           setProfileData({ first_name, last_name, email });
-          console.log(profileData);
           console.log(data);
         } catch (err) {
           console.log(err);
@@ -146,45 +146,11 @@ const ProfileEditForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
-          <Container className={appStyles.Content}>
-            {/* <Form.Group>
-              {image && (
-                <figure>
-                  <Image src={image} fluid />
-                </figure>
-              )}
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-              <div>
-                <Form.Label
-                  htmlFor="image-upload"
-                >
-                  Change the image
-                </Form.Label>
-              </div>
-              <Form.File
-                id="image-upload"
-                ref={imageFile}
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files.length) {
-                    setProfileData({
-                      ...profileData,
-                      image: URL.createObjectURL(e.target.files[0]),
-                    });
-                  }
-                }}
-              />
-            </Form.Group> */}
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
         <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
           <Container className={appStyles.Content}>{textFields}</Container>
+        </Col>
+        <Col>
+          <NavEditUser />
         </Col>
       </Row>
     </Form>

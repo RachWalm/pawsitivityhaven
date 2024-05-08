@@ -10,6 +10,7 @@ import appStyles from "../App.module.css"
 
 const NavSideBar = () => {
     const currentUser = useCurrentUser();
+    const id = currentUser?.pk
     const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   return (
@@ -36,7 +37,7 @@ const NavSideBar = () => {
                     Dog Profile create
                 </NavLink>
                 {currentUser?.username}
-                <NavLink to={`/user-profile`}>
+                <NavLink to={`/user-profile/${id}`}>
                     <i className="fa-solid fa-dog"></i>
                     User Profile
                 </NavLink>

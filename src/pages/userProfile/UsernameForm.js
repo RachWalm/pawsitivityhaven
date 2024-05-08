@@ -15,6 +15,7 @@ import {
 } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
+import NavEditUser from "../../components/NavEditUser";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -82,6 +83,9 @@ const UsernameForm = () => {
             </Button>
           </Form>
         </Container>
+      </Col>
+      <Col>
+        <NavEditUser />
       </Col>
     </Row>
   );

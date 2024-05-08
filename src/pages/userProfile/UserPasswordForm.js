@@ -12,6 +12,7 @@ import { axiosRes } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
+import NavEditUser from "../../components/NavEditUser";
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -98,6 +99,9 @@ const UserPasswordForm = () => {
             </Button>
           </Form>
         </Container>
+      </Col>
+      <Col>
+        <NavEditUser />
       </Col>
     </Row>
   );
