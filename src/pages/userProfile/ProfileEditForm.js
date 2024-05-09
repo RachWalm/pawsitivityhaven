@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
@@ -23,7 +23,6 @@ const ProfileEditForm = () => {
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
   const history = useHistory();
-  // const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
     first_name: "",
@@ -38,10 +37,9 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       // if (currentUser?.user_profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/user_profile/1/`);
+          const { data } = await axiosReq.get(`/user_profile/${id}/`);
           const { first_name, last_name, email } = data;
           setProfileData({ first_name, last_name, email });
-          console.log(data);
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -70,30 +68,32 @@ const ProfileEditForm = () => {
 
     // if (imageFile?.current?.files[0]) {
     //   formData.append("image", imageFile?.current?.files[0]);
-    }
+    // }
 
-  //   try {
-  //     const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
-  //     setCurrentUser((currentUser) => ({
-  //       ...currentUser,
-  //       profile_image: data.image,
-  //     }));
-  //     history.goBack();
-  //   } catch (err) {
-  //     console.log(err);
-  //     setErrors(err.response?.data);
-  //   }
-  // };
+    try {
+      const { data } = await axiosReq.put(`/user_profile/${id}/`, formData);
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
+        // profile_image: data.image,
+      }));
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+      setErrors(err.response?.data);
+    }
+  };
 
   const textFields = (
     <>
       <Form.Group>
         <Form.Label>First Name</Form.Label>
         <Form.Control
-          as="text"
+          placeholder="first name"
+          as="textarea"
           value={first_name}
           onChange={handleChange}
           name="first_name"
+          rows={1}
         />
       </Form.Group>
 
@@ -105,10 +105,12 @@ const ProfileEditForm = () => {
       <Form.Group>
         <Form.Label>Last Name</Form.Label>
         <Form.Control
-          as="text"
+          placeholder="last name"
+          as="textarea"
           value={last_name}
           onChange={handleChange}
           name="last_name"
+          rows={1}
         />
       </Form.Group>
 
@@ -120,10 +122,12 @@ const ProfileEditForm = () => {
       <Form.Group>
         <Form.Label>Email</Form.Label>
         <Form.Control
-          as="text"
+          placeholder="email address"
+          as="textarea"
           value={email}
           onChange={handleChange}
           name="email"
+          rows={1}
         />
       </Form.Group>
 

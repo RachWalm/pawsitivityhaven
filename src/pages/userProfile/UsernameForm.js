@@ -84,9 +84,11 @@ const UsernameForm = () => {
           </Form>
         </Container>
       </Col>
-      <Col>
-        <NavEditUser />
-      </Col>
+      <Row>
+        <Col>
+          <NavEditUser />
+        </Col>
+      </Row>
     </Row>
   );
 };
