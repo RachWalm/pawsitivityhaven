@@ -39,7 +39,7 @@ const Post = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
-        {/* <div>
+        {/* 
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -63,12 +63,13 @@ const Post = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           )}
-          {likes_count}
+          {likes_count} */}
+          <div>
           <Link to={`/posts/${id}`}>
             <i className="far fa-comments" />
           </Link>
-          {comments_count}
-        </div> */}
+          {/* {comments_count} */}
+        </div>
       </Card.Body>
     </Card>
   );
