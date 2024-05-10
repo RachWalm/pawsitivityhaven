@@ -64,6 +64,7 @@ function DogProfileCreateForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
+    console.log(dogData)
   };
 
   const handleSubmit = async (event) => {
@@ -76,10 +77,10 @@ function DogProfileCreateForm() {
     formData.append('returned_date', returned_date);
     formData.append('dog_age', dog_age);
     formData.append('dog_breed', dog_breed);
-    // formData.append('dog_gender', dog_gender);
-    // formData.append('dog_size', dog_size);
+    formData.append('dog_gender', dog_gender);
+    formData.append('dog_size', dog_size);
     formData.append('at_rescue', at_rescue);
-    // formData.append('status', status);
+    formData.append('status', status);
     formData.append('general', general);
     formData.append('home_cats', home_cats);
     formData.append('home_dogs', home_dogs);
@@ -158,6 +159,33 @@ function DogProfileCreateForm() {
                 {message}
               </Alert>
             ))}
+        <Form.Group controlId="exampleForm.SelectCustom">
+          <Form.Label>dog_gender</Form.Label>
+          <Form.Control as="select" custom name="dog_gender" htmlSize={3} value={dog_gender} onChange={handleChange}>
+            <option label="TBC" value="0">0</option>
+            <option label="Male" value="1">1</option>
+            <option label="Female" value="2">2</option>
+            
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="exampleForm.SelectCustom">
+          <Form.Label>status</Form.Label>
+          <Form.Control as="select" custom name="status" htmlSize={2} value={status} onChange={handleChange}>
+            <option label="To arrive" value="0">0</option>
+            <option label="Not available" value="1">1</option>
+            <option label="Available" value="2">2</option>
+            <option label="Rehomed" value="3">3</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="exampleForm.SelectCustom">
+          <Form.Label>Custom select</Form.Label>
+          <Form.Control as="select" custom name="dog_size" htmlSize={3} value={dog_size} onChange={handleChange}>
+            <option label="TBC" value="0">0</option>
+            <option label="Small" value="1">1</option>
+            <option label="Large" value="2">2</option>
+            
+          </Form.Control>
+        </Form.Group>
         <Form.Group>
             <Form.Label >Dog age</Form.Label>
             <Form.Control 
@@ -201,7 +229,19 @@ function DogProfileCreateForm() {
                 {message}
               </Alert>
             ))}
-
+        <Form.Check 
+            type="checkbox"
+            id="home_cats"
+            label="home_cats"
+            name="home_cats"
+            value={home_cats}
+            onChange={handleChange}
+        />
+        {errors.home_cats?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
         <Form.Check 
             type="checkbox"
@@ -217,8 +257,8 @@ function DogProfileCreateForm() {
               </Alert>
             ))}
 
-        <Form.Check 
-            type="radio"
+        {/* <Form.Check 
+            type="checkbox"
             id="home_cats"
             label="home_cats"
             name="home_cats"
@@ -229,9 +269,9 @@ function DogProfileCreateForm() {
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
-            ))}
+            ))} */}
         <Form.Check 
-            type="radio"
+            type="checkbox"
             id="home_dogs"
             label="home_dogs"
             name="home_dogs"
@@ -244,7 +284,7 @@ function DogProfileCreateForm() {
               </Alert>
             ))}
         <Form.Check 
-            type="radio"
+            type="checkbox"
             id="home_animals"
             label="home_animals"
             name="home_animals"
@@ -257,7 +297,7 @@ function DogProfileCreateForm() {
               </Alert>
             ))}
         <Form.Check 
-            type="radio"
+            type="checkbox"
             id="home_children"
             label="home_children"
             name="home_children"
