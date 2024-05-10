@@ -15,6 +15,7 @@ import DogProfileCreateForm from "./pages/dogProfile/DogProfileCreateForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostEditForm from "./pages/posts/PostEditForm";
 import PostPage from "./pages/posts/PostPage";
+import PostsPage from "./pages/posts/PostsPage";
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/edit/:id" render={() => <PostEditForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
+          <Route exact path="/feed" render={() => <PostsPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

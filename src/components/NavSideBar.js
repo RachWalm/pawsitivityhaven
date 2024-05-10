@@ -41,6 +41,10 @@ const NavSideBar = () => {
                     <i className="fa-solid fa-dog"></i>
                     User Profile
                 </NavLink>
+                <NavLink to="/feed">
+                    <i className="fa-solid fa-dog"></i>
+                    Feed
+                </NavLink>
             </div>
                 {/* {currentUser ? loggedInIcons : loggedOutIcons} */}
             </Nav>

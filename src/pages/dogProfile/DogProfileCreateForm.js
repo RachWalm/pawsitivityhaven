@@ -64,7 +64,7 @@ function DogProfileCreateForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
-    console.log(dogData)
+    // console.log(dogData)
   };
 
   const handleSubmit = async (event) => {
