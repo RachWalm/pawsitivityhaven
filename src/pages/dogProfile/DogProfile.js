@@ -101,6 +101,17 @@ function DogProfile() {
     }
   };
 
+  const getBoolean = (value) => {
+    switch (value) {
+      case true: 
+        return <i class="fa-solid fa-circle-check"></i>;
+      case false:
+        return <i class="fa-solid fa-circle-xmark"></i>;
+      default:
+        return <i class="fa-solid fa-circle-question"></i>;
+    }
+  }
+
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
@@ -115,11 +126,11 @@ function DogProfile() {
           <h3 className="m-2"> dog_size - {getDogSize(dog_size)} </h3>
           <h3 className="m-2"> status - {getDogStatus(status)} </h3>
           <h3 className="m-2"> general - {general} </h3>
-          <h3 className="m-2"> at_rescue - {at_rescue} </h3>
-          <h3 className="m-2"> home_cats - {home_cats} </h3>
-          <h3 className="m-2"> home_dogs - {dogData?.home_dogs} </h3>
-          <h3 className="m-2"> home_animals - {dogData?.home_animals} </h3>
-          <h3 className="m-2"> home_children - {dogData?.home_children} </h3>
+          <h3 className="m-2"> at_rescue - {getBoolean(at_rescue)} </h3>
+          <h3 className="m-2"> home_cats - {getBoolean(home_cats)} </h3>
+          <h3 className="m-2"> home_dogs - {getBoolean(home_dogs)} </h3>
+          <h3 className="m-2"> home_animals - {getBoolean(home_animals)} </h3>
+          <h3 className="m-2"> home_children - {getBoolean(home_children)} </h3>
           
         
         {/* dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",

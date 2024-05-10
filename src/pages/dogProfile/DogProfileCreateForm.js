@@ -78,19 +78,19 @@ function DogProfileCreateForm() {
     formData.append('dog_breed', dog_breed);
     // formData.append('dog_gender', dog_gender);
     // formData.append('dog_size', dog_size);
-    // formData.append('at_rescue', at_rescue);
+    formData.append('at_rescue', at_rescue);
     // formData.append('status', status);
     formData.append('general', general);
-    // formData.append('home_cats', home_cats);
-    // formData.append('home_dogs', home_dogs);
-    // formData.append('home_animals,', home_animals,);
-    // formData.append('home_children', home_children);
+    formData.append('home_cats', home_cats);
+    formData.append('home_dogs', home_dogs);
+    formData.append('home_animals,', home_animals,);
+    formData.append('home_children', home_children);
     
     // formData.append('image', imageInput.current.files[0]);
 
     try {
         const { data } = await axiosReq.post('/dog_profile_create/', formData);
-        history.push(`/posts/${data.id}`);
+        history.push(`/dog-profile/${data.id}`);
     } catch (err) {
         // console.log(err);
         if (err.response?.status !== 401) {
@@ -110,7 +110,7 @@ function DogProfileCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
-        {errors.title?.map((message, idx) => (
+        {errors.dog_name?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
@@ -124,7 +124,7 @@ function DogProfileCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
-        {errors.title?.map((message, idx) => (
+        {errors.received_date?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
@@ -139,7 +139,7 @@ function DogProfileCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
-        {errors.title?.map((message, idx) => (
+        {errors.rehomed_date?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
@@ -153,7 +153,7 @@ function DogProfileCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
-        {errors.title?.map((message, idx) => (
+        {errors.returned_date?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
@@ -161,13 +161,13 @@ function DogProfileCreateForm() {
         <Form.Group>
             <Form.Label >Dog age</Form.Label>
             <Form.Control 
-                type="Integer" 
+                type="integer" 
                 name="dog_age"
                 value={dog_age}
                 onChange={handleChange}
             />
         </Form.Group>
-        {errors.title?.map((message, idx) => (
+        {errors.dog_age?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
@@ -182,7 +182,7 @@ function DogProfileCreateForm() {
                 rows={9}
             />
         </Form.Group>
-        {errors.title?.map((message, idx) => (
+        {errors.general?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
@@ -196,12 +196,93 @@ function DogProfileCreateForm() {
                 onChange={handleChange}
             />
         </Form.Group>
-        {errors.content?.map((message, idx) => (
+        {errors.dog_breed?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
-        
+
+
+        <Form.Check 
+            type="checkbox"
+            id="at_rescue"
+            label="at_rescue"
+            name="at_rescue"
+            value={at_rescue}
+            onChange={handleChange}
+        />
+        {errors.at_rescue?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+
+        <Form.Check 
+            type="radio"
+            id="home_cats"
+            label="home_cats"
+            name="home_cats"
+            value={home_cats}
+            onChange={handleChange}
+        />
+        {errors.at_rescue?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        <Form.Check 
+            type="radio"
+            id="home_dogs"
+            label="home_dogs"
+            name="home_dogs"
+            value={home_dogs}
+            onChange={handleChange}
+        />
+        {errors.home_dogs?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        <Form.Check 
+            type="radio"
+            id="home_animals"
+            label="home_animals"
+            name="home_animals"
+            value={home_animals}
+            onChange={handleChange}
+        />
+        {errors.home_animals?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        <Form.Check 
+            type="radio"
+            id="home_children"
+            label="home_children"
+            name="home_children"
+            value={home_children}
+            onChange={handleChange}
+        />
+        {errors.home_children?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+        {/* {['checkbox', 'radio', 'radio'].map((type) => (
+          <div key={`default-${type}`} className="mb-3">
+            <Form.Check 
+              type={type}
+              id={`default-${type}`}
+              label={`default ${type}`}
+            />
+            <Form.Check 
+              type="checkbox"
+              id="at_rescue"
+              label="at_rescue"
+            />
+          </div>
+  ))} */}
     
     
       <Button

@@ -65,6 +65,7 @@ const ProfileEditForm = () => {
     formData.append("first_name", first_name);
     formData.append("last_name", last_name);
     formData.append("email", email);
+    console.log(formData);
 
     // if (imageFile?.current?.files[0]) {
     //   formData.append("image", imageFile?.current?.files[0]);
