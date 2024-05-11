@@ -46,7 +46,6 @@ const NavSideBar = () => {
                     Feed
                 </NavLink>
             </div>
-                {/* {currentUser ? loggedInIcons : loggedOutIcons} */}
             </Nav>
             </Navbar.Collapse>
         </Container>

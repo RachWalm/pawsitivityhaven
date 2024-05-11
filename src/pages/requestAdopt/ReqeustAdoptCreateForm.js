@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-
 import Alert from "react-bootstrap/Alert";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
 
@@ -43,31 +40,6 @@ function RequestAdoptCreateForm() {
   const history = useHistory();
   const currentUser = useCurrentUser();
   
-  // useEffect(() => {
-  //   const handleMount = async () => {
-  //     const { data } = await axiosReq.get(`/user_profile/${id}/`);
-  //     try {
-  //       setRequestAdopt({
-  //           ...requestAdopt,
-  //           [user_id]: currentUser.user_id
-  //       })
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   console.log(requestAdopt)
-  //   console.log(currentUser)
-  //   handleMount();
-  // }, [currentUser]);
-
-
-//   const handlePrefill = () => {
-//     setRequestAdopt({
-//         ...requestAdopt,
-//         [user_id]: currentUser
-//     })
-//   }
-
   const handleChange = (event) => {
     setRequestAdopt({
       ...requestAdopt,

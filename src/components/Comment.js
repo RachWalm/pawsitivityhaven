@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
-// import { Link } from "react-router-dom";
-// import Avatar from "../../components/Avatar";
 import CommentEditForm from "./Comment";
 import { MoreDropdown } from "./MoreDropDown";
 
-// import styles from "../../styles/Comment.module.css";
 import { axiosRes } from "../api/axiosDefault";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
