@@ -17,6 +17,7 @@ import PostEditForm from "./pages/posts/PostEditForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import SearchPicture from "./pages/search/SearchPicture";
+import DogProfileEditForm from "./pages/dogProfile/DogProfileEditForm";
 
 
 
@@ -33,12 +34,13 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
           <Route exact path="/dog-profile/:id" render={() => <DogProfile />} />
+          <Route exact path="/dog-profile/edit/:id" render={() => <DogProfileEditForm />} />
           <Route exact path="/user-profile/:id" render={() => <UserProfilePage />} />
           <Route exact path="/user-profile/edit/username/:id" render={() => <UsernameForm/>} />
           <Route exact path="/user-profile/edit/password/:id" render={() => <UserPasswordForm />}/>
           <Route exact path="/user-profile/edit/:id" render={() => <ProfileEditForm />}/>
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
-          <Route exact path="/posts/edit/:id" render={() => <PostEditForm />} />
+          <Route exact path="/posts/:id/edit/" render={() => <PostEditForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/feed" render={() => <PostsPage />} />
           <Route render={() => <p>Page not found!</p>} />

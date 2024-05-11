@@ -15,6 +15,7 @@ import appStyles from "../../App.module.css";
 import { useParams, useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 import NavEditUser from "../../components/NavEditUser";
+import { ProfileEditDropdown } from "../../components/MoreDropDown";
 // import {
 //   useProfileData,
 //   useSetProfileData,
@@ -85,6 +86,7 @@ function ProfilePage() {
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
           <h3 className="m-2"> User Id - {user_id} </h3>
+          <ProfileEditDropdown />
           <h3 className="m-2"> created_at - {created_at} </h3>
           <h3 className="m-2"> updated_at - {updated_at} </h3>
           <h3 className="m-2"> First name - {first_name} </h3>
