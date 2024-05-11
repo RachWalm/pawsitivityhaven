@@ -55,7 +55,8 @@ function DogProfileCreateForm() {
   home_cats,
   home_dogs,
   home_animals,
-  home_children, } = dogData;
+  home_children, 
+  } = dogData;
 
   const history = useHistory();
 
@@ -64,7 +65,28 @@ function DogProfileCreateForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
-    // console.log(dogData)
+    console.log(event.target.value);
+    console.log(event);
+    console.log(event.target.name);
+    console.log(dogData);
+    // console.log(dogData.home_animals);
+    // console.log(dogData.home_cats);
+    // console.log(dogData.home_dogs);
+  };
+
+  const handleBooleanChange = (event) => {
+    const { name, checked } = event.target;
+    setDogData({
+      ...dogData,
+      [name]: checked,
+    });
+    console.log(event.target.value);
+    console.log(event);
+    console.log(event.target.name);
+    console.log(dogData);
+    // console.log(dogData.home_animals);
+    // console.log(dogData.home_cats);
+    // console.log(dogData.home_dogs);
   };
 
   const handleSubmit = async (event) => {
@@ -84,7 +106,7 @@ function DogProfileCreateForm() {
     formData.append('general', general);
     formData.append('home_cats', home_cats);
     formData.append('home_dogs', home_dogs);
-    formData.append('home_animals,', home_animals,);
+    formData.append('home_animals', home_animals,);
     formData.append('home_children', home_children);
     
     // formData.append('image', imageInput.current.files[0]);
@@ -130,7 +152,6 @@ function DogProfileCreateForm() {
                 {message}
               </Alert>
             ))}
-        <Form.Group>
         <Form.Group>
             <Form.Label >Rehomed date</Form.Label>
             <Form.Control 
@@ -215,7 +236,7 @@ function DogProfileCreateForm() {
                 {message}
               </Alert>
             ))}
-        
+        <Form.Group>
             <Form.Label>Dog Breed</Form.Label>
             <Form.Control 
                 type="text"
@@ -229,100 +250,78 @@ function DogProfileCreateForm() {
                 {message}
               </Alert>
             ))}
-        <Form.Check 
-            type="checkbox"
-            id="home_cats"
-            label="home_cats"
-            name="home_cats"
-            value={home_cats}
-            onChange={handleChange}
-        />
-        {errors.home_cats?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+        
 
-        <Form.Check 
-            type="checkbox"
-            id="at_rescue"
-            label="at_rescue"
-            name="at_rescue"
-            value={at_rescue}
-            onChange={handleChange}
-        />
-        {errors.at_rescue?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
-
-        {/* <Form.Check 
-            type="checkbox"
-            id="home_cats"
-            label="home_cats"
-            name="home_cats"
-            value={home_cats}
-            onChange={handleChange}
-        />
-        {errors.at_rescue?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))} */}
-        <Form.Check 
-            type="checkbox"
-            id="home_dogs"
-            label="home_dogs"
-            name="home_dogs"
-            value={home_dogs}
-            onChange={handleChange}
-        />
-        {errors.home_dogs?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
-        <Form.Check 
-            type="checkbox"
-            id="home_animals"
-            label="home_animals"
-            name="home_animals"
-            value={home_animals}
-            onChange={handleChange}
-        />
-        {errors.home_animals?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
-        <Form.Check 
-            type="checkbox"
-            id="home_children"
-            label="home_children"
-            name="home_children"
-            value={home_children}
-            onChange={handleChange}
-        />
-        {errors.home_children?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
-        {/* {['checkbox', 'radio', 'radio'].map((type) => (
-          <div key={`default-${type}`} className="mb-3">
-            <Form.Check 
-              type={type}
-              id={`default-${type}`}
-              label={`default ${type}`}
-            />
-            <Form.Check 
+          <Form.Check 
               type="checkbox"
               id="at_rescue"
               label="at_rescue"
-            />
-          </div>
-  ))} */}
+              name="at_rescue"
+              value={at_rescue}
+              // checked={at_rescue = true}
+              onChange={handleBooleanChange}
+          />
+          {errors.at_rescue?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+
+        <Form.Check 
+              type="checkbox"
+              id="home_dogs"
+              label="home_dogs"
+              name="home_dogs"
+              value={home_dogs}
+              onChange={handleBooleanChange}
+          />
+          {errors.home_dogs?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+
+          <Form.Check 
+              type="checkbox"
+              id="home_cats"
+              label="home_cats"
+              name="home_cats"
+              value={home_cats}
+              onChange={handleBooleanChange}
+          />
+          {errors.home_cats?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+
+          <Form.Check 
+              type="checkbox"
+              id="home_animals"
+              label="home_animals"
+              name="home_animals"
+              value={home_animals}
+              onChange={handleBooleanChange}
+          />
+          {errors.home_animals?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+
+          <Form.Check 
+              type="checkbox"
+              id="home_children"
+              label="home_children"
+              name="home_children"
+              value={home_children}
+              onChange={handleBooleanChange}
+          />
+          {errors.home_children?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))} 
     
     
       <Button

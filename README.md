@@ -80,7 +80,6 @@ The pages will be :
 6. dog profile set up
 7. vaccinations
 
-
 the components on the pages will be :
 
 1. Nav bar
@@ -127,9 +126,12 @@ search = request.POST['search']
 
 ### Potential Future Feature Developments 
 
+add an area for staff to put general comments that are internal.
 
 ## Bugs
 
+cloudinary version
+All comments not filtering
 
 ## Technologies
 

@@ -34,8 +34,7 @@ function DogProfile() {
         home_animals: "",
         home_children: "",
   });
-  const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
-    home_cats, home_dogs, home_animals, home_children, } = dogData;
+  const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals, home_children, } = dogData;
 
   // const imageInput = useRef(null);
   const history = useHistory();
@@ -52,7 +51,7 @@ function DogProfile() {
           dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
           home_children,  });
           console.log('anmi')
-          console.log(data.home_dogs)
+          console.log(data.home_cats)
       } catch (err) {
         console.log(err);
       }
