@@ -51,10 +51,7 @@ function ProfilePage() {
       try {
         const { data } = await axiosReq.get(`/user_profile/${id}/`);
         const { user_id, created_at, updated_at, first_name, last_name, email, } = data;
-
         setUserProfileData({ user_id, created_at, updated_at, first_name, last_name, email, });
-          console.log('anmi')
-          console.log(data.first_name)
       } catch (err) {
         console.log(err);
       }
