@@ -3,6 +3,7 @@ import React, { useEffect, useState, } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
@@ -116,7 +117,11 @@ function DogProfile() {
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
-          <h3 className="m-2"> Dog name - {dog_name} </h3>
+        <Image
+            roundedCircle
+            src={dog_image}
+          />
+          <h3 className="m-2"> Dog name - {dog_name} {dog_image}</h3>
           <h3 className="m-2"> received_date - {received_date} </h3>
           <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
           <h3 className="m-2"> returned_date - {returned_date} </h3>

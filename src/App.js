@@ -16,6 +16,7 @@ import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostEditForm from "./pages/posts/PostEditForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
+import SearchPicture from "./pages/search/SearchPicture";
 
 
 
@@ -27,7 +28,7 @@ function App() {
       <NavSideBar />
       <Container className={styles.main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home page</h1>} />
+          <Route exact path="/" render={() => <SearchPicture />} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
