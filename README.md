@@ -132,6 +132,7 @@ add an area for staff to put general comments that are internal.
 
 cloudinary version
 All comments not filtering
+handle boolean change
 
 ## Technologies
 

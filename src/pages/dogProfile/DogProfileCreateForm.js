@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 
 import Alert from "react-bootstrap/Alert";
 // import Image from "react-bootstrap/Image";
 
-// import Asset from "../../components/Asset";
+import Asset from "../../components/Asset";
 
-// import Upload from "../../assets/upload.png";
+import Upload from "../../assets/upload.png";
 
 // import styles from "../../styles/PostCreateEditForm.module.css";
 // import appStyles from "../../App.module.css";
@@ -32,6 +33,7 @@ function DogProfileCreateForm() {
     dog_breed: "",
     dog_gender: "",
     dog_size: "",
+    dog_image: "",
     at_rescue: "",
     status: "",
     general: "",
@@ -48,7 +50,7 @@ function DogProfileCreateForm() {
   dog_breed,
   dog_gender,
   dog_size,
-  // dog_image,
+  dog_image,
   at_rescue,
   status,
   general,
@@ -59,6 +61,7 @@ function DogProfileCreateForm() {
   } = dogData;
 
   const history = useHistory();
+  const imageInput = useRef(null);
 
   const handleChange = (event) => {
     setDogData({
@@ -89,6 +92,16 @@ function DogProfileCreateForm() {
     // console.log(dogData.home_dogs);
   };
 
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(dog_image);
+      setDogData({
+        ...dogData,
+        dog_image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -108,8 +121,7 @@ function DogProfileCreateForm() {
     formData.append('home_dogs', home_dogs);
     formData.append('home_animals', home_animals,);
     formData.append('home_children', home_children);
-    
-    // formData.append('image', imageInput.current.files[0]);
+    formData.append('dog_image', imageInput.current.files[0]);
 
     try {
         const { data } = await axiosReq.post('/dog_profile_create/', formData);
@@ -348,7 +360,50 @@ function DogProfileCreateForm() {
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
                 >
-                  ASSET
+                  <Container
+            className="d-flex flex-column justify-content-center"
+          >
+            <Form.Group className="text-center">
+              {dog_image ? (
+                <>
+                  <figure>
+                    <Image src={dog_image} rounded />
+                  </figure>
+                  <div>
+                    <Form.Label
+                      className="btn"
+                      htmlFor="image-upload"
+                    >
+                      Change the image
+                    </Form.Label>
+                  </div>
+                </>
+              ) : (
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image-upload"
+                >
+                  <Asset
+                    src={Upload}
+                    message="Click or tap to upload an image"
+                  />
+                </Form.Label>
+              )}
+
+              <Form.File
+                id="image-upload"
+                accept="image/*"
+                onChange={handleChangeImage}
+                ref={imageInput}
+              />
+            </Form.Group>
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+          </Container>
                 </Form.Label>
 
             </Form.Group>
