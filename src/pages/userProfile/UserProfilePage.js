@@ -9,28 +9,16 @@ import Container from "react-bootstrap/Container";
 // import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
-
-// import PopularProfiles from "./PopularProfiles";
-// import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams, useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 import NavEditUser from "../../components/NavEditUser";
 import { ProfileEditDropdown } from "../../components/MoreDropDown";
-// import {
-//   useProfileData,
-//   useSetProfileData,
-// } from "../../contexts/ProfileDataContext";
 // import { Button, Image } from "react-bootstrap";
 
 function ProfilePage() {
-  // const [hasLoaded, setHasLoaded] = useState(false);
-  // const currentUser = useCurrentUser();
   const history = useHistory();
   const { id } = useParams();
   
-  // const setProfileData = useSetProfileData();
-  // const { pageProfile } = useProfileData();
-  // const [profile] = pageProfile.results;
   
 
   // const [errors, setErrors] = useState({});
@@ -45,7 +33,6 @@ function ProfilePage() {
     
   });
   const { user_id, created_at, updated_at, first_name, last_name, email, } = userProfileData;
-  // const is_owner = currentUser?.username === userProfileData?.user_id;
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -60,24 +47,6 @@ function ProfilePage() {
     handleMount();
   }, [history, id]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const [{ data: pageProfile }] = await Promise.all([
-  //         axiosReq.get(`/profiles/${id}/`),
-  //       ]);
-  //       setProfileData((prevState) => ({
-  //         ...prevState,
-  //         pageProfile: { results: [pageProfile] },
-  //       }));
-  //       setHasLoaded(true);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [id, setProfileData]);
-
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
@@ -91,8 +60,6 @@ function ProfilePage() {
           <h3 className="m-2"> email - {email} </h3>
                    
         
-        {/* dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
-        */}
         </Col>
       </Row>
       {/* <Row noGutters className="px-3 text-center">

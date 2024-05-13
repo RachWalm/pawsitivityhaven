@@ -1,16 +1,21 @@
 import React from "react";
 import { Card, Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSetProfileData } from "../contexts/ProfileDataContext";
+import Button from "react-bootstrap/Button";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 
 const Dog = (props) => {
   const {
-    id,
+    dog_id,
     dog_name,
     dog_age,
     dog_image,
   } = props;
-  
+  // const { id, favourite_id, owner } = profile;
+  const { handleFavourite, handleUnFavourite } = useSetProfileData();
+  const currentUser = useCurrentUser();
   return (
     <Card>
       <Card.Body>
@@ -18,11 +23,31 @@ const Dog = (props) => {
           <div className="d-flex align-items-center">
             <span>{dog_name}</span>
             <span>{dog_age}</span>
+            <span>{currentUser}</span>
             {/* <span>{is_owner && postPage && <MoreDropdown />}</span> */}
           </div>
+          <div className="text-right">
+        {/* {
+          // !mobile &&
+          currentUser &&
+          // !is_owner &&
+          (favourite_id ? (
+            <Button
+              onClick={() => handleUnFavourite(profile)}
+            >
+              unfollow
+            </Button>
+          ) : (
+            <Button
+              onClick={() => handleFavourite(profile)}
+            >
+              follow
+            </Button>
+          ))} */}
+      </div>
         </Media>
       </Card.Body>
-      <Link to={`/dog-profile/${id}`}>
+      <Link to={`/dog-profile/${dog_id}`}>
         <Card.Img src={dog_image} alt={dog_name} />
       </Link>
       <Card.Body>
@@ -30,7 +55,7 @@ const Dog = (props) => {
         {dog_age && <Card.Text>{dog_age}</Card.Text>}
         
           <div>
-          <Link to={`/posts/${id}`}>
+          <Link to={`/dog-profile/${dog_id}`}>
             <i className="far fa-comments" />
           </Link>
         </div>

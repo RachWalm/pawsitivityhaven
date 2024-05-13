@@ -7,14 +7,24 @@ import Image from "react-bootstrap/Image";
 
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
+import FavouriteDogProfiles from "./FavouriteDogProfiles";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  useProfileData,
+  useSetProfileData,
+} from "../../contexts/ProfileDataContext";
 
 import appStyles from "../../App.module.css";
 
 import { useHistory } from "react-router";
+import { Button } from "react-bootstrap";
 
 function DogProfile() {
   const [errors, setErrors] = useState({});
-
+  const {setProfileData, handleFavourite, handleUnFavourite} = useSetProfileData();
+  const currentUser = useCurrentUser();
+  const { pageProfile } = useProfileData();
+  const [profile] = pageProfile.results;
   const [dogData, setDogData] = useState({
         id: "",
         dog_name: "",
@@ -38,6 +48,19 @@ function DogProfile() {
 
   const history = useHistory();
   const { id } = useParams();
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  // const [userProfileData, setUserProfileData] = useState({
+  //   user_id: "",
+  //   created_at: "",
+  //   updated_at: "",
+  //   first_name: "",
+  //   last_name: "",
+  //   email: "",    
+  // });
+
+
+  const is_owner = currentUser?.username === useProfileData?.user_id;
 
   useEffect(() => {
     const handleMount = async () => {
@@ -45,19 +68,39 @@ function DogProfile() {
         const { data } = await axiosReq.get(`/dog_profile/${id}/`);
         const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
           home_cats, home_dogs, home_animals, home_children, } = data;
-
         setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
           dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
-          home_children,  });
-          console.log('anmi')
-          console.log(data.home_cats)
+          home_children,});
+
       } catch (err) {
         console.log(err);
       }
     };
-
     handleMount();
+    console.log(is_owner)
   }, [history, id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [{ data: pageProfile }, { data: profilePosts }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/posts/?dog_id=${id}`),
+          ]);
+        // setProfileData((prevState) => ({
+        //   ...prevState,
+        //   pageProfile: { results: [pageProfile] },
+        // }));
+        // setProfilePosts(profilePosts);
+        setHasLoaded(true);
+      } catch (err) {
+        // console.log(err);
+      }
+    };
+    fetchData();
+  }, [id,]);
+  //  setProfileData]);
 
   const getDogGender = (dog_gender) => {
     switch (dog_gender) {
@@ -115,11 +158,12 @@ function DogProfile() {
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
+          {/* <h1>{currentUser}</h1> */}
         <Image
             roundedCircle
             src={dog_image}
           />
-          <h3 className="m-2"> Dog name - {dog_name} {dog_image}</h3>
+          <h3 className="m-2"> Dog name - {dog_name}</h3>
           <h3 className="m-2"> received_date - {received_date} </h3>
           <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
           <h3 className="m-2"> returned_date - {returned_date} </h3>
@@ -141,6 +185,7 @@ function DogProfile() {
 
 
   return (
+    <>
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container className={appStyles.container}>
@@ -150,6 +195,46 @@ function DogProfile() {
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
       </Col>
     </Row>
+    <Row noGutters className="px-3 text-center">
+      {/* <Col lg={3} className="text-lg-left">
+        <Image
+          roundedCircle
+          src={profile?.image}
+        />
+      </Col> */}
+      <Col lg={6}>
+        <h3 className="m-2">profile?.owner</h3>
+        <Row className="justify-content-center no-gutters">
+          <Col xs={3} className="my-2">
+            <div>profile?.favourited_count</div>
+            <div>Favourite</div>
+          </Col>
+          <Col xs={3} className="my-2">
+            <div>profile?.favourited_count</div>
+            <div>Favourite</div>
+          </Col>
+        </Row>
+      </Col>
+      <Col lg={3} className="text-lg-right">
+        {currentUser &&
+          !is_owner &&
+          (profile?.favourite_id ? (
+            <Button
+              onClick={() => {handleUnFavourite(profile)}}
+            >
+              unfavourite
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {handleFavourite(profile)}}
+            >
+              favourite
+            </Button>
+          ))}
+      </Col>
+      {/* {profile?.content && <Col className="p-3">{profile.content}</Col>} */}
+    </Row>
+    </>
   );
 }
 
