@@ -64,14 +64,14 @@ const Post = (props) => {
     history.push(`/posts/${id}/edit`);
   };
 
-const handleDelete = async () => {
+  const handleDelete = async () => {
     try {
         await axiosRes.delete(`/posts/${id}/`);
         history.goBack();
     } catch (err) {
         // console.log(err);
     }
-}
+  }
   return (
     <Card>
       <Card.Body>

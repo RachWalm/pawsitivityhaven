@@ -12,12 +12,12 @@ import UserPasswordForm from "./pages/userProfile/UserPasswordForm";
 import ProfileEditForm from "./pages/userProfile/ProfileEditForm";
 import DogProfile from "./pages/dogProfile/DogProfile";
 import DogProfileCreateForm from "./pages/dogProfile/DogProfileCreateForm";
+import DogProfileEditForm from "./pages/dogProfile/DogProfileEditForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostEditForm from "./pages/posts/PostEditForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import SearchPicture from "./pages/search/SearchPicture";
-import DogProfileEditForm from "./pages/dogProfile/DogProfileEditForm";
 import RequestAdoptCreateForm from "./pages/requestAdopt/ReqeustAdoptCreateForm";
 
 

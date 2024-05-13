@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -17,12 +17,12 @@ import Upload from "../../assets/upload.png";
 // import styles from "../../styles/PostCreateEditForm.module.css";
 // import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
 // import { useRedirect } from "../../hooks/useRedirect";
 
 function DogProfileEditForm() {
-
+  const { id } = useParams();
   const [errors, setErrors] = useState({});
   const [dogData, setDogData] = useState({
     dog_name: "",
@@ -62,6 +62,22 @@ function DogProfileEditForm() {
 
   const history = useHistory();
   const imageInput = useRef(null);
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
+          home_cats, home_dogs, home_animals, home_children, } = data;
+        setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
+          dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
+          home_children,});
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, [history, id]);
 
   const handleChange = (event) => {
     setDogData({

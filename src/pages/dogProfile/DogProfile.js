@@ -6,13 +6,14 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 
 import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefault";
+import { axiosReq, axiosRes } from "../../api/axiosDefault";
 import FavouriteDogProfiles from "./FavouriteDogProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
   useProfileData,
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
+import { MoreDropdown } from "../../components/MoreDropDown";
 
 import appStyles from "../../App.module.css";
 
@@ -72,34 +73,33 @@ function DogProfile() {
         setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
           dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
           home_children,});
-
       } catch (err) {
         console.log(err);
       }
     };
     handleMount();
-    console.log(is_owner)
   }, [history, id]);
 
-  useEffect(() => {
-    const handleMount = async () => {
-      try {
-        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
-        const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
-          home_cats, home_dogs, home_animals, home_children, } = data;
+  // useEffect(() => {
+  //   const handleMount = async () => {
+  //     try {
+  //       const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+  //       const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
+  //         home_cats, home_dogs, home_animals, home_children, } = data;
 
-        setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
-          dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
-          home_children,  });
-          console.log('anmi')
-          console.log(data.home_cats)
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  //       setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
+  //         dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
+  //         home_children,  });
+  //         console.log('anmi')
+  //         console.log(data.home_cats)
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   handleMount();
+  // }, [history, id]);
 
-    handleMount();
-  }, [history, id]);
+  
 
   const getDogGender = (dog_gender) => {
     switch (dog_gender) {
@@ -153,10 +153,24 @@ function DogProfile() {
     }
   }
 
+  const handleEdit = () => {
+    history.push(`/dog-profile/edit/${id}`);
+  };
+
+  const handleDelete = async () => {
+    try {
+        await axiosRes.delete(`/dog_profile/${id}/`);
+        history.goBack();
+    } catch (err) {
+        // console.log(err);
+    }
+  }
+
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
+        <span><MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/></span>
           {/* <h1>{currentUser}</h1> */}
         <Image
             roundedCircle
@@ -185,7 +199,6 @@ function DogProfile() {
       </Row>
     </>
   );
-
 
   return (
     <>
