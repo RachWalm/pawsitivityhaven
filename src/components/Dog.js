@@ -14,8 +14,8 @@ const Dog = (props) => {
     dog_image,
   } = props;
   // const { id, favourite_id, owner } = profile;
-  const { handleFavourite, handleUnFavourite } = useSetProfileData();
-  const currentUser = useCurrentUser();
+  // const { handleFavourite, handleUnFavourite } = useSetProfileData();
+  // const currentUser = useCurrentUser();
   return (
     <Card>
       <Card.Body>
@@ -23,7 +23,7 @@ const Dog = (props) => {
           <div className="d-flex align-items-center">
             <span>{dog_name}</span>
             <span>{dog_age}</span>
-            <span>{currentUser}</span>
+            {/* <span>{currentUser}</span> */}
             {/* <span>{is_owner && postPage && <MoreDropdown />}</span> */}
           </div>
           <div className="text-right">
