@@ -17,59 +17,59 @@ export const ProfileDataProvider = ({ children }) => {
 
   const currentUser = useCurrentUser();
 
-  const handleFavourite = async (clickedProfile) => {
-    try {
-      const { data } = await axiosRes.post("/favourite/", {
-        dog_id: clickedProfile.id,
-      });
+  // const handleFavourite = async (clickedProfile) => {
+  //   try {
+  //     const { data } = await axiosRes.post("/favourite/", {
+  //       dog_id: clickedProfile.id,
+  //     });
 
-      setProfileData((prevState) => ({
-        ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
-            favouriteHelper(profile.id, clickedProfile, data.id)
-          ),
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
-            favouriteHelper(profile.id, clickedProfile, data.id)
-          ),
-        },
-      }));
-    } catch (err) {
-      // console.log(err);
-    }
-  };
+  //     setProfileData((prevState) => ({
+  //       ...prevState,
+  //       pageProfile: {
+  //         results: prevState.pageProfile.results.map((profile) =>
+  //           favouriteHelper(profile.id, clickedProfile, data.id)
+  //         ),
+  //       },
+  //       popularProfiles: {
+  //         ...prevState.popularProfiles,
+  //         results: prevState.popularProfiles.results.map((profile) =>
+  //           favouriteHelper(profile.id, clickedProfile, data.id)
+  //         ),
+  //       },
+  //     }));
+  //   } catch (err) {
+  //     // console.log(err);
+  //   }
+  // };
 
-  const handleUnFavourite = async (clickedProfile) => {
-    try {
-      await axiosRes.delete(`/favourite/${clickedProfile.user_id}/`);
+  // const handleUnFavourite = async (clickedProfile) => {
+  //   try {
+  //     await axiosRes.delete(`/favourite/${clickedProfile.user_id}/`);
 
-      setProfileData((prevState) => ({
-        ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
-            unfavouriteHelper(profile.id, clickedProfile)
-          ),
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
-            unfavouriteHelper(profile.id, clickedProfile)
-          ),
-        },
-      }));
-    } catch (err) {
-      // console.log(err);
-    }
-  };
+  //     setProfileData((prevState) => ({
+  //       ...prevState,
+  //       pageProfile: {
+  //         results: prevState.pageProfile.results.map((profile) =>
+  //           unfavouriteHelper(profile.id, clickedProfile)
+  //         ),
+  //       },
+  //       popularProfiles: {
+  //         ...prevState.popularProfiles,
+  //         results: prevState.popularProfiles.results.map((profile) =>
+  //           unfavouriteHelper(profile.id, clickedProfile)
+  //         ),
+  //       },
+  //     }));
+  //   } catch (err) {
+  //     // console.log(err);
+  //   }
+  // };
   
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
-          "/dog_profile/?ordering=-fav_count"
+          "/user_profile/?ordering=-favourited_count"
         );
         setProfileData((prevState) => ({
           ...prevState,
@@ -85,7 +85,7 @@ export const ProfileDataProvider = ({ children }) => {
 
   return (
     <ProfileDataContext.Provider value={profileData}>
-      <SetProfileDataContext.Provider value={{setProfileData, handleFavourite, handleUnFavourite}}>
+      <SetProfileDataContext.Provider value={{setProfileData}}>
         {children}
       </SetProfileDataContext.Provider>
     </ProfileDataContext.Provider>

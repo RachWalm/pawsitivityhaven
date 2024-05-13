@@ -1,12 +1,10 @@
-import React from "react";
-// import styles from "../../styles/Post.module.css";
+import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Media, } from "react-bootstrap";
 import { MoreDropdown } from "./MoreDropDown";
 import { Link } from "react-router-dom";
-import { axiosRes } from "../api/axiosDefault"
+import { axiosRes, axiosReq } from "../api/axiosDefault"
 import { useHistory } from "react-router";
-// import Avatar from "../../components/Avatar";
 
 const Post = (props) => {
   const {
@@ -24,9 +22,47 @@ const Post = (props) => {
   // const is_current_owner = currentUser?.username === user_id;
   const history = useHistory();
 
+//   const [dogData, setDogData] = useState({
+//     dog_name: "",
+//     received_date: "",
+//     rehomed_date: "",
+//     returned_date: "",
+//     dog_age: "",
+//     dog_breed: "",
+//     dog_gender: "",
+//     dog_size: "",
+//     dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
+//     at_rescue: "",
+//     status: "",
+//     general: "",
+//     home_cats: "",
+//     home_dogs: "",
+//     home_animals: "",
+//     home_children: "",
+// });
+// const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals, home_children, } = dogData;
+
+  // useEffect(() => {
+  //   const handleMount = async () => {
+  //     try {
+  //       const { data } = await axiosReq.get(`/dog_profile/${dog_id}/`);
+  //       const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
+  //         home_cats, home_dogs, home_animals, home_children, } = data;
+  //       setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
+  //         dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
+  //         home_children,});
+
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   handleMount();
+  //   // console.log(is_owner)
+  // }, [history, id]);
+  
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
-};
+  };
 
 const handleDelete = async () => {
     try {
@@ -36,7 +72,6 @@ const handleDelete = async () => {
         // console.log(err);
     }
 }
-  
   return (
     <Card>
       <Card.Body>
@@ -44,6 +79,11 @@ const handleDelete = async () => {
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             <span>{user_id}</span>
+            <span>{user_id} 
+            {/* <Link to={`/dog-profile/${dog_id}`}>
+              <Card.Img src={dog_image} alt={dog_name} />
+            </Link> */}
+            </span>
             <span>{is_owner && postPage && <MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>}</span>
           </div>
         </Media>
@@ -83,7 +123,6 @@ const handleDelete = async () => {
           <Link to={`/posts/${id}`}>
             <i className="far fa-comments" />
           </Link>
-          {/* {comments_count} */}
         </div>
       </Card.Body>
     </Card>

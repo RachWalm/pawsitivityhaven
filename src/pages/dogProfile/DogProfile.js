@@ -21,10 +21,10 @@ import { Button } from "react-bootstrap";
 
 function DogProfile() {
   const [errors, setErrors] = useState({});
-  const {setProfileData, handleFavourite, handleUnFavourite} = useSetProfileData();
+  // const {setProfileData, handleFavourite, handleUnFavourite} = useSetProfileData();
   const currentUser = useCurrentUser();
-  const { pageProfile } = useProfileData();
-  const [profile] = pageProfile.results;
+  // const { pageProfile } = useProfileData();
+  // const [profile] = pageProfile.results;
   const [dogData, setDogData] = useState({
         id: "",
         dog_name: "",
@@ -82,26 +82,24 @@ function DogProfile() {
   }, [history, id]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const handleMount = async () => {
       try {
-        const [{ data: pageProfile }, { data: profilePosts }] =
-          await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/posts/?dog_id=${id}`),
-          ]);
-        // setProfileData((prevState) => ({
-        //   ...prevState,
-        //   pageProfile: { results: [pageProfile] },
-        // }));
-        // setProfilePosts(profilePosts);
-        setHasLoaded(true);
+        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
+          home_cats, home_dogs, home_animals, home_children, } = data;
+
+        setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
+          dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
+          home_children,  });
+          console.log('anmi')
+          console.log(data.home_cats)
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
-    fetchData();
-  }, [id,]);
-  //  setProfileData]);
+
+    handleMount();
+  }, [history, id]);
 
   const getDogGender = (dog_gender) => {
     switch (dog_gender) {
@@ -221,21 +219,21 @@ function DogProfile() {
         </Row>
       </Col>
       <Col lg={3} className="text-lg-right">
-        {currentUser &&
+        {/* {currentUser &&
           !is_owner &&
           (profile?.favourite_id ? (
             <Button
-              onClick={() => {handleUnFavourite(profile)}}
+              onClick={() => {handleUnFavourite()}}
             >
               unfavourite
             </Button>
           ) : (
             <Button
-              onClick={() => {handleFavourite(profile)}}
+              onClick={() => {handleFavourite()}}
             >
               favourite
             </Button>
-          ))}
+          ))} */}
       </Col>
       {/* {profile?.content && <Col className="p-3">{profile.content}</Col>} */}
     </Row>

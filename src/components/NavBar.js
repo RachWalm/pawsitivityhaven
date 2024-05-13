@@ -23,11 +23,11 @@ const NavBar = () => {
         }
       };
 
-    const addPostIcon = (<NavLink
-        exact to="/posts/create">
-        <i className="far fa-plus-square"></i>
-        Add post
-    </NavLink>)
+    // const addPostIcon = (<NavLink
+    //     exact to="/posts/create">
+    //     <i className="far fa-plus-square"></i>
+    //     Add post
+    // </NavLink>)
 
     const loggedInIcons = <>
         <NavLink
@@ -63,7 +63,7 @@ const NavBar = () => {
                 </Navbar.Brand>
             </NavLink>
             <h1>Pawsitive Haven</h1>
-            {currentUser && addPostIcon}
+            {/* {currentUser && addPostIcon} */}
             <Navbar.Toggle
                 ref={ref}
                 onClick={() => setExpanded(!expanded)}

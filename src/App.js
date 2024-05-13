@@ -40,7 +40,7 @@ function App() {
           <Route exact path="/user-profile/edit/username/:id" render={() => <UsernameForm/>} />
           <Route exact path="/user-profile/edit/password/:id" render={() => <UserPasswordForm />}/>
           <Route exact path="/user-profile/edit/:id" render={() => <ProfileEditForm />}/>
-          <Route exact path="/posts/create" render={() => <PostCreateForm />} />
+          <Route exact path="/posts/create/:id" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id/edit/" render={() => <PostEditForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/request-adopt/create" render={() => <RequestAdoptCreateForm />} />

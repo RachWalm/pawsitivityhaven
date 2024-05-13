@@ -32,14 +32,11 @@ function PostPage() {
         ]);
         setPost({ results: [post] });
         setComments(comments);
-        console.log(comments?.results.post_id
-        )
         console.log(post);
       } catch (err) {
         console.log(err);
       }
     };
-
     handleMount();
   }, [id]);
 

@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
@@ -17,8 +18,10 @@ import { axiosReq } from "../../api/axiosDefault";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
-
+  const currentUser = useCurrentUser();
   const [postData, setPostData] = useState({
+    user_id: "",
+    dog_id: "",
     title: "",
     content: "",
     image: "",
@@ -33,9 +36,9 @@ function PostEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, image, is_owner } = data;
+        const { dog_id, title, content, image, is_owner } = data;
 
-        is_owner ? setPostData({ title, content, image }) : history.push("/");
+        is_owner ? setPostData({ dog_id, title, content, image }) : history.push("/");
       } catch (err) {
         console.log(err);
       }
@@ -67,7 +70,8 @@ function PostEditForm() {
 
     formData.append("title", title);
     formData.append("content", content);
-
+    formData.append("user_id", currentUser);
+    formData.append("dog_id", 1);
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }

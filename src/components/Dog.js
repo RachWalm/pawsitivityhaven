@@ -1,23 +1,27 @@
 import React from "react";
-// import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { MoreDropdown } from "./MoreDropDown";
 import { Link } from "react-router-dom";
-import { useSetProfileData } from "../contexts/ProfileDataContext";
+// import { useSetProfileData } from "../contexts/ProfileDataContext";
 import Button from "react-bootstrap/Button";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+// import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 
 const Dog = (props) => {
   const {
-    dog_id,
+    id,
     dog_name,
     dog_age,
     dog_image,
   } = props;
   // const { id, favourite_id, owner } = profile;
   // const { handleFavourite, handleUnFavourite } = useSetProfileData();
+  // const addPostIcon = (<Link
+  //     to={`/posts/create/${dog_id}`}>
+  //     <i className="far fa-plus-square"></i>
+  //     Add post
+  //   </Link>)
   // const currentUser = useCurrentUser();
   return (
     <Card>
@@ -26,6 +30,8 @@ const Dog = (props) => {
           <div className="d-flex align-items-center">
             <span>{dog_name}</span>
             <span>{dog_age}</span>
+            <span>{id}</span>
+            {/* {currentUser && addPostIcon} */}
             {/* <span>{currentUser}</span> */}
             {/* <span>{is_owner && postPage && <MoreDropdown />}</span> */}
           </div>
@@ -50,18 +56,18 @@ const Dog = (props) => {
       </div>
         </Media>
       </Card.Body>
-      <Link to={`/dog-profile/${dog_id}`}>
+      <Link to={`/dog-profile/${id}`}>
         <Card.Img src={dog_image} alt={dog_name} />
       </Link>
       <Card.Body>
         {dog_name && <Card.Title className="text-center">{dog_name}</Card.Title>}
         {dog_age && <Card.Text>{dog_age}</Card.Text>}
         
-          <div>
+          {/* <div>
           <Link to={`/dog-profile/${dog_id}`}>
             <i className="far fa-comments" />
           </Link>
-        </div>
+        </div> */}
       </Card.Body>
     </Card>
   );
