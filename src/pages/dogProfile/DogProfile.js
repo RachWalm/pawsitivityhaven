@@ -46,6 +46,7 @@ function DogProfile() {
   });
   const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals, home_children, } = dogData;
 
+  // const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -178,6 +179,10 @@ function DogProfile() {
           <h3 className="m-2"> home_dogs - {getBoolean(home_dogs)} </h3>
           <h3 className="m-2"> home_animals - {getBoolean(home_animals)} </h3>
           <h3 className="m-2"> home_children - {getBoolean(home_children)} </h3>
+          
+        
+        {/* dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
+        */}
         </Col>
       </Row>
     </>

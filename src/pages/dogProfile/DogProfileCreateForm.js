@@ -1,13 +1,22 @@
 import React, { useState, useRef } from "react";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+
 import Alert from "react-bootstrap/Alert";
+// import Image from "react-bootstrap/Image";
+
 import Asset from "../../components/Asset";
+
 import Upload from "../../assets/upload.png";
+
+// import styles from "../../styles/PostCreateEditForm.module.css";
+// import appStyles from "../../App.module.css";
+// import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
 // import { useRedirect } from "../../hooks/useRedirect";
@@ -59,6 +68,13 @@ function DogProfileCreateForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
+    console.log(event.target.value);
+    console.log(event);
+    console.log(event.target.name);
+    console.log(dogData);
+    // console.log(dogData.home_animals);
+    // console.log(dogData.home_cats);
+    // console.log(dogData.home_dogs);
   };
 
   const handleBooleanChange = (event) => {
@@ -67,6 +83,13 @@ function DogProfileCreateForm() {
       ...dogData,
       [name]: checked,
     });
+    console.log(event.target.value);
+    console.log(event);
+    console.log(event.target.name);
+    console.log(dogData);
+    // console.log(dogData.home_animals);
+    // console.log(dogData.home_cats);
+    // console.log(dogData.home_dogs);
   };
 
   const handleChangeImage = (event) => {
@@ -247,6 +270,7 @@ function DogProfileCreateForm() {
               label="at_rescue"
               name="at_rescue"
               value={at_rescue}
+              // checked={at_rescue = true}
               onChange={handleBooleanChange}
           />
           {errors.at_rescue?.map((message, idx) => (
