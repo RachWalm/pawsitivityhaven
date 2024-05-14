@@ -11,10 +11,11 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
+import { useParams } from "react-router-dom/cjs/react-router-dom";
 
 
 function RequestAdoptCreateForm() {
-
+  const { id } = useParams();
   const [errors, setErrors] = useState({});
   const [requestAdopt, setRequestAdopt] = useState({
     dog_id: "",
@@ -88,7 +89,7 @@ function RequestAdoptCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append('dog_id', dog_id);
+    formData.append('dog_id', id);
     formData.append('user_id', currentUser);
     formData.append('contact_permission', contact_permission);
     formData.append('status', status);

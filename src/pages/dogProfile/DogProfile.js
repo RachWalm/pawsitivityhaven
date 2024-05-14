@@ -16,6 +16,7 @@ import {
 import { MoreDropdown } from "../../components/MoreDropDown";
 
 import appStyles from "../../App.module.css";
+import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router";
 import { Button } from "react-bootstrap";
@@ -176,6 +177,11 @@ function DogProfile() {
             roundedCircle
             src={dog_image}
           />
+          <Link to={`/request-adopt/create/${id}/`}>
+            <Button>
+              Fill out adoption request
+            </Button>
+          </Link>
           <h3 className="m-2"> Dog name - {dog_name}</h3>
           <h3 className="m-2"> received_date - {received_date} </h3>
           <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
