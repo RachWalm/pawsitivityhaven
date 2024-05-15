@@ -59,6 +59,7 @@ The project board that has been used for this project is combined with the backe
 
 ### Epics
 
+Backend epics were much more individual  components that didn't rely on interaction with each other so they seem to progress at a logical stepwise rate. The front end epics were much more interrelated and so it required several epics to be completed in combination with each other leading to them being 'done' only towards the very end giving a inaccurate view of work done each week as many weeks had many epics part done.
 
 ### User stories and tasks
 
@@ -139,6 +140,8 @@ add an area for staff to put general comments that are internal.
 cloudinary version
 All comments not filtering
 handle boolean change
+default boolean set to true in back end and false in front end needed to be changed from false to true to false again to register as false. intermittentcy made it hard to identify.
+must change image on create and update -  used post code not profile code.
 
 ## Technologies
 
@@ -200,11 +203,6 @@ Before deployment you will need to collect all the requirements into requirement
 
 ```python
 pip3 freeze --local > requirements.txt
-```
-and create a Procfile (with a capital P) containing:
-
-```python
-*
 ```
 
 Ensure that the version that you want to deploy has been added, committed and pushed to GitHub (as Heroku will take it from the repository).

@@ -77,6 +77,7 @@ function DogProfileEditForm() {
       }
     };
     handleMount();
+    console.log(dogData)
   }, [history, id]);
 
   const handleChange = (event) => {
@@ -84,13 +85,6 @@ function DogProfileEditForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
-    console.log(event.target.value);
-    console.log(event);
-    console.log(event.target.name);
-    console.log(dogData);
-    // console.log(dogData.home_animals);
-    // console.log(dogData.home_cats);
-    // console.log(dogData.home_dogs);
   };
 
   const handleBooleanChange = (event) => {
@@ -99,13 +93,6 @@ function DogProfileEditForm() {
       ...dogData,
       [name]: checked,
     });
-    console.log(event.target.value);
-    console.log(event);
-    console.log(event.target.name);
-    console.log(dogData);
-    // console.log(dogData.home_animals);
-    // console.log(dogData.home_cats);
-    // console.log(dogData.home_dogs);
   };
 
   const handleChangeImage = (event) => {
@@ -137,11 +124,13 @@ function DogProfileEditForm() {
     formData.append('home_dogs', home_dogs);
     formData.append('home_animals', home_animals,);
     formData.append('home_children', home_children);
-    formData.append('dog_image', imageInput.current.files[0]);
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput?.current?.files[0]);
+    }
 
     try {
-        const { data } = await axiosReq.post('/dog_profile_create/', formData);
-        history.push(`/dog-profile/${data.id}`);
+        await axiosReq.put(`/dog_profile/${id}/`, formData);
+        history.push(`/dog-profile/${id}`);
     } catch (err) {
         // console.log(err);
         if (err.response?.status !== 401) {
@@ -169,7 +158,7 @@ function DogProfileEditForm() {
         <Form.Group>
             <Form.Label >Received date</Form.Label>
             <Form.Control 
-                type="date" 
+                type="date"
                 name="received_date"
                 value={received_date}
                 onChange={handleChange}
@@ -286,7 +275,6 @@ function DogProfileEditForm() {
               label="at_rescue"
               name="at_rescue"
               value={at_rescue}
-              // checked={at_rescue = true}
               onChange={handleBooleanChange}
           />
           {errors.at_rescue?.map((message, idx) => (
@@ -358,7 +346,7 @@ function DogProfileEditForm() {
         cancel
       </Button>
       <Button type="submit">
-        create
+        Edit
       </Button>
     </div>
   );

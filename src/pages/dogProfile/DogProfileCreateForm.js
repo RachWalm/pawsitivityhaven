@@ -121,7 +121,9 @@ function DogProfileCreateForm() {
     formData.append('home_dogs', home_dogs);
     formData.append('home_animals', home_animals,);
     formData.append('home_children', home_children);
-    formData.append('dog_image', imageInput.current.files[0]);
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput?.current?.files[0]);
+    }
 
     try {
         const { data } = await axiosReq.post('/dog_profile_create/', formData);
