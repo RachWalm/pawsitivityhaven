@@ -24,7 +24,7 @@ const CallToAction = () => {
     <h3>Explore Their World, Change Their Lives:{ home } { feed }
     </h3>
     <img className={styles.banner}
-      src={dogsbanner}
+      src={dogsbanner} alt="Row of dogs looking over log"
     />
     </>
   )

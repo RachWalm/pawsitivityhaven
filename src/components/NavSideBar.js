@@ -17,7 +17,7 @@ const NavSideBar = () => {
     <Navbar
         expanded={expanded}
         className={styles.NavSideBar}
-        expand="md" fixed="left"
+        expand="xs" fixed="left"
     >
         <Container className= { appStyles.container }>
             <Navbar.Toggle

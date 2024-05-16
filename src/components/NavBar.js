@@ -36,7 +36,7 @@ const NavBar = () => {
                 <i className="fas fa-sign-out-alt"></i>
                 Sign out
         </NavLink>
-        {currentUser?.username}
+        <p>you are logged in as : {currentUser?.username}</p>
         </>
 
     const loggedOutIcons = <><NavLink

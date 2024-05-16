@@ -5,31 +5,31 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 // import Asset from "../../components/Asset";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
 import { useParams, useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 import NavEditUser from "../../components/NavEditUser";
-import { ProfileEditDropdown } from "../../components/MoreDropDown";
-import {
-  useProfileData,
-  useSetProfileData,
-} from "../../contexts/ProfileDataContext";
+// import { ProfileEditDropdown } from "../../components/MoreDropDown";
+// import {
+//   useProfileData,
+//   useSetProfileData,
+// } from "../../contexts/ProfileDataContext";
 // import { Button, Image } from "react-bootstrap";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Post from "../../components/Post";
-import { fetchMoreData } from "../../utils/utils";
-import NoResults from "../../assets/no-results.png";
-import Asset from "../../components/Asset";
+// import InfiniteScroll from "react-infinite-scroll-component";
+// import Post from "../../components/Post";
+// import { fetchMoreData } from "../../utils/utils";
+// import NoResults from "../../assets/no-results.png";
+// import Asset from "../../components/Asset";
 
 function ProfilePage() {
   const history = useHistory();
   const { id } = useParams();
-  const [profilePosts, setProfilePosts] = useState({ results: [] });
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const currentUser = useCurrentUser();
+  // const [profilePosts, setProfilePosts] = useState({ results: [] });
+  // const [hasLoaded, setHasLoaded] = useState(false);
+  // const currentUser = useCurrentUser();
   // const { pageProfile } = useProfileData();
   // const [profile] = pageProfile.results;
   // const is_owner = currentUser?.username === profile?.owner;
@@ -65,24 +65,16 @@ function ProfilePage() {
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
-          <h3 className="m-2"> User Id - {user_id} </h3>
-          <ProfileEditDropdown />
-          <h3 className="m-2"> created_at - {created_at} </h3>
-          <h3 className="m-2"> updated_at - {updated_at} </h3>
+          <h2>Your profile details</h2>
+          <h3 className="m-2"> Username - {user_id} </h3>
+          <h3 className="m-2"> First created - {created_at} </h3>
+          <h3 className="m-2"> Last updated - {updated_at} </h3>
           <h3 className="m-2"> First name - {first_name} </h3>
-          <h3 className="m-2"> last_name - {last_name} </h3>
-          <h3 className="m-2"> email - {email} </h3>
-                   
-        
+          <h3 className="m-2"> Last name - {last_name} </h3>
+          <h3 className="m-2"> Email - {email} </h3>        
         </Col>
       </Row>
       {/* <Row noGutters className="px-3 text-center">
-        <Col lg={3} className="text-lg-left">
-          <Image
-            roundedCircle
-            src={profile?.image}
-          />
-        </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
           <Row className="justify-content-center no-gutters">
@@ -148,23 +140,30 @@ function ProfilePage() {
 
   return (
     <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <Container className={appStyles.Content}>
-          {/* {hasLoaded ? ( */}
-            <>
-              {mainProfile}
-              {mainProfilePosts}
-              <NavEditUser />
-            </>
-          {/* ) : (
-            <Asset spinner />
-          )} */}
+      <Col>
+        <Container className={appStyles.container}>
+          <NavEditUser />
+          {mainProfile}
         </Container>
       </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        {/* <PopularProfiles /> */}
-      </Col>
     </Row>
+    // <Row>
+    //   <Col className="py-2 p-0 p-lg-2" lg={8}>
+    //     <Container className={appStyles.Content}>
+    //       {/* {hasLoaded ? ( */}
+    //         <>
+    //           {mainProfile}
+    //           {/* {mainProfilePosts} */}
+    //         </>
+    //       {/* ) : (
+    //         <Asset spinner />
+    //       )} */}
+    //     </Container>
+    //   </Col>
+    //   <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+    //     {/* <PopularProfiles /> */}
+    //   </Col>
+    // </Row>
   );
 }
 
