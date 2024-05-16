@@ -58,7 +58,9 @@ function SearchPicture({ message, filter = "" }) {
   
     return (
       <>
-      <h2>Search then get more info on dogs below by clicking on their image</h2>
+      <h2>Search or browse</h2>
+      <h3>Get more info on dogs below by clicking on their image <br></br>
+      (also access to request adoption form via clicking on image)</h3>
       <Row className="h-100">
         <Col className="py-2 p-0 p-lg-2" lg={8}>
           <i className=
