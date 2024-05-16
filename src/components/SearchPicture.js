@@ -4,11 +4,11 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Image from "react-bootstrap/Image";
+// import Image from "react-bootstrap/Image";
 
 import {
     useCurrentUser,
-    useSetCurrentUser,
+    // useSetCurrentUser,
   } from "../contexts/CurrentUserContext";
 
 // import { useParams } from "react-router";
@@ -20,7 +20,7 @@ import NoResults from "../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import appStyles from "../App.module.css";
-import DogProfile from "../pages/dogProfile/DogProfile";
+// import DogProfile from "../pages/dogProfile/DogProfile";
 import Dog from "./Dog"
 
 // import { useHistory } from "react-router";
@@ -58,9 +58,9 @@ function SearchPicture({ message, filter = "" }) {
   
     return (
       <>
-      <h2>Search or browse</h2>
-      <h3>Get more info on dogs below by clicking on their image <br></br>
-      (also access to request adoption form via clicking on image)</h3>
+      <h2>Search or browse dogs</h2>
+      <h3>Click on a dog for more information <br></br>
+      (also access to request adoption form by clicking on your choice)</h3>
       <Row className="h-100">
         <Col className="py-2 p-0 p-lg-2" lg={8}>
           <i className=
@@ -73,7 +73,7 @@ function SearchPicture({ message, filter = "" }) {
               onChange={(event) => setQuery(event.target.value)}
               type="text"
               className="mr-sm-2"
-              placeholder="Search dogs"
+              placeholder="Search dogs name or breed"
             />
           </Form>
   
@@ -82,7 +82,9 @@ function SearchPicture({ message, filter = "" }) {
               {dogData.results.length ? (
                 <InfiniteScroll
                   children={dogData.results.map((dogData) => (
-                    <Dog key={dogData.id} {...dogData} setDogData={setDogData} />
+                    <div>
+                      <Dog key={dogData.id} {...dogData} setDogData={setDogData} />
+                    </div>
                   ))}
                   dataLength={dogData.results.length}
                   loader={<Asset spinner />}

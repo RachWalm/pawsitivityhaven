@@ -1,11 +1,6 @@
 import React from "react";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { MoreDropdown } from "./MoreDropDown";
+import { Card, Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import { useSetProfileData } from "../contexts/ProfileDataContext";
-import Button from "react-bootstrap/Button";
-// import { useCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/Dog.module.css"
 
 
@@ -43,11 +38,13 @@ const Dog = (props) => {
     <Card>
       <Card.Body>
         <Media>
+          <Link to={`/dog-profile/${id}`}>
           <div className={styles.details}>
             <h4 className={styles.space}>Name: {dog_name}</h4>
             <h4 className={styles.space}>Gender: {getDogGender(dog_gender)}</h4>
             <h4 className={styles.space}>Breed: {dog_breed}</h4>
           </div>
+          </Link>
           <div className="text-right">
         {/* {
           // !mobile &&
