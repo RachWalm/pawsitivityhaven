@@ -136,7 +136,7 @@ function PostEditForm() {
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
-            className="d-flex flex-column justify-content-center"
+            className={`d-flex flex-column justify-content-center ${appStyles.container}`}
           >
             <Form.Group className="text-center">
               <figure>

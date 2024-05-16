@@ -1,0 +1,10 @@
+.details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.space {
+    margin-right:8px;   
+}
