@@ -124,7 +124,7 @@ const ProfileEditForm = () => {
         <Form.Label>Email</Form.Label>
         <Form.Control
           placeholder="email address"
-          as="textarea"
+          type="email"
           value={email}
           onChange={handleChange}
           name="email"
