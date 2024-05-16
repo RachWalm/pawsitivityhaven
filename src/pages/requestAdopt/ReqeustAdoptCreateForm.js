@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -12,6 +12,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
 import { useParams } from "react-router-dom/cjs/react-router-dom";
+import appStyle from "../../App.module.css"
+import buttnStyle from "../../styles/Buttn.module.css"
 
 
 function RequestAdoptCreateForm() {
@@ -43,6 +45,25 @@ function RequestAdoptCreateForm() {
 
   const history = useHistory();
   const currentUser = useCurrentUser();
+
+  const [dogData, setDogData] = useState({
+    dog_name: "",
+  });
+  const { dog_name,
+  } = dogData;
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const { dog_name } = data;
+        setDogData({ dog_name});
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, [history, id]);
   
   // useEffect(() => {
   //   const handleMount = async () => {
@@ -105,18 +126,17 @@ function RequestAdoptCreateForm() {
         history.push(`/request-adopt/${data.id}`);
     } catch (err) {
         // console.log(err);
-        if (err.response?.status !== 401) {
-            setErrors(err.response?.data);
-        }
     }
   };
 
   const textFields = (
     <div className="text-center">
       <Form.Group>
-            <Form.Label >Dog </Form.Label>
+            <Form.Label >Dog you are most interested in</Form.Label>
             <Form.Control 
                 type="text" 
+                placeholder={dog_name}
+                plaintext
                 name="dog_id"
                 value={dog_id}
                 onChange={handleChange}
@@ -233,11 +253,12 @@ function RequestAdoptCreateForm() {
     
     
       <Button
-        onClick={() => {}}
+        className={buttnStyle.buttn}
+        onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button type="submit">
+      <Button className={buttnStyle.buttn} type="submit">
         create
       </Button>
     </div>
@@ -246,11 +267,14 @@ function RequestAdoptCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        {/* <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
             <div className="d-md-none">{textFields}</div>
-        </Col>
+        </Col> */}
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container>{textFields}</Container>
+          <Container className={appStyle.container}>
+            <h2>Please provide details to allow us to consider your application to adopt a dog</h2>
+            {textFields}
+          </Container>
         </Col>
       </Row>
     </Form>
