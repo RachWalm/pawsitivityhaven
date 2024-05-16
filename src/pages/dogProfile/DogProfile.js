@@ -174,7 +174,6 @@ function DogProfile() {
         <span><MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/></span>
           {/* <h1>{currentUser}</h1> */}
         <Image
-            roundedCircle
             src={dog_image}
           />
           <Link to={`/request-adopt/create/${id}/`}>

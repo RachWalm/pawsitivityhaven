@@ -1,17 +1,17 @@
 .App {
     font-family: "Quicksand", "Salsa", sans-serif;
-    background: url("./assets/bkgrdpaws.png") scroll right top;
+    background: url("./assets/bkgrdpaws.png") scroll top;
     min-height: 100vh;
   }
   
 .main {
   padding-top: 90px;
-  margin-left: 130px;
 }
 
 .container {
   border: 1px solid #dadada;
   background-color: white;
+  margin: 15px;
 }
 
 .Content {
@@ -38,18 +38,20 @@
 }
 
 a {
-  color: #555555;
+  color:#018EDE;;
   transition: color ease-in-out 0.3s;
 }
 
 a:hover {
   text-decoration: none;
-}
-
-a:hover i {
-  color: #2142b2;
+  color: #FF4802;
   transition: color ease-in-out 0.3s;
 }
+
+/* a:hover i {
+  color: #FF4802;
+  transition: color ease-in-out 0.3s;
+} */
 
 input[type="file"] {
   display: none;

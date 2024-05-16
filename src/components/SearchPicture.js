@@ -9,19 +9,19 @@ import Image from "react-bootstrap/Image";
 import {
     useCurrentUser,
     useSetCurrentUser,
-  } from "../../contexts/CurrentUserContext";
+  } from "../contexts/CurrentUserContext";
 
 // import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefault";
+import { axiosReq } from "../api/axiosDefault";
 
-import Asset from "../../components/Asset";
-import { fetchMoreData } from "../../utils/utils";
-import NoResults from "../../assets/no-results.png";
+import Asset from "./Asset";
+import { fetchMoreData } from "../utils/utils";
+import NoResults from "../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import appStyles from "../../App.module.css";
-import DogProfile from "../dogProfile/DogProfile";
-import Dog from "../../components/Dog"
+import appStyles from "../App.module.css";
+import DogProfile from "../pages/dogProfile/DogProfile";
+import Dog from "./Dog"
 
 // import { useHistory } from "react-router";
 
@@ -57,6 +57,8 @@ function SearchPicture({ message, filter = "" }) {
       }, [filter, query, currentUser]);
   
     return (
+      <>
+      <h2>Search then get more info on dogs below by clicking on their image</h2>
       <Row className="h-100">
         <Col className="py-2 p-0 p-lg-2" lg={8}>
           <i className=
@@ -98,6 +100,7 @@ function SearchPicture({ message, filter = "" }) {
           )}
         </Col>
       </Row>
+      </>
     );
   }
 

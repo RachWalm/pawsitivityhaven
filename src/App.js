@@ -4,6 +4,7 @@ import styles from "./App.module.css";
 import Container from "react-bootstrap/Container";
 import {Route, Switch} from "react-router-dom";
 import "./api/axiosDefault";
+import Home from "./pages/home/Home";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import UserProfilePage from "./pages/userProfile/UserProfilePage";
@@ -17,7 +18,6 @@ import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostEditForm from "./pages/posts/PostEditForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
-import SearchPicture from "./pages/search/SearchPicture";
 import RequestAdoptCreateForm from "./pages/requestAdopt/ReqeustAdoptCreateForm";
 import RequestAdopt from "./components/RequestAdopt";
 import RequestAdoptPage from "./pages/requestAdopt/RequestAdoptPage";
@@ -32,7 +32,7 @@ function App() {
       <NavSideBar />
       <Container className={styles.main}>
         <Switch>
-          <Route exact path="/" render={() => <SearchPicture />} />
+          <Route exact path="/" render={() => <Home />} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
