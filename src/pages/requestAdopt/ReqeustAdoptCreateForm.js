@@ -184,7 +184,7 @@ function RequestAdoptCreateForm() {
           <Form.Check 
               type="checkbox"
               id="contact_permission"
-              label="contact_permission"
+              label="Tick to permit contact"
               name="contact_permission"
               value={contact_permission}
               onChange={handleBooleanChange}
@@ -194,11 +194,12 @@ function RequestAdoptCreateForm() {
                   {message}
                 </Alert>
               ))}
-
+        <h4>Tell us about your home?</h4>
+        <p>Please indicate in query box numbers of each, type of other animal and age range of children.</p>
         <Form.Check 
               type="checkbox"
               id="home_dogs"
-              label="home_dogs"
+              label="Dogs ?"
               name="home_dogs"
               value={home_dogs}
               onChange={handleBooleanChange}
@@ -212,7 +213,7 @@ function RequestAdoptCreateForm() {
           <Form.Check 
               type="checkbox"
               id="home_cats"
-              label="home_cats"
+              label="Cats ?"
               name="home_cats"
               value={home_cats}
               onChange={handleBooleanChange}
@@ -226,7 +227,7 @@ function RequestAdoptCreateForm() {
           <Form.Check 
               type="checkbox"
               id="home_animals"
-              label="home_animals"
+              label="Other animals ?"
               name="home_animals"
               value={home_animals}
               onChange={handleBooleanChange}
@@ -240,7 +241,7 @@ function RequestAdoptCreateForm() {
           <Form.Check 
               type="checkbox"
               id="home_children"
-              label="home_children"
+              label="Children ?"
               name="home_children"
               value={home_children}
               onChange={handleBooleanChange}

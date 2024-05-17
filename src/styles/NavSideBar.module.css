@@ -4,12 +4,8 @@
     margin-left: 20px;
     border: 1px solid #dadada;
     background-color: white;
-    width: 200px;
+    min-width: 100px;
     flex-direction: column;
     flex-wrap: wrap;
-}
-
-.column {
-    display:flex;
-    flex-direction: column
+    height:fit-content;
 }

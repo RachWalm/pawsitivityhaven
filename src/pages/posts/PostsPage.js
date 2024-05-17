@@ -58,7 +58,7 @@ function PostsPage({ message, filter = "" }) {
       <Container className={appStyles.container}>
         <h2>Day to Day Life - Posted by Staff</h2>
         <hr></hr>
-        <h3>Please sign in and get involved by commenting on the posts.</h3>
+        <h3>Please get involved by commenting on the posts (you may need to sign in).</h3>
         <Row className="h-100">
           <Col className="py-2 p-0 p-lg-2" lg={8}>
             <i className=

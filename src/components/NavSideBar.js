@@ -19,7 +19,6 @@ const NavSideBar = () => {
         className={styles.NavSideBar}
         expand="xs" fixed="left"
     >
-        <Container className= { appStyles.container }>
             <Navbar.Toggle
                 ref={ref}
                 onClick={() => setExpanded(!expanded)}
@@ -27,7 +26,6 @@ const NavSideBar = () => {
             />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto text-right">
-            <div classname={styles.column}>
                 <NavLink exact to="/">
                     <i className="fa-solid fa-house-chimney"></i>
                     Home
@@ -36,7 +34,6 @@ const NavSideBar = () => {
                     <i className="fa-solid fa-dog"></i>
                     Dog Profile create
                 </NavLink>
-                {currentUser?.username}
                 <NavLink to={`/user-profile/${id}`}>
                     <i className="fa-solid fa-dog"></i>
                     User Profile
@@ -45,11 +42,8 @@ const NavSideBar = () => {
                     <i className="fa-solid fa-dog"></i>
                     Feed
                 </NavLink>
-            </div>
-                {/* {currentUser ? loggedInIcons : loggedOutIcons} */}
             </Nav>
             </Navbar.Collapse>
-        </Container>
     </Navbar>
   );
 };

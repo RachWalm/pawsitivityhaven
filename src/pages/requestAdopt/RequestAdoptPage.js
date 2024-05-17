@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-// import appStyles from "../../App.module.css";
+import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 
@@ -50,11 +50,17 @@ function RequestAdoptPage() {
   }, [id,]);
 
   return (
-    <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <RequestAdopt {...requestAdopt} />
-      </Col>
-    </Row>
+    <Container className={appStyles.container}>
+      <Row className="h-100">
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+          <h2>Here is the query that you have placed.</h2>
+          <h3>If you haven't heard back in a few working days check you have given us permssion to contact you and the email in your profile is current.</h3>
+          <p>If you need to make changes please do so it will not impact your place. Better to have current details.</p>
+          <p>If you change your mind please delete your request, you can always make another one when you are sure or your circumstances change</p>
+          <RequestAdopt {...requestAdopt} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

@@ -15,7 +15,7 @@ import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
 
 // import styles from "../../styles/PostCreateEditForm.module.css";
-// import appStyles from "../../App.module.css";
+import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
@@ -354,7 +354,7 @@ function DogProfileCreateForm() {
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
-            className="d-flex flex-column justify-content-center"
+            className={` ${appStyles.container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
               
@@ -413,7 +413,7 @@ function DogProfileCreateForm() {
           </Container>
         </Col>
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container>{textFields}</Container>
+          <Container className={appStyles.container}>{textFields}</Container>
         </Col>
       </Row>
     </Form>

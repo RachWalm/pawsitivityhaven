@@ -21,6 +21,7 @@ import PostsPage from "./pages/posts/PostsPage";
 import RequestAdoptCreateForm from "./pages/requestAdopt/ReqeustAdoptCreateForm";
 import RequestAdopt from "./components/RequestAdopt";
 import RequestAdoptPage from "./pages/requestAdopt/RequestAdoptPage";
+import { Row, Col } from "react-bootstrap";
 
 
 
@@ -29,28 +30,34 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
-      <NavSideBar />
-      <Container className={styles.main}>
-        <Switch>
-          <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/signin" render={() => <SignInForm />} />
-          <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
-          <Route exact path="/dog-profile/:id" render={() => <DogProfile />} />
-          <Route exact path="/dog-profile/edit/:id" render={() => <DogProfileEditForm />} />
-          <Route exact path="/user-profile/:id" render={() => <UserProfilePage />} />
-          <Route exact path="/user-profile/edit/username/:id" render={() => <UsernameForm/>} />
-          <Route exact path="/user-profile/edit/password/:id" render={() => <UserPasswordForm />}/>
-          <Route exact path="/user-profile/edit/:id" render={() => <ProfileEditForm />}/>
-          <Route exact path="/posts/create/:id" render={() => <PostCreateForm />} />
-          <Route exact path="/posts/:id/edit/" render={() => <PostEditForm />} />
-          <Route exact path="/posts/:id" render={() => <PostPage />} />
-          <Route exact path="/request-adopt/create/:id" render={() => <RequestAdoptCreateForm />} />
-          <Route exact path="/request-adopt/:id" render={() => <RequestAdoptPage />} />
-          <Route exact path="/feed" render={() => <PostsPage />} />
-          <Route render={() => <p>Page not found!</p>} />
-        </Switch>
-      </Container>
+      <Row>
+        <Col xs={12} xl={1} className="d-flex justify-content-start">
+          <NavSideBar />
+        </Col>
+        <Col xs={11} className="d-flex justify-content-end">
+          <Container className={styles.main}>
+            <Switch>
+              <Route exact path="/" render={() => <Home />} />
+              <Route exact path="/signin" render={() => <SignInForm />} />
+              <Route exact path="/signup" render={() => <SignUpForm />} />
+              <Route exact path="/dog-profile/create" render={() => <DogProfileCreateForm />} />
+              <Route exact path="/dog-profile/:id" render={() => <DogProfile />} />
+              <Route exact path="/dog-profile/edit/:id" render={() => <DogProfileEditForm />} />
+              <Route exact path="/user-profile/:id" render={() => <UserProfilePage />} />
+              <Route exact path="/user-profile/edit/username/:id" render={() => <UsernameForm/>} />
+              <Route exact path="/user-profile/edit/password/:id" render={() => <UserPasswordForm />}/>
+              <Route exact path="/user-profile/edit/:id" render={() => <ProfileEditForm />}/>
+              <Route exact path="/posts/create/:id" render={() => <PostCreateForm />} />
+              <Route exact path="/posts/:id/edit/" render={() => <PostEditForm />} />
+              <Route exact path="/posts/:id" render={() => <PostPage />} />
+              <Route exact path="/request-adopt/create/:id" render={() => <RequestAdoptCreateForm />} />
+              <Route exact path="/request-adopt/:id" render={() => <RequestAdoptPage />} />
+              <Route exact path="/feed" render={() => <PostsPage />} />
+              <Route render={() => <p>Page not found!</p>} />
+            </Switch>
+          </Container>
+        </Col>
+      </Row>
     </div>
   );
 }
