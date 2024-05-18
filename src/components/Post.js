@@ -23,43 +23,25 @@ const Post = (props) => {
   // const is_current_owner = currentUser?.username === user_id;
   const history = useHistory();
 
-//   const [dogData, setDogData] = useState({
-//     dog_name: "",
-//     received_date: "",
-//     rehomed_date: "",
-//     returned_date: "",
-//     dog_age: "",
-//     dog_breed: "",
-//     dog_gender: "",
-//     dog_size: "",
-//     dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
-//     at_rescue: "",
-//     status: "",
-//     general: "",
-//     home_cats: "",
-//     home_dogs: "",
-//     home_animals: "",
-//     home_children: "",
-// });
-// const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals, home_children, } = dogData;
+  const [dogData, setDogData] = useState({
+    dog_name: "",
+    dog_image: "",
+});
+const { dog_name, dog_image, } = dogData;
 
-  // useEffect(() => {
-  //   const handleMount = async () => {
-  //     try {
-  //       const { data } = await axiosReq.get(`/dog_profile/${dog_id}/`);
-  //       const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
-  //         home_cats, home_dogs, home_animals, home_children, } = data;
-  //       setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
-  //         dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
-  //         home_children,});
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/dog_profile/${dog_id}/`);
+        const { dog_name, dog_image, } = data;
+        setDogData({ dog_name, dog_image, });
 
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   handleMount();
-  //   // console.log(is_owner)
-  // }, [history, id]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, [history, id]);
   
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -78,13 +60,11 @@ const Post = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <div className="d-flex align-items-center">
-            <p>This post was {updated_at}</p>
-            <p>This was posted by {user_id}</p>
-            <span> for dog id {dog_id}
-            {/* <Link to={`/dog-profile/${dog_id}`}>
+            <p>This was posted {updated_at} by {user_id} for dog {dog_name}
+            <Link to={`/dog-profile/${dog_id}`}>
               <Card.Img src={dog_image} alt={dog_name} />
-            </Link> */}
-            </span>
+            </Link>
+            </p>
             <span>{is_owner && postPage && <MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>}</span>
           </div>
         </Media>
@@ -121,9 +101,9 @@ const Post = (props) => {
           )}
           {likes_count} */}
           <div>
-          <Link to={`/posts/${id}`}>
+          {/* <Link to={`/posts/${id}`}>
             <i className="far fa-comments" />
-          </Link>
+          </Link> */}
         </div>
       </Card.Body>
     </Card>

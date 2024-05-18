@@ -95,8 +95,6 @@ function DogProfile() {
     console.log(dogData)
   }, [history, id]);
 
-
-
   const getDogGender = (dog_gender) => {
     switch (dog_gender) {
       case 0:
