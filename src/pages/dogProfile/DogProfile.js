@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router";
 import { Button } from "react-bootstrap";
+import axios from "axios";
 
 function DogProfile() {
   const [errors, setErrors] = useState({});
@@ -63,6 +64,8 @@ function DogProfile() {
   // });
 
   const [userStatus, setUserStatus] = useState ({
+    first_name: "",
+    last_name: "",
     is_staff: "",
     is_superuser: "",
 });
@@ -73,17 +76,23 @@ function DogProfile() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const [{ data: dog}, { data: userstatus}] = await Promise.all([
+          axiosReq.get(`/dog_profile/${id}/`),
+          axiosReq.get(`/user_profile/${currentpk}`),
+        ])
         const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
-          home_cats, home_dogs, home_animals, home_children, } = data;
-        setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
-          dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
-          home_children,});
+            home_cats, home_dogs, home_animals, home_children, } = dog;
+          setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
+            dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
+            home_children,});
+        setUserStatus(userstatus);
       } catch (err) {
         console.log(err);
       }
     };
     handleMount();
+    console.log(userStatus)
+    console.log(dogData)
   }, [history, id]);
 
 
@@ -157,7 +166,8 @@ function DogProfile() {
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
-        <span><MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/></span>
+        {userStatus.is_superuser ? (<MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>) : (<p>not super</p>)}
+        <MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>
           {/* <h1>{currentUser}</h1> */}
         <Image
             src={dog_image}
@@ -196,7 +206,7 @@ function DogProfile() {
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container className={appStyles.container}>
-          {currentUser?.pk} is
+          {currentUser?.pk} is {getBoolean(userStatus?.is_staff)} {userStatus?.is_superuser} {userStatus?.first_name}
           {mainProfile}
         </Container>
       </Col>

@@ -318,6 +318,12 @@ Paw for buttons
 Image by <a href="https://pixabay.com/users/blue-hat-graphics-24232276/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7284056">Dimuth Amarasiri</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7284056">Pixabay</a>
 
 
+page not found 
+<a href="https://www.freepik.com/free-vector/construction-web-template-flat-style_1959745.htm#fromView=search&page=1&position=6&uuid=f84ea845-2ed9-4927-8aa5-0931603729bd">Image by freepik</a>
+
+no access page
+<a href="https://www.freepik.com/free-vector/prohibited-signs-set-smoking-vape-dogs-food-drink_49610161.htm#fromView=image_search_similar&page=1&position=1&uuid=f4fa4661-2a90-49d8-a4ea-c39411cf5be6">Image by juicy_fish on Freepik</a>
+
 Background pawprints
 Image by <a href="https://pixabay.com/users/natiqjavid-1602367/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6757808">Muhammad Natiq</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6757808">Pixabay</a>
 

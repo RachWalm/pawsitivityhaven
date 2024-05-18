@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
-
+import { useRedirect } from "../../hooks/useRedirect";
 import { Link, useHistory, } from "react-router-dom";
 import buttnStyle from "../../styles/Buttn.module.css"
 import appStyles from "../../App.module.css";
@@ -17,6 +17,7 @@ import FormTitle from "../../components/FormTitle";
 
 const SignInForm = () => {
     const setCurrentUser = useSetCurrentUser();
+    useRedirect('loggedIn');
 
     const [signInData, setSignInData] = useState({
         username: "",
@@ -38,7 +39,7 @@ const SignInForm = () => {
         try {
             const {data} = await axios.post("/dj-rest-auth/login/", signInData);
             setCurrentUser(data.user);
-        history.push("/");
+            history.goBack();
         } catch (err) {
         setErrors(err.response?.data);
         console.log(err)

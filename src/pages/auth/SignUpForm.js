@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import appStyles from "../../App.module.css";
 import axios from "axios";
-import buttnStyle from "../../styles/Buttn.module.css"
-
+import buttnStyle from "../../styles/Buttn.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 import { Form,
   Button,
   Image,
@@ -23,7 +23,7 @@ const SignUpForm = () => {
   const { username, password1, password2 } = signUpData;
   const [errors, setErrors] = useState({});
   const history = useHistory();
-
+  useRedirect('loggedIn');
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
