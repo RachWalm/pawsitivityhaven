@@ -19,6 +19,7 @@ import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
+import FormTitle from "../../components/FormTitle";
 // import { useRedirect } from "../../hooks/useRedirect";
 
 function DogProfileEditForm() {
@@ -352,6 +353,10 @@ function DogProfileEditForm() {
   );
 
   return (
+    <>
+    <Container className={appStyles.container}>
+      <FormTitle />
+    </Container>
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
@@ -419,6 +424,7 @@ function DogProfileEditForm() {
         </Col>
       </Row>
     </Form>
+    </>
   );
 }
 

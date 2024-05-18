@@ -4,38 +4,15 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
-// import Asset from "../../components/Asset";
-// import { useCurrentUser } from "../../contexts/CurrentUserContext";
-// import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
-// import btnStyles from "../../styles/Button.module.css";
 import { useParams, useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 import NavEditUser from "../../components/NavEditUser";
-// import { ProfileEditDropdown } from "../../components/MoreDropDown";
-// import {
-//   useProfileData,
-//   useSetProfileData,
-// } from "../../contexts/ProfileDataContext";
-// import { Button, Image } from "react-bootstrap";
-// import InfiniteScroll from "react-infinite-scroll-component";
-// import Post from "../../components/Post";
-// import { fetchMoreData } from "../../utils/utils";
-// import NoResults from "../../assets/no-results.png";
-// import Asset from "../../components/Asset";
+
 
 function ProfilePage() {
   const history = useHistory();
   const { id } = useParams();
-  // const [profilePosts, setProfilePosts] = useState({ results: [] });
-  // const [hasLoaded, setHasLoaded] = useState(false);
-  // const currentUser = useCurrentUser();
-  // const { pageProfile } = useProfileData();
-  // const [profile] = pageProfile.results;
-  // const is_owner = currentUser?.username === profile?.owner;
-  // const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
-
-  // const [errors, setErrors] = useState({});
 
   const [userProfileData, setUserProfileData] = useState({
     user_id: "",

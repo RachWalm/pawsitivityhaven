@@ -38,6 +38,25 @@ const RequestAdopt = (props) => {
     }
   }
 
+  const [dogData, setDogData] = useState({
+    dog_name: "",
+  });
+  const { dog_name,
+  } = dogData;
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const { dog_name } = data;
+        setDogData({ dog_name});
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, [history, id]);
+
   const getBoolean = (value) => {
     switch (value) {
       case true: 
@@ -53,24 +72,21 @@ const RequestAdopt = (props) => {
     <Card>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          <div className="d-flex align-items-center">
-            <span>{dog_id}</span>
-            <span>{user_id} 
-            </span>
-            <p>home has cats {getBoolean(home_cats)}</p>
-            <p>home has children {getBoolean(home_children)}</p>
-            <p>home has dogs {getBoolean(home_dogs)}</p>
-            <p>home has other animals {getBoolean(home_animals)}</p>
-            <span><MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/></span>
+          <div className="d-flex align-items-end">
+            <MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>
           </div>
         </Media>
       </Card.Body>
       <Card.Body>
-        {dog_id && <Card.Title className="text-center">{dog_id}</Card.Title>}
+        {dog_id && <Card.Title className="text-center"><h2>You are interested in adopting {dog_name}</h2></Card.Title>}
         <Card.Text>
-          <p>Potential owner experience : {experience}</p> 
-          <p>Query from potential owner: {query}</p>
-          <p>contact permission {getBoolean(contact_permission)}</p>
+          <p>Home - cats {getBoolean(home_cats)}</p>
+          <p>Home - children {getBoolean(home_children)}</p>
+          <p>Home - dogs {getBoolean(home_dogs)}</p>
+          <p>Home - other animals {getBoolean(home_animals)}</p>
+          <p>Previous experience : {experience}</p> 
+          <p>Query : {query}</p>
+          <p>Contact permission {getBoolean(contact_permission)}</p>
         </Card.Text>
         
           

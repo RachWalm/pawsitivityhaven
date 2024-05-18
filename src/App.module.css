@@ -65,6 +65,13 @@ i:hover {
   color: #FF4802;
 }
 
+.SignupinImage {
+  object-fit: cover;
+  border: 5px #244065;
+  height: 100%;
+  width: 100%;
+}
+
 /* figure {
   text-align: center;
   display: inline-block;

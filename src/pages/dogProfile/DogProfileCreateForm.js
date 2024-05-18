@@ -19,6 +19,7 @@ import appStyles from "../../App.module.css";
 // import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
+import FormTitle from "../../components/FormTitle";
 // import { useRedirect } from "../../hooks/useRedirect";
 
 function DogProfileCreateForm() {
@@ -339,7 +340,7 @@ function DogProfileCreateForm() {
     
     
       <Button
-        onClick={() => {}}
+        onClick={() => history.goBack()}
       >
         cancel
       </Button>
@@ -350,6 +351,10 @@ function DogProfileCreateForm() {
   );
 
   return (
+    <>
+    <Container className={appStyles.container}>
+      <FormTitle />
+    </Container>
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
@@ -417,6 +422,7 @@ function DogProfileCreateForm() {
         </Col>
       </Row>
     </Form>
+    </>
   );
 }
 

@@ -18,6 +18,7 @@ import appStyles from "../../App.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 import { useRedirect } from "../../hooks/useRedirect";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
@@ -31,6 +32,7 @@ function PostCreateForm() {
     image: "",
   });
   const { title, content, image } = postData;
+  const dog_number = useParams()
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -60,7 +62,7 @@ function PostCreateForm() {
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
     formData.append("user_id", currentUser);
-    formData.append("dog_id", 1);
+    formData.append("dog_id", dog_number);
 
     try {
       console.log(formData);

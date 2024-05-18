@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 const Post = (props) => {
   const {
     id,
+    dog_id,
     user_id,
     title,
     content,
@@ -77,9 +78,9 @@ const Post = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
-            <span>{user_id}</span>
-            <span>{user_id} 
+            <p>This post was {updated_at}</p>
+            <p>This was posted by {user_id}</p>
+            <span> {dog_id}
             {/* <Link to={`/dog-profile/${dog_id}`}>
               <Card.Img src={dog_image} alt={dog_name} />
             </Link> */}

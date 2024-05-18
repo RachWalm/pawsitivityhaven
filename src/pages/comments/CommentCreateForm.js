@@ -3,11 +3,12 @@ import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-
+import Container from "react-bootstrap/Container";
 // import styles from "../../styles/CommentCreateEditForm.module.css";
 // import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefault";
-import bttnStyles from "../../styles/Buttn.module.css"
+import bttnStyles from "../../styles/Buttn.module.css";
+import appStyles from "../../App.module.css"
 
 function CommentCreateForm(props) {
   const { post_id, setPost, setComments, user_id } = props;
@@ -44,6 +45,7 @@ function CommentCreateForm(props) {
   };
 
   return (
+    <Container className={appStyles.container}>
     <Form className="mt-2" onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup>
@@ -64,6 +66,7 @@ function CommentCreateForm(props) {
         Comment
       </button>
     </Form>
+    </Container>
   );
 }
 

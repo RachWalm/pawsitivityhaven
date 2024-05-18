@@ -19,7 +19,6 @@ import PostEditForm from "./pages/posts/PostEditForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import RequestAdoptCreateForm from "./pages/requestAdopt/ReqeustAdoptCreateForm";
-import RequestAdopt from "./components/RequestAdopt";
 import RequestAdoptPage from "./pages/requestAdopt/RequestAdoptPage";
 import { Row, Col } from "react-bootstrap";
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import appStyles from "../../App.module.css";
 import axios from "axios";
+import buttnStyle from "../../styles/Buttn.module.css"
 
 import { Form,
   Button,
@@ -10,6 +11,7 @@ import { Form,
   Row,
   Container,
   Alert, } from "react-bootstrap";
+import FormTitle from "../../components/FormTitle";
 
 
 const SignUpForm = () => {
@@ -41,6 +43,10 @@ const SignUpForm = () => {
   };
 
   return (
+    <>
+    <Container className={appStyles.container}>
+      <FormTitle />
+    </Container>
     <Row>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className={appStyles.container}>
@@ -95,7 +101,7 @@ const SignUpForm = () => {
               </Alert>
             ))}
             
-            <Button type="submit">
+            <Button className={buttnStyle.buttn} type="submit">
               Sign up
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
@@ -117,13 +123,14 @@ const SignUpForm = () => {
         className={`my-auto d-none d-md-block p-2`}
       >
         <Image
-          className={`${appStyles.FillerImage}`}
+          className={`${appStyles.SignupinImage}`}
           src={
             "https://res.cloudinary.com/dykxglqm8/image/upload/v1714480564/signup_xspsyt.jpg"
           } width={500}
         />
       </Col>
     </Row>
+    </>
   );
 };
 

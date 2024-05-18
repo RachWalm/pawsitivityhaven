@@ -62,8 +62,13 @@ function DogProfile() {
   //   email: "",    
   // });
 
+  const [userStatus, setUserStatus] = useState ({
+    is_staff: "",
+    is_superuser: "",
+});
 
   const is_owner = currentUser?.username === useProfileData?.user_id;
+  const currentpk = currentUser?.pk;
 
   useEffect(() => {
     const handleMount = async () => {
@@ -81,26 +86,7 @@ function DogProfile() {
     handleMount();
   }, [history, id]);
 
-  // useEffect(() => {
-  //   const handleMount = async () => {
-  //     try {
-  //       const { data } = await axiosReq.get(`/dog_profile/${id}/`);
-  //       const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
-  //         home_cats, home_dogs, home_animals, home_children, } = data;
 
-  //       setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
-  //         dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
-  //         home_children,  });
-  //         console.log('anmi')
-  //         console.log(data.home_cats)
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   handleMount();
-  // }, [history, id]);
-
-  
 
   const getDogGender = (dog_gender) => {
     switch (dog_gender) {
@@ -181,7 +167,7 @@ function DogProfile() {
               Fill out adoption request
             </Button>
           </Link>
-          <h3 className="m-2"> Dog name - {dog_name}</h3>
+          <h2 className="m-2"> {dog_name}</h2>
           <h3 className="m-2"> received_date - {received_date} </h3>
           <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
           <h3 className="m-2"> returned_date - {returned_date} </h3>
@@ -210,7 +196,8 @@ function DogProfile() {
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container className={appStyles.container}>
-              {mainProfile}
+          {currentUser?.pk} is
+          {mainProfile}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">

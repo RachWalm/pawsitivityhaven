@@ -47,8 +47,8 @@ const Comment = (props) => {
       <hr />
       <Media>
         <Media.Body className="align-self-center ml-2">
-          <span>{user_id}</span>
-          <span>{updated_at}</span>
+          <p>This comment is from {updated_at}</p>
+          <p>This comment was made by {user_id}</p>
           {showEditForm ? (
             <CommentEditForm
               post_id={id}

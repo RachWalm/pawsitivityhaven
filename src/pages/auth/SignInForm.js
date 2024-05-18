@@ -9,9 +9,10 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
 import { Link, useHistory, } from "react-router-dom";
-
+import buttnStyle from "../../styles/Buttn.module.css"
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import FormTitle from "../../components/FormTitle";
 
 
 const SignInForm = () => {
@@ -45,7 +46,11 @@ const SignInForm = () => {
     };
 
 return (
-<Row>
+    <>
+    <Container className={appStyles.container}>
+        <FormTitle />
+    </Container>
+    <Row>
     <Col className="my-auto p-0 p-md-2" md={6}>
     <Container className={appStyles.container}>
         <h1>sign in</h1>
@@ -82,7 +87,7 @@ return (
               </Alert>
             ))}
             
-            <Button variant="primary" type="submit">
+            <Button className={buttnStyle.buttn} type="submit">
                 Sign in
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
@@ -104,13 +109,14 @@ return (
     className={`my-auto d-none d-md-block p-2 `}
     >
     <Image
-        className={`${appStyles.FillerImage}`}
+        className={appStyles.SignupinImage }
         src={
         "https://res.cloudinary.com/dykxglqm8/image/upload/v1714480564/signup_xspsyt.jpg"
         } width={500}
     />
     </Col>
 </Row>
+</>
 );
 }
 
