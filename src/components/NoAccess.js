@@ -8,7 +8,7 @@ import styles from "../styles/NotFound.module.css"
 const NoAccess = () => {
   return (
     <Container className={`${appStyles.container} ${styles.NotFound}`}>
-      <Asset src= { NoAccess } message="Sorry, this page is restricted. Please sign in or sign up to view." />
+      <Asset src= { NoAccess } message="Sorry, this page is restricted. Please sign in or sign up to view if you should have access." />
     </Container>
   )
 }

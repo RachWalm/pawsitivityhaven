@@ -80,7 +80,7 @@ const Post = (props) => {
           <div className="d-flex align-items-center">
             <p>This post was {updated_at}</p>
             <p>This was posted by {user_id}</p>
-            <span> {dog_id}
+            <span> for dog id {dog_id}
             {/* <Link to={`/dog-profile/${dog_id}`}>
               <Card.Img src={dog_image} alt={dog_name} />
             </Link> */}

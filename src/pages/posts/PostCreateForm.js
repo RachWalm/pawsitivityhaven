@@ -14,6 +14,7 @@ import Upload from "../../assets/upload.png";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
+import buttnStyles from "../../styles/Buttn.module.css"
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
@@ -32,7 +33,7 @@ function PostCreateForm() {
     image: "",
   });
   const { title, content, image } = postData;
-  const dog_number = useParams()
+  const { id } = useParams();
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -62,16 +63,12 @@ function PostCreateForm() {
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
     formData.append("user_id", currentUser);
-    formData.append("dog_id", dog_number);
+    formData.append("dog_id", id);
 
     try {
-      console.log(formData);
-      const { data } = await axiosReq.post("/posts/", formData);
-      console.log(data)
+      const { data } = await axiosReq.post("/posts_create/", formData);
       history.push(`/posts/${data.id}`);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
+      } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -112,11 +109,12 @@ function PostCreateForm() {
       ))}
 
       <Button
+        className={buttnStyles.buttn}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button type="submit">
+      <Button className={buttnStyles.buttn} type="submit">
         create
       </Button>
     </div>
@@ -125,9 +123,10 @@ function PostCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
+        
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
-            className="d-flex flex-column justify-content-center"
+            className={`${appStyles.container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
               {image ? (

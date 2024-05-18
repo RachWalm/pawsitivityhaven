@@ -14,7 +14,7 @@ import {
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
 import { MoreDropdown } from "../../components/MoreDropDown";
-
+import buttnStyle from "../../styles/Buttn.module.css"
 import appStyles from "../../App.module.css";
 import { Link } from "react-router-dom";
 
@@ -166,17 +166,23 @@ function DogProfile() {
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
-        {userStatus.is_superuser ? (<MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>) : (<p>not super</p>)}
-        <MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>
+        {userStatus.is_superuser ? (<MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>) : (<p></p>)}
           {/* <h1>{currentUser}</h1> */}
         <Image
             src={dog_image}
           />
           <Link to={`/request-adopt/create/${id}/`}>
-            <Button>
+            <Button className={buttnStyle.buttn}>
               Fill out adoption request
             </Button>
           </Link>
+          {userStatus.is_staff ? (
+            <Link to={`/posts/create/${id}/`}>
+            <Button className={buttnStyle.buttn}>
+              Add post for this dog
+            </Button>
+          </Link>
+          ) : (<p></p>)}
           <h2 className="m-2"> {dog_name}</h2>
           <h3 className="m-2"> received_date - {received_date} </h3>
           <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
