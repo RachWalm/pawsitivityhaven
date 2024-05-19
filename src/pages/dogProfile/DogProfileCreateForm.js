@@ -16,7 +16,7 @@ import Upload from "../../assets/upload.png";
 
 // import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
-// import btnStyles from "../../styles/Button.module.css";
+import buttnStyles from "../../styles/Buttn.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
 import FormTitle from "../../components/FormTitle";
@@ -84,13 +84,6 @@ function DogProfileCreateForm() {
       ...dogData,
       [name]: checked,
     });
-    console.log(event.target.value);
-    console.log(event);
-    console.log(event.target.name);
-    console.log(dogData);
-    // console.log(dogData.home_animals);
-    // console.log(dogData.home_cats);
-    // console.log(dogData.home_dogs);
   };
 
   const handleChangeImage = (event) => {
@@ -101,6 +94,7 @@ function DogProfileCreateForm() {
         dog_image: URL.createObjectURL(event.target.files[0]),
       });
     }
+    console.log(dogData)
   };
 
   const handleSubmit = async (event) => {
@@ -156,7 +150,7 @@ function DogProfileCreateForm() {
         <Form.Group>
             <Form.Label >Received date</Form.Label>
             <Form.Control 
-                type="date" 
+                type="date"
                 name="received_date"
                 value={received_date}
                 onChange={handleChange}
@@ -273,7 +267,6 @@ function DogProfileCreateForm() {
               label="at_rescue"
               name="at_rescue"
               value={at_rescue}
-              // checked={at_rescue = true}
               onChange={handleBooleanChange}
           />
           {errors.at_rescue?.map((message, idx) => (
@@ -340,11 +333,12 @@ function DogProfileCreateForm() {
     
     
       <Button
+        className={buttnStyles.buttn}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button type="submit">
+      <Button className={buttnStyles.buttn} type="submit">
         create
       </Button>
     </div>
@@ -359,7 +353,7 @@ function DogProfileCreateForm() {
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
-            className={` ${appStyles.container} d-flex flex-column justify-content-center`}
+            className={`${appStyles.container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
               
@@ -378,7 +372,7 @@ function DogProfileCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className="btn"
+                      className={`btn ${buttnStyles.buttn}`}
                       htmlFor="image-upload"
                     >
                       Change the image

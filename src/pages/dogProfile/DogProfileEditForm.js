@@ -64,6 +64,29 @@ function DogProfileEditForm() {
   const history = useHistory();
   const imageInput = useRef(null);
 
+  const handleDate = (receiveddate, rehomeddate, returneddate) => {
+    console.log(receiveddate)
+    if (receiveddate === null) {
+      setDogData({
+        ...dogData,
+        received_date: ""
+      })
+    }
+    if (rehomeddate === null) {
+      setDogData({
+        ...dogData,
+        rehomed_date: ""
+      })
+    }
+    if (returneddate === null) {
+      setDogData({
+        ...dogData,
+        returned_date: ""
+      })
+    }
+    console.log(dogData)
+  }
+
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -78,7 +101,6 @@ function DogProfileEditForm() {
       }
     };
     handleMount();
-    console.log(dogData)
   }, [history, id]);
 
   const handleChange = (event) => {
@@ -86,6 +108,8 @@ function DogProfileEditForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
+    handleDate(received_date, rehomed_date, returned_date);
+    console.log(dogData);
   };
 
   const handleBooleanChange = (event) => {
