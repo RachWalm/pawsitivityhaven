@@ -331,6 +331,28 @@ Image by <a href="https://pixabay.com/users/natiqjavid-1602367/?utm_source=link-
 
 Brown background pawprints from Canava
 
+
+Photo by Pixabay: https://www.pexels.com/photo/white-short-coated-dog-160846/
+Photo by Summer Stock: https://www.pexels.com/photo/adult-german-shepherd-lying-on-ground-333083/
+Photo by Pixabay: https://www.pexels.com/photo/pembroke-welsh-corgi-lying-on-the-sand-under-white-cloud-blue-sky-164186/
+Photo by Pixabay: https://www.pexels.com/photo/adult-tan-great-dane-532310/
+Photo by Dominika Roseclay: https://www.pexels.com/photo/brown-dachshund-sitting-on-the-edge-of-the-bed-1139794/
+Photo by Mindaugas: https://www.pexels.com/photo/closeup-photography-of-tan-and-white-boxer-1294062/
+Photo by Antonio Florentini: https://www.pexels.com/photo/adult-siberian-husky-selected-focus-803766/
+Photo by Steshka Willems: https://www.pexels.com/photo/tired-pug-resting-on-floor-1289557/
+Photo by Milica Popovic: https://www.pexels.com/photo/portrait-photo-of-persian-greyhound-1573919/
+Photo by Matthias Zomer: https://www.pexels.com/photo/black-and-brown-short-coat-dog-lying-on-the-ground-68798/
+Photo by Brian van den Heuvel: https://www.pexels.com/photo/white-dog-1313254/
+Photo by E Pro: https://www.pexels.com/photo/brown-and-white-azawakh-puppy-sitting-on-white-surface-1638724/
+Photo by chepté cormani: https://www.pexels.com/photo/adult-brown-great-dane-1570146/
+Photo by Jackson  Jorvan: https://www.pexels.com/photo/shallow-focus-photography-of-brindle-boxer-puppy-605496/
+Photo by Pixabay: https://www.pexels.com/photo/short-coated-brown-dog-on-wooden-beam-260440/
+Photo by Sebastian Coman Travel: https://www.pexels.com/photo/black-and-white-long-coated-small-sized-dog-3610168/
+Photo by Martin Dufosset: https://www.pexels.com/photo/white-and-black-short-coated-bulldog-3930940/
+
+
+
+
 ## Acknowledgements
 
 My Mentor - Juliia Konn has been extremely enthusiastic and provided encouragement and a great deal of support.

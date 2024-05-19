@@ -64,28 +64,34 @@ function DogProfileEditForm() {
   const history = useHistory();
   const imageInput = useRef(null);
 
-  const handleDate = (receiveddate, rehomeddate, returneddate) => {
-    console.log(receiveddate)
+  const received = (receiveddate, rehomeddate, returneddate) => {
     if (receiveddate === null) {
       setDogData({
         ...dogData,
         received_date: ""
       })
     }
+  }
+
+  const rehomed = (rehomeddate) => {
     if (rehomeddate === null) {
       setDogData({
         ...dogData,
         rehomed_date: ""
       })
     }
+  }
+
+  const returned = (returneddate) => {
     if (returneddate === null) {
       setDogData({
         ...dogData,
         returned_date: ""
       })
     }
-    console.log(dogData)
   }
+
+
 
   useEffect(() => {
     const handleMount = async () => {
@@ -108,8 +114,9 @@ function DogProfileEditForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
-    handleDate(received_date, rehomed_date, returned_date);
-    console.log(dogData);
+    received(received_date);
+    rehomed(rehomed_date);
+    returned(returned_date);
   };
 
   const handleBooleanChange = (event) => {
@@ -118,6 +125,9 @@ function DogProfileEditForm() {
       ...dogData,
       [name]: checked,
     });
+    received(received_date);
+    rehomed(rehomed_date);
+    returned(returned_date);
   };
 
   const handleChangeImage = (event) => {
@@ -128,6 +138,9 @@ function DogProfileEditForm() {
         dog_image: URL.createObjectURL(event.target.files[0]),
       });
     }
+    received(received_date);
+    rehomed(rehomed_date);
+    returned(returned_date);
   };
 
   const handleSubmit = async (event) => {
@@ -299,6 +312,7 @@ function DogProfileEditForm() {
               id="at_rescue"
               label="at_rescue"
               name="at_rescue"
+              checked={at_rescue}
               value={at_rescue}
               onChange={handleBooleanChange}
           />
@@ -313,6 +327,7 @@ function DogProfileEditForm() {
               id="home_dogs"
               label="home_dogs"
               name="home_dogs"
+              checked={home_dogs}
               value={home_dogs}
               onChange={handleBooleanChange}
           />
@@ -327,6 +342,7 @@ function DogProfileEditForm() {
               id="home_cats"
               label="home_cats"
               name="home_cats"
+              checked={home_cats}
               value={home_cats}
               onChange={handleBooleanChange}
           />
@@ -341,6 +357,7 @@ function DogProfileEditForm() {
               id="home_animals"
               label="home_animals"
               name="home_animals"
+              checked={home_animals}
               value={home_animals}
               onChange={handleBooleanChange}
           />
@@ -355,6 +372,7 @@ function DogProfileEditForm() {
               id="home_children"
               label="home_children"
               name="home_children"
+              checked={home_children}
               value={home_children}
               onChange={handleBooleanChange}
           />
