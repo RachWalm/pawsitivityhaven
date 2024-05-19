@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosRes } from "../../api/axiosDefault";
 
 // import styles from "../../styles/CommentCreateEditForm.module.css";
 
-function CommentEditForm(props) {
-  const { id, content, setShowEditForm, setComments } = props;
+import buttnStyles from "../../styles/Buttn.module.css"
 
-  const [formContent, setFormContent] = useState(content);
+function CommentEditForm(props) {
+  const { comment_id, user_id, comment_content, setShowEditForm, setComments } = props;
+
+  const [formContent, setFormContent] = useState(comment_content);
 
   const handleChange = (event) => {
     setFormContent(event.target.value);
@@ -17,16 +19,16 @@ function CommentEditForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put(`/comments/${id}/`, {
-        content: formContent.trim(),
+      await axiosRes.put(`/comments/${comment_id}/`, {
+        comment_content: formContent.trim(),
       });
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {
-          return comment.id === id
+          return comment.id === comment_id
             ? {
                 ...comment,
-                content: formContent.trim(),
+                comment_content: formContent.trim(),
                 updated_at: "now",
               }
             : comment;
@@ -42,7 +44,7 @@ function CommentEditForm(props) {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="pr-1">
         <Form.Control
-          className={styles.Form}
+          // className={styles.Form}
           as="textarea"
           value={formContent}
           onChange={handleChange}
@@ -51,15 +53,15 @@ function CommentEditForm(props) {
       </Form.Group>
       <div className="text-right">
         <button
-          className={styles.Button}
+          className={buttnStyles.buttn}
           onClick={() => setShowEditForm(false)}
           type="button"
         >
           cancel
         </button>
         <button
-          className={styles.Button}
-          disabled={!content.trim()}
+          className={buttnStyles.buttn}
+          disabled={!comment_content.trim()}
           type="submit"
         >
           save

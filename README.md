@@ -143,6 +143,7 @@ handle boolean change
 default boolean set to true in back end and false in front end needed to be changed from false to true to false again to register as false. intermittentcy made it hard to identify.
 must change image on create and update -  used post code not profile code.
 useparams needs deconstructing {}
+comments not saving -  wrong props being given to the page ->trim
 
 ## Technologies
 

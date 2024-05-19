@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
 // import { Link } from "react-router-dom";
 // import Avatar from "../../components/Avatar";
-import CommentEditForm from "./Comment";
+import CommentEditForm from "../pages/comments/CommentEditForm";
 import { MoreDropdown } from "./MoreDropDown";
 
 // import styles from "../../styles/Comment.module.css";
@@ -51,7 +51,7 @@ const Comment = (props) => {
           <p>This comment was made by {user_id}</p>
           {showEditForm ? (
             <CommentEditForm
-              post_id={id}
+              comment_id={id}
               user_id={user_id}
               comment_content={comment_content}
               setComments={setComments}
