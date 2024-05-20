@@ -144,6 +144,7 @@ default boolean set to true in back end and false in front end needed to be chan
 must change image on create and update -  used post code not profile code.
 useparams needs deconstructing {}
 comments not saving -  wrong props being given to the page ->trim
+dates not workign due to being null not string and interferred with other functions if put in them so had to useeffect time on the edit dog profile.
 
 ## Technologies
 
