@@ -1,4 +1,4 @@
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -7,7 +7,6 @@ import Image from "react-bootstrap/Image";
 
 import { useParams } from "react-router";
 import { axiosReq, axiosRes } from "../../api/axiosDefault";
-import FavouriteDogProfiles from "./FavouriteDogProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
   useProfileData,
@@ -38,7 +37,7 @@ function DogProfile() {
         dog_breed: "",
         dog_gender: "",
         dog_size: "",
-        dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
+        dog_image: "",
         at_rescue: "",
         status: "",
         general: "",
@@ -49,19 +48,11 @@ function DogProfile() {
   });
   const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals, home_children, } = dogData;
 
-  // const imageInput = useRef(null);
+  const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  // const [userProfileData, setUserProfileData] = useState({
-  //   user_id: "",
-  //   created_at: "",
-  //   updated_at: "",
-  //   first_name: "",
-  //   last_name: "",
-  //   email: "",    
-  // });
 
   const [userStatus, setUserStatus] = useState ({
     first_name: "",
@@ -91,8 +82,6 @@ function DogProfile() {
       }
     };
     handleMount();
-    console.log(userStatus)
-    console.log(dogData)
   }, [history, id]);
 
   const getDogGender = (dog_gender) => {
@@ -156,7 +145,7 @@ function DogProfile() {
         await axiosRes.delete(`/dog_profile/${id}/`);
         history.goBack();
     } catch (err) {
-        // console.log(err);
+        console.log(err);
     }
   }
 

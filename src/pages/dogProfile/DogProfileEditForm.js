@@ -64,7 +64,7 @@ function DogProfileEditForm() {
   const history = useHistory();
   const imageInput = useRef(null);
 
-  const received = (receiveddate, rehomeddate, returneddate) => {
+  const received = (receiveddate) => {
     if (receiveddate === null) {
       setDogData({
         ...dogData,
@@ -91,7 +91,21 @@ function DogProfileEditForm() {
     }
   }
 
-
+  const Time = () => {
+    useEffect (() => {
+      const timereceived = setTimeout(() => {
+        received(received_date);
+      }, 800);
+      const timerehomed = setTimeout(() => {
+        rehomed(rehomed_date);
+      }, 1000);
+      const timereturned = setTimeout(() => {
+        returned(returned_date);
+      }, 1200);
+    }, []
+    )
+    return null;
+  }
 
   useEffect(() => {
     const handleMount = async () => {
@@ -107,16 +121,13 @@ function DogProfileEditForm() {
       }
     };
     handleMount();
-  }, [history, id]);
+  }, [history, id ]);
 
   const handleChange = (event) => {
     setDogData({
       ...dogData,
       [event.target.name]: event.target.value,
     });
-    received(received_date);
-    rehomed(rehomed_date);
-    returned(returned_date);
   };
 
   const handleBooleanChange = (event) => {
@@ -125,9 +136,6 @@ function DogProfileEditForm() {
       ...dogData,
       [name]: checked,
     });
-    received(received_date);
-    rehomed(rehomed_date);
-    returned(returned_date);
   };
 
   const handleChangeImage = (event) => {
@@ -138,9 +146,6 @@ function DogProfileEditForm() {
         dog_image: URL.createObjectURL(event.target.files[0]),
       });
     }
-    received(received_date);
-    rehomed(rehomed_date);
-    returned(returned_date);
   };
 
   const handleSubmit = async (event) => {
@@ -163,7 +168,7 @@ function DogProfileEditForm() {
     formData.append('home_animals', home_animals,);
     formData.append('home_children', home_children);
     if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput?.current?.files[0]);
+      formData.append("dog_image", imageInput?.current?.files[0]);
     }
 
     try {
@@ -396,6 +401,7 @@ function DogProfileEditForm() {
 
   return (
     <>
+    <Time />
     <Container className={appStyles.container}>
       <FormTitle />
     </Container>

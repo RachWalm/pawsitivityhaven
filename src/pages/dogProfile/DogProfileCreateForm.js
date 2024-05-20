@@ -69,13 +69,7 @@ function DogProfileCreateForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
-    console.log(event.target.value);
-    console.log(event);
-    console.log(event.target.name);
-    console.log(dogData);
-    // console.log(dogData.home_animals);
-    // console.log(dogData.home_cats);
-    // console.log(dogData.home_dogs);
+  console.log(dogData)
   };
 
   const handleBooleanChange = (event) => {
@@ -94,11 +88,12 @@ function DogProfileCreateForm() {
         dog_image: URL.createObjectURL(event.target.files[0]),
       });
     }
-    console.log(dogData)
+    console.log(dog_image)
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(imageInput)
     const formData = new FormData();
 
     formData.append('dog_name', dog_name);
@@ -117,9 +112,9 @@ function DogProfileCreateForm() {
     formData.append('home_animals', home_animals,);
     formData.append('home_children', home_children);
     if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput?.current?.files[0]);
+      formData.append("dog_image", imageInput?.current?.files[0]);
     }
-
+    console.log(formData)
     try {
         const { data } = await axiosReq.post('/dog_profile_create/', formData);
         history.push(`/dog-profile/${data.id}`);
