@@ -67,24 +67,31 @@ function DogProfile() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: dog}, { data: userstatus}] = await Promise.all([
-          axiosReq.get(`/dog_profile/${id}/`),
-          axiosReq.get(`/user_profile/${currentpk}`),
-        ])
+        const { data: dog } = await 
+          axiosReq.get(`/dog_profile/${id}/`)
         const { dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender, dog_size, dog_image, at_rescue, status, general,
             home_cats, home_dogs, home_animals, home_children, } = dog;
           setDogData({ dog_name, received_date, rehomed_date, returned_date, dog_age, dog_breed, dog_gender,
             dog_size, dog_image, at_rescue, status, general, home_cats, home_dogs, home_animals,
             home_children,});
-        setUserStatus(userstatus);
       } catch (err) {
         console.log(err);
       }
     };
+    const handleUser = async () => {
+      try {
+        const { data: userstatus } = await
+        axiosReq.get(`/user_profile/${currentpk}`)
+        setUserStatus(userstatus);
+      } catch (err) {
+        console.log(err);
+      }
+    }
     handleMount();
+    handleUser();
   }, [history, id]);
 
-  const getDogGender = (dog_gender) => {
+    const getDogGender = (dog_gender) => {
     switch (dog_gender) {
       case 0:
         return 'TBC'; // To Be Confirmed
@@ -151,15 +158,16 @@ function DogProfile() {
         >
           Edit
         </Button>) : (<p></p>)}
-          {/* <h1>{currentUser}</h1> */}
         <Image
             src={dog_image}
           />
+          {currentpk ? (
           <Link to={`/request-adopt/create/${id}/`}>
             <Button className={buttnStyle.buttn}>
               Fill out adoption request
             </Button>
-          </Link>
+          </Link>) : ('')
+          }
           {userStatus.is_staff ? (
             <Link to={`/posts/create/${id}/`}>
             <Button className={buttnStyle.buttn}>
@@ -182,10 +190,6 @@ function DogProfile() {
           <h3 className="m-2"> home_dogs - {getBoolean(home_dogs)} </h3>
           <h3 className="m-2"> home_animals - {getBoolean(home_animals)} </h3>
           <h3 className="m-2"> home_children - {getBoolean(home_children)} </h3>
-          
-        
-        {/* dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
-        */}
         </Col>
       </Row>
     </>
@@ -196,51 +200,11 @@ function DogProfile() {
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container className={appStyles.container}>
-          {currentUser?.pk} is {getBoolean(userStatus?.is_staff)} {userStatus?.is_superuser} {userStatus?.first_name}
           {mainProfile}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
       </Col>
-    </Row>
-    <Row noGutters className="px-3 text-center">
-      {/* <Col lg={3} className="text-lg-left">
-        <Image
-          roundedCircle
-          src={profile?.image}
-        />
-      </Col> */}
-      <Col lg={6}>
-        <h3 className="m-2">profile?.owner</h3>
-        <Row className="justify-content-center no-gutters">
-          <Col xs={3} className="my-2">
-            <div>profile?.favourited_count</div>
-            <div>Favourite</div>
-          </Col>
-          <Col xs={3} className="my-2">
-            <div>profile?.favourited_count</div>
-            <div>Favourite</div>
-          </Col>
-        </Row>
-      </Col>
-      <Col lg={3} className="text-lg-right">
-        {/* {currentUser &&
-          !is_owner &&
-          (profile?.favourite_id ? (
-            <Button
-              onClick={() => {handleUnFavourite()}}
-            >
-              unfavourite
-            </Button>
-          ) : (
-            <Button
-              onClick={() => {handleFavourite()}}
-            >
-              favourite
-            </Button>
-          ))} */}
-      </Col>
-      {/* {profile?.content && <Col className="p-3">{profile.content}</Col>} */}
     </Row>
     </>
   );
