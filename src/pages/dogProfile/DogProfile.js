@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert"
 
 import { useParams } from "react-router";
 import { axiosReq, axiosRes } from "../../api/axiosDefault";
@@ -16,9 +18,7 @@ import { MoreDropdown } from "../../components/MoreDropDown";
 import buttnStyle from "../../styles/Buttn.module.css"
 import appStyles from "../../App.module.css";
 import { Link } from "react-router-dom";
-
 import { useHistory } from "react-router";
-import { Button } from "react-bootstrap";
 import axios from "axios";
 
 function DogProfile() {
@@ -140,20 +140,17 @@ function DogProfile() {
     history.push(`/dog-profile/edit/${id}`);
   };
 
-  const handleDelete = async () => {
-    try {
-        await axiosRes.delete(`/dog_profile/${id}/`);
-        history.goBack();
-    } catch (err) {
-        console.log(err);
-    }
-  }
-
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={11}>
-        {userStatus.is_superuser ? (<MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>) : (<p></p>)}
+        {userStatus.is_superuser ? (<Button
+          className={buttnStyle.buttn}
+          onClick={handleEdit}
+          aria-label="edit"
+        >
+          Edit
+        </Button>) : (<p></p>)}
           {/* <h1>{currentUser}</h1> */}
         <Image
             src={dog_image}
