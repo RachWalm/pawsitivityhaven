@@ -16,10 +16,10 @@ import appStyle from "../../App.module.css"
 import buttnStyle from "../../styles/Buttn.module.css"
 
 
-function RequestAdoptCreateForm() {
+function RequestAdoptEditForm() {
   const { id } = useParams();
   const [errors, setErrors] = useState({});
-  const [requestAdopt, setRequestAdopt] = useState({
+  const [requestAdoptEdit, setRequestAdoptEdit] = useState({
     dog_id: "",
     user_id: "",
     contact_permission: "",
@@ -41,7 +41,7 @@ function RequestAdoptCreateForm() {
   home_dogs,
   home_animals,
   home_children, 
-  } = requestAdopt;
+  } = requestAdoptEdit;
 
   const history = useHistory();
   const currentUser = useCurrentUser();
@@ -54,8 +54,15 @@ function RequestAdoptCreateForm() {
 
   useEffect(() => {
     const handleMount = async () => {
+      try{
+        const { data } = await axiosReq.get(`/request_adopt/9/`);
+        const { dog_id, user_id, contact_permission, status, experience, query, home_cats, home_dogs, home_animals, home_children, } = data;
+        setRequestAdoptEdit({dog_id, user_id, contact_permission, status, experience, query, home_cats, home_dogs, home_animals, home_children,})
+      } catch (err) {
+        console.log(err)
+      }
       try {
-        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const { data } = await axiosReq.get(`/dog_profile/${dog_id}/`);
         const { dog_name } = data;
         setDogData({ dog_name});
       } catch (err) {
@@ -63,19 +70,24 @@ function RequestAdoptCreateForm() {
       }
     };
     handleMount();
-  }, [history, id]);
+  }, [history, dog_id, id]);
   
+
   const handleChange = (event) => {
-    setRequestAdopt({
-      ...requestAdopt,
+    console.log("jello")
+    console.log(requestAdoptEdit);
+    console.log(dog_name)
+    console.log(dog_id)
+    setRequestAdoptEdit({
+      ...requestAdoptEdit,
       [event.target.name]: event.target.value,
     });
   };
 
   const handleBooleanChange = (event) => {
     const { name, checked } = event.target;
-    setRequestAdopt({
-      ...requestAdopt,
+    setRequestAdoptEdit({
+      ...requestAdoptEdit,
       [name]: checked,
     });
   };
@@ -97,8 +109,8 @@ function RequestAdoptCreateForm() {
     formData.append('home_children', home_children);
 
     try {
-        const { data } = await axiosReq.post('/request_adopt_create/', formData);
-        history.push(`/request-adopt/${data.id}`);
+        await axiosReq.put(`/request_adopt/${id}`, formData);
+        history.push(`/request-adopt/${id}`);
     } catch (err) {
         // console.log(err);
     }
@@ -110,7 +122,7 @@ function RequestAdoptCreateForm() {
             <Form.Label >Dog you are most interested in</Form.Label>
             <Form.Control 
                 type="text" 
-                placeholder={dog_name}
+                placeholder={dog_id}
                 plaintext
                 name="dog_id"
                 value={dog_id}
@@ -161,6 +173,7 @@ function RequestAdoptCreateForm() {
               id="contact_permission"
               label="Tick to permit contact"
               name="contact_permission"
+              checked={contact_permission}
               value={contact_permission}
               onChange={handleBooleanChange}
           />
@@ -176,6 +189,7 @@ function RequestAdoptCreateForm() {
               id="home_dogs"
               label="Dogs ?"
               name="home_dogs"
+              checked={home_dogs}
               value={home_dogs}
               onChange={handleBooleanChange}
           />
@@ -190,6 +204,7 @@ function RequestAdoptCreateForm() {
               id="home_cats"
               label="Cats ?"
               name="home_cats"
+              checked={home_cats}
               value={home_cats}
               onChange={handleBooleanChange}
           />
@@ -204,6 +219,7 @@ function RequestAdoptCreateForm() {
               id="home_animals"
               label="Other animals ?"
               name="home_animals"
+              checked={home_animals}
               value={home_animals}
               onChange={handleBooleanChange}
           />
@@ -235,7 +251,7 @@ function RequestAdoptCreateForm() {
         cancel
       </Button>
       <Button className={buttnStyle.buttn} type="submit">
-        create
+        Edit
       </Button>
     </div>
   );
@@ -257,4 +273,4 @@ function RequestAdoptCreateForm() {
   );
 }
 
-export default RequestAdoptCreateForm;
+export default RequestAdoptEditForm;

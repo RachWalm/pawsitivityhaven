@@ -51,6 +51,7 @@ function App() {
               <Route exact path="/posts/:id/edit/" render={() => <PostEditForm />} />
               <Route exact path="/posts/:id" render={() => <PostPage />} />
               <Route exact path="/request-adopt/create/:id" render={() => <RequestAdoptCreateForm />} />
+              <Route exact path="/request-adopt/edit/:id" render={() => <RequestAdoptCreateForm />} />
               <Route exact path="/request-adopt/:id" render={() => <RequestAdoptPage />} />
               <Route exact path="/feed" render={() => <PostsPage />} />
               <Route render={() => <Notfound />} />

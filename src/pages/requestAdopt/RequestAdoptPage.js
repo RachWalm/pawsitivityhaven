@@ -46,7 +46,6 @@ function RequestAdoptPage() {
       }
     };
     handleMount();
-    console.log(requestAdopt);
   }, [id,]);
 
   return (

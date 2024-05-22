@@ -133,6 +133,8 @@ search = request.POST['search']
 ### Potential Future Feature Developments 
 
 add an area for staff to put general comments that are internal.
+contexts and hooks
+put repeat functions somewhere and refactor
 
 ## Bugs
 

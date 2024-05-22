@@ -26,7 +26,9 @@ const RequestAdopt = (props) => {
   const { id } = useParams();
   
   const handleEdit = () => {
-    history.push(`/request-adopt/${id}/edit`);
+    history.push(`/request-adopt/edit/${id}/`);
+    console.log(dog_id);
+    console.log(dog_name);
   };
 
   const handleDelete = async () => {
@@ -47,7 +49,7 @@ const RequestAdopt = (props) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/dog_profile/${id}/`);
+        const { data } = await axiosReq.get(`/dog_profile/${dog_id}/`);
         const { dog_name } = data;
         setDogData({ dog_name});
       } catch (err) {
@@ -55,7 +57,8 @@ const RequestAdopt = (props) => {
       }
     };
     handleMount();
-  }, [history, id]);
+    setTimeout(console.log(dog_id), 3000);
+  }, [history, dog_id]);
 
   const getBoolean = (value) => {
     switch (value) {
