@@ -9,10 +9,10 @@
 }
 
 .container {
+  margin: 2px;
   border: 1px solid #dadada;
   background-color: white;
   margin: 15px;
-  /* width:fit-content; */
 }
 
 .Content {

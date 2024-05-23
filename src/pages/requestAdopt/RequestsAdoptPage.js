@@ -14,17 +14,18 @@ import NoResults from "../../assets/no-results.png"
 import { fetchMoreData } from "../../utils/utils";
 
 import Post from "../../components/Post";
+import RequestsAdopt from "../../components/RequestsAdopt";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RequestAdopt from "../../components/RequestAdopt";
 
-function RequestAdoptPage() {
+function RequestsAdoptPage() {
   const [requests, setRequests] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchRequests = async () => {
       try {
         const { data } = await axiosReq.get(`/request_adopt/`);
         setRequests(data);
@@ -34,14 +35,8 @@ function RequestAdoptPage() {
         // console.log(err);
       }
     };
-
     setHasLoaded(false);
-    const timer = setTimeout(() => {
-      fetchPosts();
-    }, 1000);
-    return () => {
-        clearTimeout(timer);
-      };
+    fetchRequests();
     }, [currentUser]);
   
 
@@ -53,8 +48,8 @@ function RequestAdoptPage() {
               <>
                 {requests.results.length ? (
                   <InfiniteScroll
-                    children={requests.results.map((request) => (
-                      <RequestAdopt key={request.id} {...requests} setRequests={setRequests} />
+                    children={requests.results.map((req) => (
+                      <RequestsAdopt key={req.id} {...requests} ident={req} setRequests={setRequests} />
                     ))}
                     dataLength={requests.results.length}
                     loader={<Asset spinner />}
@@ -78,4 +73,4 @@ function RequestAdoptPage() {
   );
 }
 
-export default RequestAdoptPage;
+export default RequestsAdoptPage;
