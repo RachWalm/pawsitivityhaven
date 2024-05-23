@@ -20,6 +20,8 @@ import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import RequestAdoptCreateForm from "./pages/requestAdopt/ReqeustAdoptCreateForm";
 import RequestAdoptPage from "./pages/requestAdopt/RequestAdoptPage";
+import RequestsAdoptPage from "./pages/requestAdopt/RequestsAdoptPage";
+import RequestAdoptEditForm from "./pages/requestAdopt/RequestAdoptEditForm";
 import { Row, Col } from "react-bootstrap";
 import Notfound from "./components/NotFound";
 
@@ -51,8 +53,9 @@ function App() {
               <Route exact path="/posts/:id/edit/" render={() => <PostEditForm />} />
               <Route exact path="/posts/:id" render={() => <PostPage />} />
               <Route exact path="/request-adopt/create/:id" render={() => <RequestAdoptCreateForm />} />
-              <Route exact path="/request-adopt/edit/:id" render={() => <RequestAdoptCreateForm />} />
+              <Route exact path="/request-adopt/edit/:id" render={() => <RequestAdoptEditForm />} />
               <Route exact path="/request-adopt/:id" render={() => <RequestAdoptPage />} />
+              <Route exact path="/requestsadopt/" render={() => <RequestsAdoptPage />} />
               <Route exact path="/feed" render={() => <PostsPage />} />
               <Route render={() => <Notfound />} />
             </Switch>

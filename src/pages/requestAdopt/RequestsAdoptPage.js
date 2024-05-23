@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 
 import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png"
 import { fetchMoreData } from "../../utils/utils";
 
 import Post from "../../components/Post";
@@ -28,6 +29,7 @@ function RequestAdoptPage() {
         const { data } = await axiosReq.get(`/request_adopt/`);
         setRequests(data);
         setHasLoaded(true);
+        console.log(data)
       } catch (err) {
         // console.log(err);
       }
@@ -40,7 +42,7 @@ function RequestAdoptPage() {
     return () => {
         clearTimeout(timer);
       };
-    }, [filter, query, pathname, currentUser]);
+    }, [currentUser]);
   
 
   return (
@@ -51,8 +53,8 @@ function RequestAdoptPage() {
               <>
                 {requests.results.length ? (
                   <InfiniteScroll
-                    children={requests.results.map((post) => (
-                      <RequestAdopt key={request.id} {...requestAdopt} setRequests={setRequests} />
+                    children={requests.results.map((request) => (
+                      <RequestAdopt key={request.id} {...requests} setRequests={setRequests} />
                     ))}
                     dataLength={requests.results.length}
                     loader={<Asset spinner />}
@@ -61,7 +63,7 @@ function RequestAdoptPage() {
                   />
                 ) : (
                   <Container className={appStyles.Content}>
-                    <Asset src={NoResults} message={message} />
+                    <Asset src={NoResults} />
                   </Container>
                 )}
               </>

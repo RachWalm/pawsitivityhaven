@@ -55,7 +55,7 @@ function RequestAdoptEditForm() {
   useEffect(() => {
     const handleMount = async () => {
       try{
-        const { data } = await axiosReq.get(`/request_adopt/9/`);
+        const { data } = await axiosReq.get(`/request_adopt/${id}/`);
         const { dog_id, user_id, contact_permission, status, experience, query, home_cats, home_dogs, home_animals, home_children, } = data;
         setRequestAdoptEdit({dog_id, user_id, contact_permission, status, experience, query, home_cats, home_dogs, home_animals, home_children,})
       } catch (err) {
@@ -74,10 +74,6 @@ function RequestAdoptEditForm() {
   
 
   const handleChange = (event) => {
-    console.log("jello")
-    console.log(requestAdoptEdit);
-    console.log(dog_name)
-    console.log(dog_id)
     setRequestAdoptEdit({
       ...requestAdoptEdit,
       [event.target.name]: event.target.value,
@@ -97,10 +93,8 @@ function RequestAdoptEditForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append('dog_id', id);
-    formData.append('user_id', currentUser);
+    formData.append('dog_id', dog_id);
     formData.append('contact_permission', contact_permission);
-    formData.append('status', status);
     formData.append('experience', experience);
     formData.append('query', query);
     formData.append('home_cats', home_cats);
@@ -109,7 +103,7 @@ function RequestAdoptEditForm() {
     formData.append('home_children', home_children);
 
     try {
-        await axiosReq.put(`/request_adopt/${id}`, formData);
+        await axiosReq.put(`/request_adopt/${id}/`, formData);
         history.push(`/request-adopt/${id}`);
     } catch (err) {
         // console.log(err);
@@ -119,14 +113,15 @@ function RequestAdoptEditForm() {
   const textFields = (
     <div className="text-center">
       <Form.Group>
-            <Form.Label >Dog you are most interested in</Form.Label>
+            <Form.Label >Dog you are most interested in <h1>{dog_name}</h1></Form.Label>
             <Form.Control 
                 type="text" 
-                placeholder={dog_id}
+                placeholder={dog_name}
                 plaintext
                 name="dog_id"
                 value={dog_id}
                 onChange={handleChange}
+                className="d-none"
             />
         </Form.Group>
         {errors.dog_id?.map((message, idx) => (

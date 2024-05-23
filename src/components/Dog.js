@@ -12,14 +12,6 @@ const Dog = (props) => {
     dog_breed,
     dog_image,
   } = props;
-  // const { id, favourite_id, owner } = profile;
-  // const { handleFavourite, handleUnFavourite } = useSetProfileData();
-  // const addPostIcon = (<Link
-  //     to={`/posts/create/${dog_id}`}>
-  //     <i className="far fa-plus-square"></i>
-  //     Add post
-  //   </Link>)
-  // const currentUser = useCurrentUser();
 
   const getDogGender = (dog_gender) => {
     switch (dog_gender) {
@@ -46,23 +38,6 @@ const Dog = (props) => {
           </div>
           </Link>
           <div className="text-right">
-        {/* {
-          // !mobile &&
-          currentUser &&
-          // !is_owner &&
-          (favourite_id ? (
-            <Button
-              onClick={() => handleUnFavourite(profile)}
-            >
-              unfollow
-            </Button>
-          ) : (
-            <Button
-              onClick={() => handleFavourite(profile)}
-            >
-              follow
-            </Button>
-          ))} */}
       </div>
         </Media>
       </Card.Body>
