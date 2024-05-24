@@ -81,7 +81,10 @@ const RequestAdopt = (props) => {
         </Media>
       </Card.Body>
       <Card.Body>
-        {dog_id && <Card.Title className="text-center"><h2>You are interested in adopting {dog_name}</h2></Card.Title>}
+        {dog_id && <Card.Title className="text-center">
+          <h2>You are interested in adopting {dog_name}</h2>
+          <h3>Please ensure your profile is up to date so we can contact you.</h3>
+          </Card.Title>}
         <Card.Text>
           <p>Home - cats {getBoolean(home_cats)}</p>
           <p>Home - children {getBoolean(home_children)}</p>

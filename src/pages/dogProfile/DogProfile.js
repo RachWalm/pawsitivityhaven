@@ -28,7 +28,6 @@ function DogProfile() {
   // const { pageProfile } = useProfileData();
   // const [profile] = pageProfile.results;
   const [dogData, setDogData] = useState({
-        id: "",
         dog_name: "",
         received_date: "",
         rehomed_date: "",

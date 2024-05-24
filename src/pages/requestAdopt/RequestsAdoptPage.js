@@ -49,7 +49,7 @@ function RequestsAdoptPage() {
                 {requests.results.length ? (
                   <InfiniteScroll
                     children={requests.results.map((req) => (
-                      <RequestsAdopt key={req.id} {...requests} ident={req} setRequests={setRequests} />
+                      <RequestsAdopt key={req.id} {...req} setRequests={setRequests} />
                     ))}
                     dataLength={requests.results.length}
                     loader={<Asset spinner />}

@@ -7,8 +7,9 @@ import { axiosRes, axiosReq } from "../api/axiosDefault"
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 
-const RequestsAdopt = (props, req) => {
+const RequestsAdopt = (props) => {
   const {
+    id,
     dog_id,
     user_id,
     contact_permission,
@@ -18,21 +19,20 @@ const RequestsAdopt = (props, req) => {
     home_dogs,
     experience ,
     query,
+    req,
   } = props;
 
   const currentUser = useCurrentUser();
-  // const is_current_owner = currentUser?.username === user_id;
+  const is_current_owner = currentUser?.pk === user_id;
   const history = useHistory();
   
   const handleEdit = () => {
-    history.push(`/request-adopt/edit/${req}/`);
-    console.log(dog_id);
-    console.log(dog_name);
+    history.push(`/request-adopt/edit/${id}/`);
   };
 
   const handleDelete = async () => {
     try {
-        await axiosRes.delete(`/request_adopt/${req}/`);
+        await axiosRes.delete(`/request_adopt/${id}/`);
         history.goBack();
     } catch (err) {
         // console.log(err);
@@ -45,17 +45,44 @@ const RequestsAdopt = (props, req) => {
   const { dog_name,
   } = dogData;
 
+  const [staffData, setStaffData] = useState({
+    is_staff: "",
+  });
+  const { is_staff } = staffData;
+
+  const [adopterData, setAdopterData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+  });
+  const { first_name, last_name, email, } = adopterData;
+
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/dog_profile/${dog_id}/`);
         const { dog_name } = data;
-        setDogData({ dog_name});
+        setDogData({ dog_name });
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const { data } = await axiosReq.get(`/user_profile/${currentUser.pk}/`);
+        const { is_staff } = data;
+        setStaffData({ is_staff });
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const { data } = await axiosReq.get(`/user_profile/${user_id}/`);
+        const { first_name, last_name, email, } = data;
+        setAdopterData({ first_name, last_name, email, });
       } catch (err) {
         console.log(err);
       }
     };
-    setTimeout(console.log(dog_id), 3000);
+    console.log(is_current_owner)
+    setTimeout(console.log(currentUser.username), 3000);
     handleMount();
   }, [history, dog_id]);
 
@@ -70,7 +97,11 @@ const RequestsAdopt = (props, req) => {
     }
   }
 
+  const visible = is_staff|is_current_owner
+
   return (
+    <>
+    {visible ? (<>
     <Card>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
@@ -80,7 +111,16 @@ const RequestsAdopt = (props, req) => {
         </Media>
       </Card.Body>
       <Card.Body>
-        {dog_id && <Card.Title className="text-center"><h2>You are interested in adopting {dog_name}</h2></Card.Title>}
+        {is_current_owner && <Card.Title className="text-center">
+          <h2>You are interested in adopting {dog_name}</h2>
+          <h3>Please ensure your profile is up to date so we can contact you.</h3>
+        </Card.Title>}
+        {is_staff && <Card.Title className="text-center">
+          <h2>Dog name - {dog_name}</h2>
+          <h3>First name - {first_name}</h3>
+          <h3>Last name - {last_name}</h3>
+          <h3>Email - {email}</h3>
+        </Card.Title>}
         <Card.Text>
           <p>Home - cats {getBoolean(home_cats)}</p>
           <p>Home - children {getBoolean(home_children)}</p>
@@ -90,10 +130,10 @@ const RequestsAdopt = (props, req) => {
           <p>Query : {query}</p>
           <p>Contact permission {getBoolean(contact_permission)}</p>
         </Card.Text>
-        
-          
       </Card.Body>
     </Card>
+    </>) : (<></>)}
+    </>
   );
 };
 
