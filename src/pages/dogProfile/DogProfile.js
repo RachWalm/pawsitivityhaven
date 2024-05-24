@@ -1,32 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert"
-
 import { useParams } from "react-router";
-import { axiosReq, axiosRes } from "../../api/axiosDefault";
+import { axiosReq } from "../../api/axiosDefault";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
   useProfileData,
-  useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import { MoreDropdown } from "../../components/MoreDropDown";
 import buttnStyle from "../../styles/Buttn.module.css"
 import appStyles from "../../App.module.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import axios from "axios";
 
 function DogProfile() {
-  const [errors, setErrors] = useState({});
-  // const {setProfileData, handleFavourite, handleUnFavourite} = useSetProfileData();
   const currentUser = useCurrentUser();
-  // const { pageProfile } = useProfileData();
-  // const [profile] = pageProfile.results;
   const [dogData, setDogData] = useState({
         dog_name: "",
         received_date: "",
@@ -50,7 +40,6 @@ function DogProfile() {
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
-  const [hasLoaded, setHasLoaded] = useState(false);
 
 
   const [userStatus, setUserStatus] = useState ({
@@ -60,7 +49,6 @@ function DogProfile() {
     is_superuser: "",
 });
 
-  const is_owner = currentUser?.username === useProfileData?.user_id;
   const currentpk = currentUser?.pk;
 
   useEffect(() => {
@@ -88,7 +76,7 @@ function DogProfile() {
     }
     handleMount();
     handleUser();
-  }, [history, id]);
+  }, [history, id, currentpk]);
 
     const getDogGender = (dog_gender) => {
     switch (dog_gender) {

@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { axiosReq, axiosRes } from "../api/axiosDefault";
+import { axiosReq } from "../api/axiosDefault";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { favouriteHelper, unfavouriteHelper } from "../utils/utils";
 
 const ProfileDataContext = createContext();
 const SetProfileDataContext = createContext();
@@ -16,54 +15,6 @@ export const ProfileDataProvider = ({ children }) => {
   });
 
   const currentUser = useCurrentUser();
-
-  // const handleFavourite = async (clickedProfile) => {
-  //   try {
-  //     const { data } = await axiosRes.post("/favourite/", {
-  //       dog_id: clickedProfile.id,
-  //     });
-
-  //     setProfileData((prevState) => ({
-  //       ...prevState,
-  //       pageProfile: {
-  //         results: prevState.pageProfile.results.map((profile) =>
-  //           favouriteHelper(profile.id, clickedProfile, data.id)
-  //         ),
-  //       },
-  //       popularProfiles: {
-  //         ...prevState.popularProfiles,
-  //         results: prevState.popularProfiles.results.map((profile) =>
-  //           favouriteHelper(profile.id, clickedProfile, data.id)
-  //         ),
-  //       },
-  //     }));
-  //   } catch (err) {
-  //     // console.log(err);
-  //   }
-  // };
-
-  // const handleUnFavourite = async (clickedProfile) => {
-  //   try {
-  //     await axiosRes.delete(`/favourite/${clickedProfile.user_id}/`);
-
-  //     setProfileData((prevState) => ({
-  //       ...prevState,
-  //       pageProfile: {
-  //         results: prevState.pageProfile.results.map((profile) =>
-  //           unfavouriteHelper(profile.id, clickedProfile)
-  //         ),
-  //       },
-  //       popularProfiles: {
-  //         ...prevState.popularProfiles,
-  //         results: prevState.popularProfiles.results.map((profile) =>
-  //           unfavouriteHelper(profile.id, clickedProfile)
-  //         ),
-  //       },
-  //     }));
-  //   } catch (err) {
-  //     // console.log(err);
-  //   }
-  // };
   
   useEffect(() => {
     const handleMount = async () => {

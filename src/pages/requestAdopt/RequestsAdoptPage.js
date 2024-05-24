@@ -6,18 +6,17 @@ import Container from "react-bootstrap/Container";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import appStyles from "../../App.module.css";
-import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
 
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png"
 import { fetchMoreData } from "../../utils/utils";
 
-import Post from "../../components/Post";
 import RequestsAdopt from "../../components/RequestsAdopt";
+import FormTitle from "../../components/FormTitle";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import RequestAdopt from "../../components/RequestAdopt";
+
 
 function RequestsAdoptPage() {
   const [requests, setRequests] = useState({ results: [] });
@@ -41,6 +40,10 @@ function RequestsAdoptPage() {
   
 
   return (
+    <>
+    <Container className={appStyles.container}>
+      <FormTitle />
+    </Container>
     <Container className={appStyles.container}>
       <Row className="h-100">
         <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -70,6 +73,7 @@ function RequestsAdoptPage() {
         </Col>
       </Row>
     </Container>
+    </>
   );
 }
 

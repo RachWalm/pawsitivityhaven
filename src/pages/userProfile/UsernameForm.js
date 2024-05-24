@@ -28,11 +28,7 @@ const UsernameForm = () => {
   const setCurrentUser = useSetCurrentUser();
 
   useEffect(() => {
-    // if (currentUser?.profile_id?.toString() === id) {
       setUsername(currentUser.username);
-    // } else {
-    //   history.push("/");
-    // }
   }, [currentUser, history, id]);
 
   const handleSubmit = async (event) => {

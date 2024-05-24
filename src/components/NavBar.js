@@ -23,12 +23,6 @@ const NavBar = () => {
         }
       };
 
-    // const addPostIcon = (<NavLink
-    //     exact to="/posts/create">
-    //     <i className="far fa-plus-square"></i>
-    //     Add post
-    // </NavLink>)
-
     const loggedInIcons = <>
         <NavLink
             exact to="/"

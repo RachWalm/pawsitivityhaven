@@ -91,30 +91,6 @@ function ProfilePage() {
     </>
   );
 
-  const mainProfilePosts = (
-    <>
-      <hr />
-      <p className="text-center">Profile owner's posts</p>
-      <hr />
-      {/* {profilePosts.results.length ? (
-        <InfiniteScroll
-          children={profilePosts.results.map((post) => (
-            <Post key={post.id} {...post} setPosts={setProfilePosts} />
-          ))}
-          dataLength={profilePosts.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!profilePosts.next}
-          next={() => fetchMoreData(profilePosts, setProfilePosts)}
-        />
-      ) : (
-        <Asset
-          src={NoResults}
-          message={`No results found, ${profile?.owner} hasn't posted yet.`}
-        />
-      )} */}
-    </>
-  );
-
   return (
     <Row>
       <Col>
@@ -124,23 +100,6 @@ function ProfilePage() {
         </Container>
       </Col>
     </Row>
-    // <Row>
-    //   <Col className="py-2 p-0 p-lg-2" lg={8}>
-    //     <Container className={appStyles.Content}>
-    //       {/* {hasLoaded ? ( */}
-    //         <>
-    //           {mainProfile}
-    //           {/* {mainProfilePosts} */}
-    //         </>
-    //       {/* ) : (
-    //         <Asset spinner />
-    //       )} */}
-    //     </Container>
-    //   </Col>
-    //   <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-    //     {/* <PopularProfiles /> */}
-    //   </Col>
-    // </Row>
   );
 }
 

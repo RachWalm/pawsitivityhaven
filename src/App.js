@@ -55,7 +55,7 @@ function App() {
               <Route exact path="/request-adopt/create/:id" render={() => <RequestAdoptCreateForm />} />
               <Route exact path="/request-adopt/edit/:id" render={() => <RequestAdoptEditForm />} />
               <Route exact path="/request-adopt/:id" render={() => <RequestAdoptPage />} />
-              <Route exact path="/requestsadopt/" render={() => <RequestsAdoptPage />} />
+              <Route exact path="/requests-adopt" render={() => <RequestsAdoptPage />} />
               <Route exact path="/feed" render={() => <PostsPage />} />
               <Route render={() => <Notfound />} />
             </Switch>

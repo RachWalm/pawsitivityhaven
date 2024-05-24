@@ -1,10 +1,8 @@
 import React from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styles from "../styles/CallToAction.module.css";
 import dogsbanner from "../assets/dogs-banner.jpg";
-import {
-  useCurrentUser,
-} from "../contexts/CurrentUserContext";
+
 
 const FormTitle = () => { 
   const page = useLocation();
@@ -22,6 +20,8 @@ const FormTitle = () => {
         return 'Please sign up'
       case `/dog-profile/edit/${ id }`:
         return 'Edit the dog profile'
+      case '/requests-adopt':
+        return 'Here are the adoption requests'  
       default:
         return `Please enjoy our site`; // Default case for unexpected input
     }

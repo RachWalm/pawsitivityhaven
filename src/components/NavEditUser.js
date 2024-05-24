@@ -1,20 +1,15 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-// import styles from "../styles/NavEditUser.module.css";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-// import axios from "axios"
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import appStyles from "../App.module.css"
 
 
 const NavEditUser = () => {
     const currentUser = useCurrentUser();
-    // const setCurrentUser = useSetCurrentUser();
-
     const id = currentUser?.pk
     const { expanded, setExpanded, ref } = useClickOutsideToggle();
-
 
   return (
     <Navbar

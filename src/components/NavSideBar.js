@@ -1,17 +1,54 @@
-import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Navbar, Nav } from "react-bootstrap";
 import styles from "../styles/NavSideBar.module.css";
 import { NavLink } from "react-router-dom";
+import { axiosReq } from "../api/axiosDefault"
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-
-import appStyles from "../App.module.css"
-
 
 const NavSideBar = () => {
     const currentUser = useCurrentUser();
     const id = currentUser?.pk
     const { expanded, setExpanded, ref } = useClickOutsideToggle();
+
+    const [superData, setSuperData] = useState({
+        is_superuser: "",
+      });
+      const { is_superuser } = superData;
+
+    useEffect(() => {
+        const handleMount = async () => {
+          try {
+            const { data } = await axiosReq.get(`/user_profile/${currentUser?.pk}/`);
+            const { is_superuser } = data;
+            setSuperData({ is_superuser });
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        setTimeout(console.log("waiting"), 3000);
+        handleMount();
+      }, [currentUser]);
+
+    const loggedInIcons = 
+      <>
+        <NavLink to={`/user-profile/${id}`}>
+            <i className="fa-solid fa-person"></i>
+            User Profile
+        </NavLink>
+        <NavLink exact to="/requests-adopt/">
+            <i className="fa-solid fa-dog"></i>
+            Adoption requests
+        </NavLink>
+      </>
+
+    const superUserIcons = 
+    <>
+      <NavLink exact to="/dog-profile/create">
+          <i className="fa-solid fa-dog"></i>
+          Dog Profile create
+      </NavLink>
+    </>
 
   return (
     <Navbar
@@ -30,14 +67,8 @@ const NavSideBar = () => {
                     <i className="fa-solid fa-house-chimney"></i>
                     Home
                 </NavLink>
-                <NavLink exact to="/dog-profile/create">
-                    <i className="fa-solid fa-dog"></i>
-                    Dog Profile create
-                </NavLink>
-                <NavLink to={`/user-profile/${id}`}>
-                    <i className="fa-solid fa-dog"></i>
-                    User Profile
-                </NavLink>
+                {currentUser && loggedInIcons}
+                {is_superuser && superUserIcons}
                 <NavLink to="/feed">
                     <i className="fa-solid fa-dog"></i>
                     Feed

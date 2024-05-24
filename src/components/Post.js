@@ -20,7 +20,6 @@ const Post = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
-  // const is_current_owner = currentUser?.username === user_id;
   const history = useHistory();
 
   const [dogData, setDogData] = useState({

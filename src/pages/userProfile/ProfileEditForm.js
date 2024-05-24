@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-
 import { axiosReq } from "../../api/axiosDefault";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-
 import appStyles from "../../App.module.css";
 import NavEditUser from "../../components/NavEditUser";
 
@@ -35,7 +31,6 @@ const ProfileEditForm = () => {
 
   useEffect(() => {
     const handleMount = async () => {
-      // if (currentUser?.user_profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/user_profile/${id}/`);
           const { first_name, last_name, email } = data;
@@ -44,9 +39,6 @@ const ProfileEditForm = () => {
           console.log(err);
           history.push("/");
         }
-      // } else {
-      //   history.push("/");
-      // }
     };
 
     handleMount();
@@ -66,10 +58,6 @@ const ProfileEditForm = () => {
     formData.append("last_name", last_name);
     formData.append("email", email);
     console.log(formData);
-
-    // if (imageFile?.current?.files[0]) {
-    //   formData.append("image", imageFile?.current?.files[0]);
-    // }
 
     try {
       const { data } = await axiosReq.put(`/user_profile/${id}/`, formData);

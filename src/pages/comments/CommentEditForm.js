@@ -3,12 +3,10 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefault";
 
-// import styles from "../../styles/CommentCreateEditForm.module.css";
-
 import buttnStyles from "../../styles/Buttn.module.css"
 
 function CommentEditForm(props) {
-  const { comment_id, user_id, comment_content, setShowEditForm, setComments } = props;
+  const { comment_id, comment_content, setShowEditForm, setComments } = props;
 
   const [formContent, setFormContent] = useState(comment_content);
 
@@ -44,7 +42,6 @@ function CommentEditForm(props) {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="pr-1">
         <Form.Control
-          // className={styles.Form}
           as="textarea"
           value={formContent}
           onChange={handleChange}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Card, Media, } from "react-bootstrap";
 import { MoreDropdown } from "./MoreDropDown";
-import { Link } from "react-router-dom";
 import { axiosRes, axiosReq } from "../api/axiosDefault"
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
@@ -10,7 +9,6 @@ import { useParams } from "react-router-dom/cjs/react-router-dom";
 const RequestAdopt = (props) => {
   const {
     dog_id,
-    user_id,
     contact_permission,
     home_children,
     home_cats,
@@ -21,7 +19,6 @@ const RequestAdopt = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
-  // const is_current_owner = currentUser?.username === user_id;
   const history = useHistory();
   const { id } = useParams();
   
