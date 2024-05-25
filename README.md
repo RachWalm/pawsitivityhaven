@@ -298,31 +298,97 @@ The Dog component is the simplest view of the dog, it gives minimal information 
 
 The only complicated value on Dog component is gender which required getDogGender as discussed above.
 
-DogProfile is the individual record page. 
+DogProfile is the individual record page. It requires information not just on the dog but also on the person viewing the page. Initially a promise.all was used to get dog profile data and user profile data. However, this caused errors when there was no one logged in as none of the data was presented. Therefore it was split into two separate try gets through axios.
+
+The reason that the page required information on the user is that there is conditional rendering of the edit restricted to superusers and conditional rendering of the date and at rescue data and ability to add post button restricted to staff. This should prevent people who don't have access to this in the API having buttons to be able to do it.
+
+The second reason that the user information was required was so that the request adopt functionality could check there is a logged in user before rendering the button to click for the adoption request form and at the same time the dog id needs to be passed via the url. This helps restrict the create post and request adopt areas of the site which require a user to be logged in or causes an error on the forms.
+
+The forms for create and edit also required extra coding for the select feature to provide the options and let the form control be as select.
+
+```js
+<Form.Control as="select" custom name="status" htmlSize={2} value={status} onChange={handleChange}>
+            <option label="To arrive" value="0">0</option>
+            <option label="Not available" value="1">1</option>
+            <option label="Available" value="2">2</option>
+            <option label="Rehomed" value="3">3</option>
+          </Form.Control>
+```
+
+The boolean also required different information:
+
+```js
+<Form.Check 
+              type="checkbox"
+              id="home_dogs"
+              label="home with dogs"
+              name="home_dogs"
+              checked={home_dogs}
+              value={home_dogs}
+              onChange={handleBooleanChange}
+          />
+```
+
+it required the type to be checkbox and the checked value to be introduced so that it matched the value that was being stored and retreived using the API.
+
+#### home
+
+This is the page that the user will land on when they come to the site. There was two options for what should be on this page, but during the design wireframes stage it was decided that to align with the primary aim of getting the dogs adopted that it would be a breif version of the profile. The other option would have been the stories feed, but that is less aligned with what we want members of the public to think about.
+
+There is a call to action on both the home page and feed at the top of the page explaining breifly what the user can do. This conditionally renders depending on whether it is on the feed or home page and whether there is a user logged in as to which instructions it gives.
+
+The main area allows you to search the dogs that are available with a check box, or if you are looking for a particular breed or know the name you can type that in the search box. 
+
+The page has infinite scroll so it doesn't get held up if there are lots of records to download. It also has the spinner for while it is loading so that the user can see that something is happening while they wait.
+
+The code is set up so that other filters can be included if the checkboxes are coded and the values put in the url
+
+```js
+const { data } = await axiosReq.get(`/dog_profile/?dog_gender=&dog_size=&home_cats=&home_dogs=&home_animals=&home_children=&status=${getAvailable(available.available)}&search=${query}`);
+```
+
+this would allow for gender, size, status and what the home can already contain to filtered by. The end where it sayes search=query is where the text search is avaiable.
+
+#### posts
+
+This was adapted from the walkthrough code. The most important difference from the walkthrough is that the posts are by a user (in this case staff) but not about themselves but about a dog. This meant that there were two profiles to connect to for each post. The dog profile and the person creating the post profile. So whereas the walkthrough could just take the user that is logged in as who was being posted about.
+
+The post component is just a display of the dog name and image and the post (title, content and image) therefore as it would always be part of another page it could take props from where that page had already gather the information. The props didn't include the dog name and image (as this hadn't been functionality in the original walkthrough) so these had to use a get function to collect them.
+
+A card display was used for this which had conditional rendering of edit and delete functionality depending on whether the logged in person was the person that had generated the post originally.
+
+The post component either was used in the PostsPage which is the feed of the site and contains all the posts or as a component for an individual PostPage which had the additional component of the comments. 
+
+So on individual posts you could comment and see the comments already in place, but in the feed it was just the post. 
+
+To get to the individual post you could click on the post image and it would take you there. 
+
+If you click on the image of the dog it will take you to the profile of that particular dog.
+
+The likes and comment counts were not included from the walk through. The comment count was considered a low priority and although some of the code (especially in the backend)had been prepared it was not completed as time for this level of priority ran out in the front end coding. The likes wasn't planned to be part of the project. The emoji app that was in the very initial ideas would have been similar functionality but with approx 5 icons rather than just a like. It was realised in the planning stages that this was not feasible in the timescale that was allowed so even the backend code was not started for this.
+
+Posts (and their comments on the PostPage) can only be created by staff but can be viewed by anyone including people who aren't logged in. 
+
+#### request adopt
+
+#### user profile
+
+The user profile was a slimmed down version of the Moments walkthrough as this was specified to not count towards the novel models etc for assessment. There was no relevance in an image so this part of the code was removed. An equivalent image was done in the dog profile who the site was emphasising. Apart from authentication the users information that would be relevant would be their username if they posted/commented. Or if they decided that they wanted to adopt a dog the rescue would want to contact them so an email and name would be useful.
+
+The name and email are not part of the initial signing up for the site so there is a form which you can enter or edit these. Taken from the walkthrough code there are forms to change their password or username also.
+
+All of those forms can be accessed through the edit user nav bar which is visible on the profile page. 
+
+The profile is restricted to the person logged in as when you click on any of the links to get you to the viewing or editing pages it uses the logged in person to determine which profile to look at.
+
+The only time that information is taken from this data that it isn't the user is when a superuser is looking at the adoption requests when the contact details are available as part of the rendering of the request.
 
 #### Defensive programming
 
+conditional rendering would be better to use redirect.
+
 #### favourite
 
-
-#### Flash messages
-
-Most activities that involve change contain a flash message. If the user performs an allauth related activity (login/logout etc.) or if the user updates the database in some way a flash message should appear on the screen for 2.5 seconds. Other activities such as searches are apparent by the messages on the screen or results being displayed.
-
-#### Search text function
-
-This was adapted for the various searches throughout the site that are text inputs from a tutorial on youtube [youtube](https://www.youtube.com/watch?v=AGtae4L5BbI).
-
-```HTML
-        <form method=POST action="{% url 'search_charity' %}">
-            {% csrf_token %}
-            <input type="search" placeholder="charity name" aria-label="Charity name search" name="search">
-            <button class="btn btn-outline-info" type="submit">Search Charity</button>
-        </form>
-```
-```python
-search = request.POST['search']
-```
 
 #### Navigation
 
@@ -334,21 +400,145 @@ There are five types of navigation within the site
 - profile/username/password edit 
 - side site functions
 
+#### handleEdit and handleDelete and handleChange and handleChangeImage
+
+Most sections of the site have a variety of handle functions on one or more of the pages. 
+
+HandleChange is used to update the data as things are entered into the forms so that the data in the form is the data that will be posted or put in the database. This updates the state where the data is temporarily held till it goes to the API. There is a handlebooleanchange that is just slightly different as it requires an input of a checked or unchecked box but a value of true or false. The handlebooleanchange therefore takes the name of the variable from the form and whether it is checked and inputs that to the state.
+
+```js
+const handleChange = (event) => {
+    setDogData({
+      ...dogData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+const handleBooleanChange = (event) => {
+    const { name, checked } = event.target;
+    setDogData({
+      ...dogData,
+      [name]: checked,
+    });
+  };
+```
+
+Images are slightly different so required a handlechangeimage as images are saved to cloudinary then you have a url to access that image not an image file.
+
+```js
+const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(dog_image);
+      setDogData({
+        ...dogData,
+        dog_image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
+```
+
+handledelete just uses the delete function and the url of the part of the backend that needs deleting. The url is the app to delete from and includes the id or pk of the individual record to delete. Ideally there would be more defensive programming to protect the delete.
+
+```js
+const handleDelete = async () => {
+    try {
+        await axiosRes.delete(`/request_adopt/${id}/`);
+        history.goBack();
+    } catch (err) {
+        // console.log(err);
+    }
+  }
+```
+
+handleedit redirects you to the page that contains the edit form for whatever activity/record you are dealing with and also passes the id of the individual record.
+
+```js
+const handleEdit = () => {
+    history.push(`/request-adopt/edit/${id}/`);
+  };
+```
+
+#### handle submit
+
+handlesubmit collects all the variables and their values into FormData and then post or puts them to the correct part of the API using the id of the individual record.
+
+```js
+const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append('dog_id', dog_id);
+    formData.append('contact_permission', contact_permission);
+    formData.append('experience', experience);
+    formData.append('query', query);
+    formData.append('home_cats', home_cats);
+    formData.append('home_dogs', home_dogs);
+    formData.append('home_animals', home_animals,);
+    formData.append('home_children', home_children);
+
+    try {
+        await axiosReq.put(`/request_adopt/${id}/`, formData);
+        history.push(`/request-adopt/${id}`);
+    } catch (err) {
+        // console.log(err);
+    }
+  };
+```
+
+#### useState
+
+All variable data is held in states which are relevant for the page or component that is being used.
+
+The states are set when getting data from the API and setting the data in the state is done whenever there is a change using the various handlechanges.
+
+#### Forms errors
+
+To keep the users informed if the wrong format or type of entry has been put into a form, the forms have alerts which take the errors and provide them to the user so that they can adjust their input.
+
+```js
+            {errors.home_children?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))} 
+```
+
+#### call to action / form title conditinal rendering
+
+
 ### Potential Future Feature Developments 
 
-add an area for staff to put general comments that are internal.
-contexts and hooks
-put repeat functions somewhere and refactor Requestadopt requestsadopt
-dogprofile cotext
-posts about specific dog
+There was a lot of ideas initially for things that could be done with this site. Emojis to like/dislike/laugh at posts and comments that were quickly put in the won't have category due to the timescale of the project. There were several things that along the way were also discarded as well as idea that were generated during the production of the site. Here are some suggestions of what extra features seem like they would add value in future development.
+
+1. An area for staff to put general comments that are internal so that the staff and admins looking after the dogs can have information that isn't relevant to the general public or should be kept confidential. It could also be used for just comments about general welfare and care of the dogs, like which things they prefer or if they are currently requiring special treatment or need specific harnesss etc.
+2. It would be nice if when you look at the profile of a specific dog the posts that are about that dog were underneath, this was an initial intent of the project but due to time constraints other functionality became far more essential.
+3. Put together the pages for dog vaccinations. The backend has all the variables set up but doens't have anything in the front end to read or manipulate it. It would be nice to have this data stored and it could easily do calculations from dates that vaccines were given as to when they would need repeating in the future and provide lists of soon to be or overdue vaccinations.
+4. The home page currently only has a filter to see narrow it down to dogs that are currently available, the groundwork has been done for other filters to be put on the page, this would mean that the users who are looking to adopt could quickly narrow down their search or find if there are no dogs currently suitable for them. Filter by what animals and children are already in the home and gender/size etc
+5. The favourite app was built in the backend but wasn't implemented in the front end. An attempt at coding this did take place breifly, but as it broke other functionality it was decided that this might be a bigger amount of work than had been anticipated and so it was moved down in priority.
+6. Potentially a dog context could be set up. This would need to be thought about but as moving from page to page currently the same dog profile information is frequently downloaded. The exact use and data included would need to be carefully considered before it was implemented.
+7. There are many function that I have cut and paste into many locations with time to make the code more efficient some of these functions could be put into hooks.
+8. RequestAdopt and RequestsAdopt are both components that with a small amount of recoding could just be one that is capable of taking an array or an individual record.
+9. Functionality to inform the user that no information was returned from their search in a couple of examples would keep the user informed. Currently some components get left on a spinner when there is nothing for it to show. Some data like for rehomed dates etc are left empty until they occur it would be nice if rather than being blank there was information to the user that this hasn't been filled yet.
+10. A no access component was set up that could be used in place of components or pages when people attempt to access things that their level of authorisation does not allow them to access as currently they get the page just with no information or when the press the button nothing happens.
+11. The styling was left too late in the process, there are several things that with some time and rearrangement would look better and improve the user experience if resized or moved to better locations or made more or less prominent or distracting.
+
+New ideas for the site are constantly evolving as there are so many pages that could be used for admin of a rescue if they started to record how adoptions were progressing etc. Or adding more functionality to the feeds and profiles to keep up with current trends.
 
 ## Bugs
 
-cloudinary version
+There have been several interesting and challenging bugs that have been overcome during the development of this project. All bugs that have been found for implemented functionality have been fixed along the way.
+
+There are a few things that could be considered bugs that are beyond the time available to fix and are either unlikely to occur or are considered to be features still to implement and put in the future development section. The site functions as expected for the functions that have been implemented.
+
+The bugs that have been fixed along the way:
+
+1. Images have been a real problem throughout the project. Initially there were areas where I thought that images could be left blank, but having implemented that it was realised that the dimensions of various components were completely disorientated without an image there. A default image was then put on the dog profile which explained that an image wasn't avaiable yet. Then there was problems with having to change the images everytime anything in the component was changed. This forced image change was rectified by changing the code from the profile image saving code from the walkthrough to the post image saving code from the walk through.
+Sometimes it refused to accept an image was an image file that had already been saved fine before was an image. Eventually after a multitude of different problems with the images tutor support was contacted who suggested changing the version of cloudinary. Normally I have found that I am using too new a version compared with a walkthrough, but on this occassion the one that matchd the walkthrough would not work consistently so the tutor recommended the higher version that they use frequently. This solved all the image problems except one where if you change and image then go to change it again and go back to the original image but press cancel it saves the wrong image. As people are unlikely to change their minds that often and can go back in and put in the correct image it was decided that this was an inconvenince rather than a bug. With time and investigation it probably could be fixed by getting the correct url saved in a variable. This could be a future improvement if it were to ever be prioritised or become a more serious problem.
+
 All comments not filtering
 handle boolean change
 default boolean set to true in back end and false in front end needed to be changed from false to true to false again to register as false. intermittentcy made it hard to identify.
-must change image on create and update -  used post code not profile code.
+
 useparams needs deconstructing {}
 2. logout fixed as per CI walkthrough in second to last text.
 comments not saving -  wrong props being given to the page ->trim
@@ -361,15 +551,27 @@ This may leave some orphan posts so therefore removed the delete dog option from
 
 ### Languages used
 
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) was used for the coding of the site.
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/css) was included for styles and layout of the site.
-- [python 3.11.5](https://docs.python.org/3/) for functionality.
-- [JS](https://developer.mozilla.org/en-US/docs/Web/javascript) to incorporate the modal and validate the time and phone number.
-- [JSX]()
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) 
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/css) 
+- [JS](https://developer.mozilla.org/en-US/docs/Web/javascript) 
+- [JSX](https://react.dev/learn/writing-markup-with-jsx)
+
 ### Frameworks and libraries
-- [Django](https://www.djangoproject.com/) Framework based on python.
+
+The reason that the below libaries were chosen is that the project was based on the Moments walkthrough, as previously mentioned where there was code from the walkthrough that could be used with slight adaptation. Therefore the basis of the project matches the Moments and the assessment required that it was based the main technologies of HTML, CSS, JavaScript, React.js, Bootstrap. js and Django REST framework. Having that criteria it was only a choice as to which additional libaries to use. Most of the libararies are bolt ons to react (even in their names) so were chosen for their known compatibility. Axios and JWT were chosen due to experience with them in the walkthrough. dj-rest-auth is a django rest authorisation libary so was an obvious choice after experiencing it in the walkthrough. The specifics of what functionality I wanted when choosing each one is written next to it's link. 
+
 - [Boostrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) for styling the site.
-- [React-bootstrap](https://react-bootstrap.github.io/)
+- [React-bootstrap](https://react-bootstrap.github.io/) for coding site and styling.
+- [React](https://react.dev/) for coding site.
+- [Axios](https://axios-http.com/docs/intro)for interaction with the API, get, put, post etc
+- [JWT tokens](https://jwt-auth.readthedocs.io/en/develop/) for access and refresh tokens to maintain the security of the site and keep it as a REST site as nothing is stored on the server as to who is logged in.
+- [React dom](https://react.dev/reference/react-dom) rendering components as a website etcetc
+- [React router dom](https://www.npmjs.com/package/react-router-dom) for connecting up all the urls for different parts of the site turning react router into availability to the web
+- [React infinite scroll](https://www.npmjs.com/package/react-infinite-scroll-component) so that it quickly loads a certain amount at a time, then loads the rest when you move down far enough to need it.
+- [React scripts](https://www.npmjs.com/package/react-scripts) gives the scripts to create a react app
+- [dj-rest-auth](https://dj-rest-auth.readthedocs.io/en/latest/) was the backend login/logout/register but was interacted with front end
+
+Ideally time would have allowed for testing with Jest but this did not occur so that libary was not used.
 
 
 ### Databases
@@ -381,16 +583,13 @@ This may leave some orphan posts so therefore removed the delete dog option from
 ### Tools
 
 - [VSCode](https://code.visualstudio.com/) was used to create and edit the website.
-- [GitPod](https://www.gitpod.io/docs/introduction)
+- [GitPod](https://www.gitpod.io/docs/introduction) as an IDE
 - [Git](https://git-scm.com/) was used for the version control and project board to plan the project.
 - [Heroku](https://www.heroku.com/) was used to deploy and host site.
 - [Pip3](https://pypi.org/project/pip/) was used for installing.
-- [gunicorn](https://gunicorn.org/) as a Python WSGI HTTP Server.
-- [dj_database_url](https://pypi.org/project/dj-database-url/) to work with Django.
-- [pyscopg2](https://peps.python.org/pep-0249/) for python database access.
 - [Elephantsql](https://www.elephantsql.com/) to host the postgreSQL database for deployment.
 - [DrawSQL](https://drawsql.app/) for relationship diagram drawing.
-- [dj-rest-auth]
+
 
 ### Web resources
 
@@ -411,15 +610,13 @@ This may leave some orphan posts so therefore removed the delete dog option from
 
 ## Deployment
 
+In any deployment it is important to remember that this is only a front end site. The information that is displayed requires the API (or equivalent) to be operational with migrations to a suitable database applied. For this project the API is deployed in [Heroku](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/)
+
 ### Heroku deployment
 
 The deployed version can be accessed on Heroku [here](https://*.herokuapp.com/)
 
 Before deployment you will need to collect all the requirements into requirements.txt
-
-```python
-pip3 freeze --local > requirements.txt
-```
 
 Ensure that the version that you want to deploy has been added, committed and pushed to GitHub (as Heroku will take it from the repository).
 
@@ -472,9 +669,6 @@ axios
 
 ```npm install axios```
 
-
-
-
 ### Cloning
 
 1. In the git hub repository, code button clicked
@@ -483,25 +677,12 @@ axios
 4. link copied
 5. went to terminal of the IDE and input the following :git clone https://github.com/RachWalm/pawsitivityhaven
 
-The project was cloned.
-
-It will be necessary to install the list in local deployment and also set up an env.py and reference it in the settings.
-
-The env.py needs to contain:
-
-```python
-import os
-
-os.environ["DATABASE_URL"]="link gained from elephantSQL for the database see below"
-os.environ["SECRET_KEY"]="Enter your secret key here" 
-```
-
-A .gitignore file must be used and the env.py should be added to it so that the information in there that should be kept private such as the secret key is not put on GitHub.
+A .gitignore file should be used so that the information in there that should be kept private and not put on GitHub.
 
 To run the local deployment in the IDE terminal window :
 
 ```
-python3 manage.py runserver
+npm start
 ```
 
 ## Testing 
@@ -546,6 +727,8 @@ Image by <a href="https://pixabay.com/users/natiqjavid-1602367/?utm_source=link-
 Brown background pawprints from Canava
 
 
+Photos of dogs
+
 Photo by Pixabay: https://www.pexels.com/photo/white-short-coated-dog-160846/
 Photo by Summer Stock: https://www.pexels.com/photo/adult-german-shepherd-lying-on-ground-333083/
 Photo by Pixabay: https://www.pexels.com/photo/pembroke-welsh-corgi-lying-on-the-sand-under-white-cloud-blue-sky-164186/
@@ -571,7 +754,7 @@ Photo by Martin Dufosset: https://www.pexels.com/photo/white-and-black-short-coa
 
 My Mentor - Juliia Konn has been extremely enthusiastic and provided encouragement and a great deal of support.
 
-My family - Pat Walmsley and Sarah Walmsley have tested the site on their own devices and given very useful feedback.
+My family - Pat Walmsley for proof reading and very useful feedback.
 
 My Partner - Ian Harris has been extremely supportive while I have been working on this project.
 
@@ -581,4 +764,3 @@ Code institute tutors - Who worked very hard and often were very motivational an
 
 W3 website for many clarifications of syntax.
 
-Django documentation and bootstrap documentation from which I learned a great deal.

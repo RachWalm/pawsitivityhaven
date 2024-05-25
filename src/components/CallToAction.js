@@ -14,7 +14,7 @@ const CallToAction = () => {
     const home = <h3>Click on {
       currentpage === "/" ? (' a Dog Below ') : (
       <Link to="/">Here for Dogs </Link> )
-    } For Information & Request Adoption {currentUser ? ("Adoption") : (
+    } For Information & Request Adoption {currentUser ? ("") : (
       <Link to="/signin">
           Adoption requires sign in
       </Link>)}</h3>

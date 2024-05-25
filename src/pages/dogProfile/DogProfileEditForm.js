@@ -235,7 +235,7 @@ function DogProfileEditForm() {
             ))}
         <Form.Group controlId="exampleForm.SelectCustom">
           <Form.Label>dog_gender</Form.Label>
-          <Form.Control as="select" custom name="dog_gender" htmlSize={3} value={dog_gender} onChange={handleChange}>
+          <Form.Control as="select" custom name="dog gender" htmlSize={3} value={dog_gender} onChange={handleChange}>
             <option label="TBC" value="0">0</option>
             <option label="Male" value="1">1</option>
             <option label="Female" value="2">2</option>
@@ -252,7 +252,7 @@ function DogProfileEditForm() {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="exampleForm.SelectCustom">
-          <Form.Label>Custom select</Form.Label>
+          <Form.Label>size</Form.Label>
           <Form.Control as="select" custom name="dog_size" htmlSize={3} value={dog_size} onChange={handleChange}>
             <option label="TBC" value="0">0</option>
             <option label="Small" value="1">1</option>
@@ -308,7 +308,7 @@ function DogProfileEditForm() {
           <Form.Check 
               type="checkbox"
               id="at_rescue"
-              label="at_rescue"
+              label="at rescue?"
               name="at_rescue"
               checked={at_rescue}
               value={at_rescue}
@@ -323,7 +323,7 @@ function DogProfileEditForm() {
         <Form.Check 
               type="checkbox"
               id="home_dogs"
-              label="home_dogs"
+              label="home with dogs"
               name="home_dogs"
               checked={home_dogs}
               value={home_dogs}
@@ -338,7 +338,7 @@ function DogProfileEditForm() {
           <Form.Check 
               type="checkbox"
               id="home_cats"
-              label="home_cats"
+              label="home with cats"
               name="home_cats"
               checked={home_cats}
               value={home_cats}
@@ -353,7 +353,7 @@ function DogProfileEditForm() {
           <Form.Check 
               type="checkbox"
               id="home_animals"
-              label="home_animals"
+              label="home with animals"
               name="home_animals"
               checked={home_animals}
               value={home_animals}
@@ -368,7 +368,7 @@ function DogProfileEditForm() {
           <Form.Check 
               type="checkbox"
               id="home_children"
-              label="home_children"
+              label="home with children"
               name="home_children"
               checked={home_children}
               value={home_children}
