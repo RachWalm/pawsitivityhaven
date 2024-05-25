@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Card, Media, } from "react-bootstrap";
 import { MoreDropdown } from "./MoreDropDown";
-import { Link } from "react-router-dom";
 import { axiosRes, axiosReq } from "../api/axiosDefault"
 import { useHistory } from "react-router";
-import { useParams } from "react-router-dom/cjs/react-router-dom";
 
 const RequestsAdopt = (props) => {
   const {
@@ -19,7 +17,6 @@ const RequestsAdopt = (props) => {
     home_dogs,
     experience ,
     query,
-    req,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -81,7 +78,6 @@ const RequestsAdopt = (props) => {
         console.log(err);
       }
     };
-    console.log(is_current_owner)
     setTimeout(console.log(currentUser.username), 3000);
     handleMount();
   }, [history, dog_id]);

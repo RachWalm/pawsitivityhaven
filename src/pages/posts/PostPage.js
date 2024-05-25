@@ -32,7 +32,6 @@ function PostPage() {
         ]);
         setPost({ results: [post] });
         setComments(comments);
-        console.log(post);
       } catch (err) {
         console.log(err);
       }
@@ -52,7 +51,9 @@ function PostPage() {
               setComments={setComments}
             />
           ) : comments.results.length ? (
-            "Comments"
+            <Container className={appStyles.container}>
+            Comments
+            </Container>
           ) : null}
           <Container className={appStyles.container}>
           {comments.results.length ? (

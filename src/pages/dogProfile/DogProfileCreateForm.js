@@ -61,7 +61,6 @@ function DogProfileCreateForm() {
       ...dogData,
       [event.target.name]: event.target.value,
     });
-  console.log(dogData)
   };
 
   const handleBooleanChange = (event) => {
@@ -80,12 +79,10 @@ function DogProfileCreateForm() {
         dog_image: URL.createObjectURL(event.target.files[0]),
       });
     }
-    console.log(dog_image)
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(imageInput)
     const formData = new FormData();
 
     formData.append('dog_name', dog_name);

@@ -37,7 +37,6 @@ function SearchPicture({ message, filter = "" }) {
         try {
           const { data } = await axiosReq.get(`/dog_profile/?dog_gender=&dog_size=&home_cats=&home_dogs=&home_animals=&home_children=&status=${getAvailable(available.available)}&search=${query}`);
           setDogData(data);
-          console.log(data)
           setHasLoaded(true);
         } catch (err) {
           // console.log(err);

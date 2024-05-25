@@ -24,8 +24,6 @@ const RequestAdopt = (props) => {
   
   const handleEdit = () => {
     history.push(`/request-adopt/edit/${id}/`);
-    console.log(dog_id);
-    console.log(dog_name);
   };
 
   const handleDelete = async () => {
