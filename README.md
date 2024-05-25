@@ -298,7 +298,7 @@ The Dog component is the simplest view of the dog, it gives minimal information 
 
 The only complicated value on Dog component is gender which required getDogGender as discussed above.
 
-DogProfile
+DogProfile is the individual record page. 
 
 #### Defensive programming
 

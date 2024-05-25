@@ -163,16 +163,20 @@ function DogProfile() {
           </Link>
           ) : (<p></p>)}
           <h2 className="m-2"> {dog_name}</h2>
-          <h3 className="m-2"> received_date - {received_date} </h3>
-          <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
-          <h3 className="m-2"> returned_date - {returned_date} </h3>
+          {userStatus.is_staff ? (
+            <>
+              <h3 className="m-2"> received_date - {received_date} </h3>
+              <h3 className="m-2"> rehomed_date - {rehomed_date} </h3>
+              <h3 className="m-2"> returned_date - {returned_date} </h3>
+              <h3 className="m-2"> at_rescue - {getBoolean(at_rescue)} </h3>
+              <h3 className="m-2"> status - {getDogStatus(status)} </h3>
+            </>) :
+          (<p></p>)}
           <h3 className="m-2"> dog_age - {dog_age} </h3>
           <h3 className="m-2"> dog_breed - {dog_breed} </h3>
           <h3 className="m-2"> dog_gender - {getDogGender(dog_gender)} </h3>
           <h3 className="m-2"> dog_size - {getDogSize(dog_size)} </h3>
-          <h3 className="m-2"> status - {getDogStatus(status)} </h3>
           <h3 className="m-2"> general - {general} </h3>
-          <h3 className="m-2"> at_rescue - {getBoolean(at_rescue)} </h3>
           <h3 className="m-2"> home_cats - {getBoolean(home_cats)} </h3>
           <h3 className="m-2"> home_dogs - {getBoolean(home_dogs)} </h3>
           <h3 className="m-2"> home_animals - {getBoolean(home_animals)} </h3>
