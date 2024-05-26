@@ -26,15 +26,17 @@ These areas of the site should overall fullfill the requirement to keep data for
 ## UX design
 
 To achieve this there needs to be first, a backend API ([github](https://github.com/RachWalm/dog-api) and [deployed](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/)) dealing with all the profiles, data and posts/comments. Secondly, a Front-End site (which is what this README is about) that deals with all the interactions required by 
-1. The Rescue staff, 
+1. The Rescue staff, who will be given superuser status
 
-2. Volunteers and Walkers, 
+2. Volunteers and Walkers, who will be given staff status
 
-3. Potential adopters/members of the public and 
+3. Potential adopters/members of the public, this is the status provided on sign up
 
-4. as a future developement the dogs final owners experience as posts.
+4. As a future developement the dogs final owners experience as posts.
 
 Therefore the site needs to provide the different information that is appropriate to each of these roles. Keeping some information confidential to the charity and some visible to the public to advertise the dogs that can be adopted in a fun interactive way.
+
+The assignment of these status is beyond the scope of this project. Staff and SuperUser status can be set in the admin panel of the [API](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/admin/) by a superuser. The instructions for this are in the [README](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/admin/) of the API.
 
 
 ### Wireframes – FrontEnd
@@ -567,10 +569,13 @@ There was a lot of ideas initially for things that could be done with this site.
 6. Potentially a dog context could be set up. This would need to be thought about but as moving from page to page currently the same dog profile information is frequently downloaded. The exact use and data included would need to be carefully considered before it was implemented.
 7. There are many function that I have cut and paste into many locations with time to make the code more efficient some of these functions could be put into hooks.
 8. RequestAdopt and RequestsAdopt are both components that with a small amount of recoding could just be one that is capable of taking an array or an individual record.
-9. Functionality to inform the user that no information was returned from their search in a couple of examples would keep the user informed. Currently some components get left on a spinner when there is nothing for it to show. Some data like for rehomed dates etc are left empty until they occur it would be nice if rather than being blank there was information to the user that this hasn't been filled yet.
+9. Functionality to inform the user that no information was returned from their search in a couple of searches would keep the user informed. Currently some components get left on a spinner when there is nothing for it to show. Some data like for rehomed dates etc are left empty until they occur it would be nice if rather than being blank there was information to the user that this hasn't been filled yet.
 10. A no access component was set up that could be used in place of components or pages when people attempt to access things that their level of authorisation does not allow them to access as currently they get the page just with no information or when the press the button nothing happens.
 11. The styling was left too late in the process, there are several things that with some time and rearrangement would look better and improve the user experience if resized or moved to better locations or made more or less prominent or distracting.
 12. Additonal/improved alt text for the pictures that are introduced by staff etc. to improve accessibility.
+13. The feed could allow you to search for a dogs name as currently it will only let you search the posts section. Then you would be able to see all the posts about a particular dog.
+14. Some defensive programming stoping immediate delete and checking with user that they intended to delete.
+15. It would be nice if when you look at the user profile that you could see your own posts to look at comments that had been made on them or feel nostalgic but due to time constraints other functionality became far more essential.
 
 New ideas for the site are constantly evolving as there are so many pages that could be used for admin of a rescue if they started to record how adoptions were progressing etc. Or adding more functionality to the feeds and profiles to keep up with current trends.
 

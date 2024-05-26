@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Card, Media, } from "react-bootstrap";
+import { Card, Container, Media, } from "react-bootstrap";
 import { MoreDropdown } from "./MoreDropDown";
 import { Link } from "react-router-dom";
 import { axiosRes, axiosReq } from "../api/axiosDefault"
 import { useHistory } from "react-router";
+import styles from "../styles/Post.module.css";
 
 const Post = (props) => {
   const {
@@ -58,9 +59,11 @@ const { dog_name, dog_image, } = dogData;
         <Media className="align-items-center justify-content-between">
           <div className="d-flex align-items-center">
             <p>This was posted {updated_at} by {user_id} for dog {dog_name}
+            <Container className={styles.smalldog}>
             <Link to={`/dog-profile/${dog_id}`}>
               <Card.Img src={dog_image} alt={dog_name} />
             </Link>
+            </Container>
             </p>
             <span>{is_owner && postPage && <MoreDropdown handleEdit={handleEdit}  handleDelete={handleDelete}/>}</span>
           </div>
