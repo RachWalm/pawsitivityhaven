@@ -103,7 +103,6 @@ function DogProfileCreateForm() {
     if (imageInput?.current?.files[0]) {
       formData.append("dog_image", imageInput?.current?.files[0]);
     }
-    console.log(formData)
     try {
         const { data } = await axiosReq.post('/dog_profile_create/', formData);
         history.push(`/dog-profile/${data.id}`);
