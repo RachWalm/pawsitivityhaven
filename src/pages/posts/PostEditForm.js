@@ -21,7 +21,7 @@ function PostEditForm() {
     content: "",
     image: "",
   });
-  const { title, content, image } = postData;
+  const { title, content, image, dog_id } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -66,7 +66,7 @@ function PostEditForm() {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("user_id", currentUser);
-    formData.append("dog_id", 1);
+    formData.append("dog_id", dog_id);
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
