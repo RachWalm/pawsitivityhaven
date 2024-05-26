@@ -36,7 +36,6 @@ const NavEditUser = () => {
                     <i className="fa-solid fa-dog"></i>
                     Edit User Profile
                 </NavLink>
-                {/* {currentUser ? loggedInIcons : loggedOutIcons} */}
             </Nav>
             </Navbar.Collapse>
         </Container>

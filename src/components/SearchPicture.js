@@ -9,7 +9,7 @@ import {
 import { axiosReq } from "../api/axiosDefault";
 import Asset from "./Asset";
 import { fetchMoreData } from "../utils/utils";
-import NoResults from "../assets/no-results.png";
+import NoResults from "../assets/noresults.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import appStyles from "../App.module.css";
 import Dog from "./Dog"
@@ -39,7 +39,7 @@ function SearchPicture({ message, filter = "" }) {
           setDogData(data);
           setHasLoaded(true);
         } catch (err) {
-          // console.log(err);
+          console.log(err);
         }
       };
   

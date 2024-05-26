@@ -9,7 +9,7 @@ import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefault";
 
 import Asset from "../../components/Asset";
-import NoResults from "../../assets/no-results.png"
+import NoResults from "../../assets/noresults.png"
 import { fetchMoreData } from "../../utils/utils";
 
 import RequestsAdopt from "../../components/RequestsAdopt";
@@ -31,7 +31,7 @@ function RequestsAdoptPage() {
         setHasLoaded(true);
         console.log(data)
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
     setHasLoaded(false);

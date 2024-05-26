@@ -57,7 +57,6 @@ const NavBar = () => {
                 </Navbar.Brand>
             </NavLink>
             <h1>Pawsitive Haven</h1>
-            {/* {currentUser && addPostIcon} */}
             <Navbar.Toggle
                 ref={ref}
                 onClick={() => setExpanded(!expanded)}

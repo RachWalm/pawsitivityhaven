@@ -36,7 +36,7 @@ function CommentCreateForm(props) {
       }));
       setComment_Content("");
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 

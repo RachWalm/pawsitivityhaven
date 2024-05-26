@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
 import Alert from "react-bootstrap/Alert";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefault"
@@ -23,7 +22,6 @@ function RequestAdoptEditForm() {
     dog_id: "",
     user_id: "",
     contact_permission: "",
-    status: "",
     experience: "",
     query: "",
     home_cats: "",
@@ -34,7 +32,6 @@ function RequestAdoptEditForm() {
   const { dog_id,
   user_id,
   contact_permission,
-  status,
   experience,
   query,
   home_cats,
@@ -44,7 +41,6 @@ function RequestAdoptEditForm() {
   } = requestAdoptEdit;
 
   const history = useHistory();
-  const currentUser = useCurrentUser();
 
   const [dogData, setDogData] = useState({
     dog_name: "",
@@ -56,8 +52,8 @@ function RequestAdoptEditForm() {
     const handleMount = async () => {
       try{
         const { data } = await axiosReq.get(`/request_adopt/${id}/`);
-        const { dog_id, user_id, contact_permission, status, experience, query, home_cats, home_dogs, home_animals, home_children, } = data;
-        setRequestAdoptEdit({dog_id, user_id, contact_permission, status, experience, query, home_cats, home_dogs, home_animals, home_children,})
+        const { dog_id, user_id, contact_permission, experience, query, home_cats, home_dogs, home_animals, home_children, } = data;
+        setRequestAdoptEdit({dog_id, user_id, contact_permission, experience, query, home_cats, home_dogs, home_animals, home_children,})
       } catch (err) {
         console.log(err)
       }
@@ -106,7 +102,7 @@ function RequestAdoptEditForm() {
         await axiosReq.put(`/request_adopt/${id}/`, formData);
         history.push(`/request-adopt/${id}`);
     } catch (err) {
-        // console.log(err);
+        console.log(err);
     }
   };
 
@@ -254,9 +250,6 @@ function RequestAdoptEditForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        {/* <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-            <div className="d-md-none">{textFields}</div>
-        </Col> */}
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyle.container}>
             <h2>Please provide details to allow us to consider your application to adopt a dog</h2>

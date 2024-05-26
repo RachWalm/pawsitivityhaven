@@ -63,7 +63,6 @@ const ProfileEditForm = () => {
       const { data } = await axiosReq.put(`/user_profile/${id}/`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
-        // profile_image: data.image,
       }));
       history.goBack();
     } catch (err) {

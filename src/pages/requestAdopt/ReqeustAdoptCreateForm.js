@@ -100,7 +100,7 @@ function RequestAdoptCreateForm() {
         const { data } = await axiosReq.post('/request_adopt_create/', formData);
         history.push(`/request-adopt/${data.id}`);
     } catch (err) {
-        // console.log(err);
+        console.log(err);
     }
   };
 
@@ -243,9 +243,6 @@ function RequestAdoptCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        {/* <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-            <div className="d-md-none">{textFields}</div>
-        </Col> */}
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyle.container}>
             <h2>Please provide details to allow us to consider your application to adopt a dog</h2>

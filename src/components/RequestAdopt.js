@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Card, Media, } from "react-bootstrap";
 import { MoreDropdown } from "./MoreDropDown";
 import { axiosRes, axiosReq } from "../api/axiosDefault"
@@ -18,7 +17,6 @@ const RequestAdopt = (props) => {
     query,
   } = props;
 
-  const currentUser = useCurrentUser();
   const history = useHistory();
   const { id } = useParams();
   
@@ -31,7 +29,7 @@ const RequestAdopt = (props) => {
         await axiosRes.delete(`/request_adopt/${id}/`);
         history.goBack();
     } catch (err) {
-        // console.log(err);
+        console.log(err);
     }
   }
 

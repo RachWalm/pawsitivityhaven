@@ -32,7 +32,7 @@ const RequestsAdopt = (props) => {
         await axiosRes.delete(`/request_adopt/${id}/`);
         history.goBack();
     } catch (err) {
-        // console.log(err);
+        console.log(err);
     }
   }
 
@@ -80,7 +80,7 @@ const RequestsAdopt = (props) => {
     };
     setTimeout(console.log(currentUser.username), 3000);
     handleMount();
-  }, [history, dog_id]);
+  }, [history, dog_id, currentUser.pk, currentUser.username, user_id]);
 
   const getBoolean = (value) => {
     switch (value) {

@@ -43,9 +43,9 @@ The wireframes were generated during the idea stage of the process and are consi
 
 Two sets of wireframe were put together. One for each of the 
 
-1. [desktop](/document/wireframes-desktop.pdf)
+1. [desktop](/document/wireframesdesktop.pdf)
 
-2. [mobile](/document/wireframes-mobile.pdf)
+2. [mobile](/document/wireframesmobile.pdf)
 
 These wireframes have been used as the basis of the work that was done, but as implementation continued and efficiencies were decided upon they were slightly modified. But the general theme from these wireframes was followed for the pages that were implemented.
 
@@ -494,7 +494,7 @@ const handleDelete = async () => {
         await axiosRes.delete(`/request_adopt/${id}/`);
         history.goBack();
     } catch (err) {
-        // console.log(err);
+        console.log(err);
     }
   }
 ```
@@ -529,7 +529,7 @@ const handleSubmit = async (event) => {
         await axiosReq.put(`/request_adopt/${id}/`, formData);
         history.push(`/request-adopt/${id}`);
     } catch (err) {
-        // console.log(err);
+        console.log(err);
     }
   };
 ```
@@ -570,6 +570,7 @@ There was a lot of ideas initially for things that could be done with this site.
 9. Functionality to inform the user that no information was returned from their search in a couple of examples would keep the user informed. Currently some components get left on a spinner when there is nothing for it to show. Some data like for rehomed dates etc are left empty until they occur it would be nice if rather than being blank there was information to the user that this hasn't been filled yet.
 10. A no access component was set up that could be used in place of components or pages when people attempt to access things that their level of authorisation does not allow them to access as currently they get the page just with no information or when the press the button nothing happens.
 11. The styling was left too late in the process, there are several things that with some time and rearrangement would look better and improve the user experience if resized or moved to better locations or made more or less prominent or distracting.
+12. Additonal/improved alt text for the pictures that are introduced by staff etc. to improve accessibility.
 
 New ideas for the site are constantly evolving as there are so many pages that could be used for admin of a rescue if they started to record how adoptions were progressing etc. Or adding more functionality to the feeds and profiles to keep up with current trends.
 
@@ -744,21 +745,18 @@ and the purple 'create app' button was pressed.
 
 5. Now we used the menu navigation bar to select deploy
 
-![tab](/document/deploy-tab.png)
+![tab](/document/deploytab.png)
 
 6. The deployment method was selected by clicking on the GitHub icon and it stated that it was connected to github
 
-![method](/document/method-github.png)
+![method](/document/methodgithub.png)
 
 The repository was chosen by searching my github and then clicking connect
 
 7. Then the branch was deployed 
-![branch-deploy](/document/deploy-branch.png)
+![branch-deploy](/document/deploybranch.png)
 
 12. It was deployed
-
-![deployed](document/deployed.png)
-
 
 ### Local Deployment
 

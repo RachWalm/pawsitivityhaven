@@ -8,7 +8,7 @@ import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefault";
-import NoResults from "../../assets/no-results.png";
+import NoResults from "../../assets/noresults.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -30,7 +30,7 @@ function PostsPage({ message, filter = "" }) {
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
 

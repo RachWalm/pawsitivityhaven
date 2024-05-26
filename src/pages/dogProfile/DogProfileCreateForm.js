@@ -108,7 +108,7 @@ function DogProfileCreateForm() {
         const { data } = await axiosReq.post('/dog_profile_create/', formData);
         history.push(`/dog-profile/${data.id}`);
     } catch (err) {
-        // console.log(err);
+        console.log(err);
         if (err.response?.status !== 401) {
             setErrors(err.response?.data);
         }

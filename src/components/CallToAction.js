@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "../styles/CallToAction.module.css";
-import dogsbanner from "../assets/dogs-banner.jpg";
+import dogsbanner from "../assets/dogsbanner.jpg";
 import {
   useCurrentUser,
 } from "../contexts/CurrentUserContext";

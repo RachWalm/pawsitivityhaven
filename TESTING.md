@@ -20,7 +20,18 @@
 
 #### Responsive
 
-## Automated testing
-
-
 ## User stories
+
+### Posts
+
+#### Post Create
+
+- As a member of staff I can create a post with a Title and picture
+
+- As a member of staff I can create a post with a Title, text and picture
+
+- If not a member of staff or not logged in my content won't save
+
+- As a member of staff I get errors when I leave Title empty
+
+- As a member of staff I get 
