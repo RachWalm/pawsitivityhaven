@@ -26,7 +26,7 @@ function DogProfileCreateForm() {
     dog_breed: "",
     dog_gender: "",
     dog_size: "",
-    dog_image: "",
+    dog_image: "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
     at_rescue: "",
     status: "",
     general: "",

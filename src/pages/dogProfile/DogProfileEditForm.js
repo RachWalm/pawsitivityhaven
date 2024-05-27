@@ -234,8 +234,8 @@ function DogProfileEditForm() {
               </Alert>
             ))}
         <Form.Group controlId="exampleForm.SelectCustom">
-          <Form.Label>dog_gender</Form.Label>
-          <Form.Control as="select" custom name="dog gender" htmlSize={3} value={dog_gender} onChange={handleChange}>
+          <Form.Label>dog gender</Form.Label>
+          <Form.Control as="select" custom name="dog_gender" htmlSize={3} value={dog_gender} onChange={handleChange}>
             <option label="TBC" value="0">0</option>
             <option label="Male" value="1">1</option>
             <option label="Female" value="2">2</option>
